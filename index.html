@@ -70,7 +70,11 @@
     <a class="card" href="#education"><h3>UBC Education</h3><p>Free learning resources for all ages.</p></a>
     <a class="card" href="#player"><h3>UBC Player</h3><p>On-demand content and future live services in one place.</p></a>
     <a class="card" href="#listen"><h3>UBC Listen</h3><p>Radio, podcasts, and audio content from across the UK.</p></a>
-    <a class="card" href="#weather"><h3>UBC Weather</h3><p id="weather-temp">Loading temperature...</p><p id="weather-desc">Loading conditions...</p></a>
+    <a class="card" href="#weather">
+      <h3>UBC Weather</h3>
+      <p id="weather-temp">Loading temperature...</p>
+      <p id="weather-desc">Loading conditions...</p>
+    </a>
     <a class="card" href="#sport"><h3>UBC Sport</h3><p>Coverage of UK and international sport, results, and analysis.</p></a>
     <a class="card" href="#archive"><h3>UBC Archive</h3><p>Explore past broadcasts, articles, and historical content.</p></a>
   </div>
@@ -92,17 +96,37 @@ let index = 0;
 const headlineEl = document.getElementById('featured-headline');
 setInterval(() => { index = (index + 1) % headlines.length; headlineEl.textContent = headlines[index]; }, 5000);
 
-// Live weather updates using OpenWeatherMap API (replace YOUR_API_KEY)
-fetch('https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=YOUR_API_KEY&units=metric')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('weather-temp').textContent = data.main.temp + '°C';
-    document.getElementById('weather-desc').textContent = data.weather[0].description;
-  })
-  .catch(err => {
-    document.getElementById('weather-temp').textContent = 'N/A';
-    document.getElementById('weather-desc').textContent = 'Unable to load weather';
-  });
+// Met Office Weather DataHub integration (replace YOUR_MET_OFFICE_API_KEY)
+const MET_API_KEY = 'YOUR_MET_OFFICE_API_KEY';
+const LAT = 51.5074;
+const LON = -0.1278;
+const WEATHER_ELEMENT = document.getElementById('weather-temp');
+const WEATHER_DESC = document.getElementById('weather-desc');
+
+async function fetchMetOfficeWeather() {
+  try {
+    const url = `https://api-metoffice.apiconnect.ibmcloud.com/metoffice/production/v0/point/forecast?latitude=${LAT}&longitude=${LON}&res=hourly`;
+    const response = await fetch(url, {
+      headers: { 'X-IBM-Client-Id': MET_API_KEY, 'Accept': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Weather data fetch failed');
+
+    const data = await response.json();
+    const current = data.features[0].properties.timeSeries[0];
+    const tempC = current.screenTemperature;
+    const desc = current.weatherType;
+
+    WEATHER_ELEMENT.textContent = `${tempC}°C`;
+    WEATHER_DESC.textContent = desc;
+  } catch (err) {
+    console.error(err);
+    WEATHER_ELEMENT.textContent = 'N/A';
+    WEATHER_DESC.textContent = 'Unable to load weather';
+  }
+}
+
+fetchMetOfficeWeather();
+setInterval(fetchMetOfficeWeather, 600000); // refresh every 10 minutes
 </script>
 
 </body>
