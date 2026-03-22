@@ -54,7 +54,8 @@
 </header>
 
 <div class="ticker">
-  <div>⚽ Arsenal 2–1 Chelsea | 🌦️ Rain across London | 📰 Parliament announces new bill | 🎧 New podcast: Tech Today</div>
+  <div id="ticker-text">Loading updates...</div>
+</div>
 </div>
 
 <section class="hero">
@@ -101,6 +102,7 @@ const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
 const CITY = 'London,uk';
 const WEATHER_ELEMENT = document.getElementById('weather-temp');
 const WEATHER_DESC = document.getElementById('weather-desc');
+const TICKER = document.getElementById('ticker-text');
 
 async function fetchWeather() {
   try {
@@ -109,15 +111,21 @@ async function fetchWeather() {
     if (!response.ok) throw new Error('Weather fetch failed');
     const data = await response.json();
 
-    const tempC = data.main.temp;
+    const tempC = Math.round(data.main.temp);
     const desc = data.weather[0].description;
 
     WEATHER_ELEMENT.textContent = `${tempC}°C`;
     WEATHER_DESC.textContent = desc;
+
+    // Update ticker with live weather
+    TICKER.textContent = `⚽ Arsenal 2–1 Chelsea | 🌦️ ${tempC}°C in London, ${desc} | 📰 Parliament announces new bill | 🎧 New podcast: Tech Today`;
+
   } catch (err) {
     console.error(err);
     WEATHER_ELEMENT.textContent = 'N/A';
     WEATHER_DESC.textContent = 'Unable to load weather';
+
+    TICKER.textContent = '⚽ Arsenal 2–1 Chelsea | 🌦️ Weather unavailable | 📰 Parliament announces new bill | 🎧 New podcast: Tech Today';
   }
 }
 
