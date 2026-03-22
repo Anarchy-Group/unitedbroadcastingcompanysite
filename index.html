@@ -6,16 +6,18 @@
   <title>UBC | United Broadcasting Company</title>
   <style>
     body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #ffffff; color: #111; }
+
     header { display: flex; justify-content: space-between; align-items: center; padding: 18px 50px; background: #f5f5f5; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 10; }
     header h1 { letter-spacing: 2px; }
     nav a { margin-left: 25px; text-decoration: none; color: #333; font-size: 14px; }
-    nav a:hover { text-decoration: underline; color: #000; }
 
     .ticker { background: #000; color: #fff; padding: 8px 20px; overflow: hidden; }
     .ticker div { display: inline-block; padding-right: 100%; animation: scroll 20s linear infinite; }
     @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
     .hero { padding: 100px 20px; background: #f2f2f2; text-align: center; }
+    .hero h2 { margin-bottom: 10px; }
+    #featured-headline { font-size: 18px; font-weight: 500; color: #333; }
 
     .section { padding: 60px 50px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -33,7 +35,12 @@
   <nav>
     <a href="#">Home</a>
     <a href="#news">News</a>
+    <a href="#education">Education</a>
+    <a href="#player">Player</a>
+    <a href="#listen">Listen</a>
     <a href="#weather">Weather</a>
+    <a href="#sport">Sport</a>
+    <a href="#archive">Archive</a>
   </nav>
 </header>
 
@@ -43,33 +50,37 @@
 
 <section class="hero">
   <h2>United Broadcasting Company</h2>
+  <p>A public-focused national broadcaster for the United Kingdom.</p>
   <p id="featured-headline">Loading headlines...</p>
 </section>
 
 <section class="section">
   <h2>Top Stories</h2>
-  <div id="news-container">
-    <p>Loading latest news...</p>
-  </div>
+  <div id="news-container"><p>Loading latest news...</p></div>
 </section>
 
 <section class="section">
-  <h2>Services</h2>
+  <h2>Our Services</h2>
   <div class="grid">
     <div class="card">
       <h3>UBC Weather</h3>
       <p id="weather-temp">Loading...</p>
       <p id="weather-desc"></p>
     </div>
+    <div class="card"><h3>UBC News</h3><p>Latest UK and global news.</p></div>
+    <div class="card"><h3>UBC Player</h3><p>On-demand and future live content.</p></div>
+    <div class="card"><h3>UBC Listen</h3><p>Radio and podcasts.</p></div>
+    <div class="card"><h3>UBC Sport</h3><p>Sport coverage and results.</p></div>
+    <div class="card"><h3>UBC Archive</h3><p>Past broadcasts and content.</p></div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 UBC</p>
+  <p>© 2026 United Broadcasting Company</p>
 </footer>
 
 <script>
-// GLOBAL STATE (ONLY DECLARED ONCE ✅)
+// STATE
 let headlines = [];
 let latestHeadline = 'Loading news...';
 let index = 0;
@@ -80,15 +91,15 @@ const WEATHER_ELEMENT = document.getElementById('weather-temp');
 const WEATHER_DESC = document.getElementById('weather-desc');
 const TICKER = document.getElementById('ticker-text');
 
-// ROTATE HEADLINES
+// HEADLINE ROTATION
 setInterval(() => {
   if (headlines.length > 0) {
     index = (index + 1) % headlines.length;
-    headlineEl.textContent = headlines[index];
+    headlineEl.textContent = 'Top Story: ' + headlines[index];
   }
 }, 5000);
 
-// WEATHER (OpenWeatherMap)
+// WEATHER
 const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
 
 async function fetchWeather() {
@@ -103,10 +114,7 @@ async function fetchWeather() {
     WEATHER_DESC.textContent = desc;
 
     updateTicker(temp, desc);
-
   } catch {
-    WEATHER_ELEMENT.textContent = 'N/A';
-    WEATHER_DESC.textContent = 'Weather unavailable';
     updateTicker(null, null);
   }
 }
@@ -132,7 +140,10 @@ async function fetchNews() {
       if (i === 0) latestHeadline = a.webTitle;
     });
 
-    headlineEl.textContent = headlines[0];
+    if (headlines.length > 0) {
+      headlineEl.textContent = 'Top Story: ' + headlines[0];
+    }
+
     updateTicker();
 
   } catch {
@@ -157,7 +168,10 @@ async function fetchGNews() {
       if (i === 0) latestHeadline = a.title;
     });
 
-    headlineEl.textContent = headlines[0];
+    if (headlines.length > 0) {
+      headlineEl.textContent = 'Top Story: ' + headlines[0];
+    }
+
     updateTicker();
 
   } catch {
