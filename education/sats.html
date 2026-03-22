@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC SATs</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #15803d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
+      border-bottom: 1px solid #d8eadf;
+      padding: 56px 48px 46px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(6, 95, 70, 0.08);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #065f46;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.12;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: #35564a;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    .hero-primary {
+      background: #065f46;
+      color: white;
+    }
+
+    .hero-secondary {
+      background: white;
+      color: #065f46;
+      border: 1px solid #b9d7c7;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+    }
+
+    .page {
+      padding: 34px 48px 56px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: #555;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      min-height: 200px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border-color: #bbb;
+    }
+
+    .subject-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+      background: #eef7f2;
+    }
+
+    .subject-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .subject-card p {
+      margin: 0 0 14px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .subject-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .subject-links span {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 6px 9px;
+      font-size: 12px;
+      color: #444;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+      gap: 20px;
+    }
+
+    .support-panel,
+    .resource-list,
+    .exam-panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+    }
+
+    .resource-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .resource-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .resource-type {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+
+    .resource-item h4,
+    .support-panel h4,
+    .exam-panel h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .resource-item p,
+    .support-panel p,
+    .exam-panel p,
+    .support-panel li,
+    .exam-panel li {
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .support-panel ul,
+    .exam-panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">UBC Education</div>
+      <h2>SATs Support</h2>
+      <p>You are currently viewing SATs resources. Find simple guides, practice topics and support for primary school learners.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="#subjects">Browse SATs topics</a>
+        <a class="hero-secondary" href="#resources">Helpful resources</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="section" id="subjects">
+      <div class="section-header">
+        <div>
+          <h3>Core SATs Subjects</h3>
+          <p>Focus on the main areas most learners and parents will want quick access to.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card">
+          <div class="subject-icon">📐</div>
+          <h4>Maths</h4>
+          <p>Arithmetic, fractions, times tables and problem solving.</p>
+          <div class="subject-links"><span>Arithmetic</span><span>Fractions</span><span>Problem solving</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">📚</div>
+          <h4>English</h4>
+          <p>Reading, writing and comprehension skills.</p>
+          <div class="subject-links"><span>Reading</span><span>Writing</span><span>Comprehension</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">✍️</div>
+          <h4>SPaG</h4>
+          <p>Spelling, punctuation and grammar practice.</p>
+          <div class="subject-links"><span>Spelling</span><span>Punctuation</span><span>Grammar</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Practice Areas</h3>
+          <p>Short, focused activities that make revision feel manageable and clear.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card">
+          <div class="subject-icon">🔢</div>
+          <h4>Times Tables</h4>
+          <p>Quick recall and speed practice.</p>
+          <div class="subject-links"><span>2x</span><span>5x</span><span>10x</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">📖</div>
+          <h4>Reading Practice</h4>
+          <p>Short texts with questions.</p>
+          <div class="subject-links"><span>Texts</span><span>Questions</span><span>Inference</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">✅</div>
+          <h4>Grammar Quiz</h4>
+          <p>Fun exercises to test knowledge.</p>
+          <div class="subject-links"><span>Verbs</span><span>Tenses</span><span>Clauses</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Exam Tips</h3>
+          <p>Practical advice to help learners feel calm, prepared and confident.</p>
+        </div>
+      </div>
+
+      <div class="support-panel">
+        <ul>
+          <li>Take your time and read questions carefully</li>
+          <li>Practice a little every day instead of cramming</li>
+          <li>Stay calm and confident</li>
+          <li>Get a good night’s sleep before the test</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-header">
+        <div>
+          <h3>Helpful Resources</h3>
+          <p>Extra support for planning, daily learning and help at home.</p>
+        </div>
+      </div>
+
+      <div class="two-column">
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-type">Planning</div>
+            <h4>Revision Timetable</h4>
+            <p>Plan learning in small, manageable steps across the week.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Routine</div>
+            <h4>Daily Practice</h4>
+            <p>Short activities to build confidence every day.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Support</div>
+            <h4>Parent Support</h4>
+            <p>Guidance for helping children prepare at home without too much pressure.</p>
+          </div>
+        </div>
+
+        <div class="exam-panel">
+          <h4>Good next pages</h4>
+          <ul>
+            <li>SATs Maths topic page</li>
+            <li>SATs English reading practice</li>
+            <li>Grammar games and quizzes</li>
+            <li>Parents’ help and revision routines</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+</body>
+</html>
