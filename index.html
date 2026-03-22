@@ -135,20 +135,61 @@ async function fetchWeather() {
   }
 }
 
-// GNews API integration (replace YOUR_GNEWS_API_KEY)
+// Guardian API integration (primary) + GNews fallback
+const GUARDIAN_API_KEY = 'b07f7414-c20c-418a-b745-696d952c17bd';
 const GNEWS_API_KEY = 'acf154b8b851151150251ac346d49683';
 const NEWS_CONTAINER = document.getElementById('news-container');
 let latestHeadline = 'Loading news...';
+let headlines = [];
 
 async function fetchNews() {
   try {
+    // Try Guardian first
+    const guardianUrl = `https://content.guardianapis.com/search?api-key=${GUARDIAN_API_KEY}&show-fields=trailText&order-by=newest&page-size=5`;
+    const response = await fetch(guardianUrl);
+
+    if (!response.ok) throw new Error('Guardian failed');
+
+    const data = await response.json();
+    processGuardian(data);
+
+  } catch (err) {
+    console.warn('Guardian failed, switching to GNews', err);
+    fetchGNews();
+  }
+}
+
+function processGuardian(data) {
+  NEWS_CONTAINER.innerHTML = '';
+  headlines = [];
+
+  data.response.results.forEach((article, i) => {
+    const item = document.createElement('article');
+    item.innerHTML = `
+      <h4>${article.webTitle}</h4>
+      <p>${article.fields?.trailText || ''}</p>
+    `;
+    NEWS_CONTAINER.appendChild(item);
+
+    if (i < 4) headlines.push(article.webTitle);
+    if (i === 0) latestHeadline = article.webTitle;
+  });
+
+  if (headlines.length > 0) {
+    index = 0;
+    headlineEl.textContent = headlines[0];
+  }
+}
+
+// Fallback: GNews
+async function fetchGNews() {
+  try {
     const url = `https://gnews.io/api/v4/top-headlines?country=gb&max=5&apikey=${GNEWS_API_KEY}`;
     const response = await fetch(url);
-    if (!response.ok) throw new Error('News fetch failed');
+    if (!response.ok) throw new Error('GNews failed');
     const data = await response.json();
 
     NEWS_CONTAINER.innerHTML = '';
-
     headlines = [];
 
     data.articles.forEach((article, i) => {
@@ -159,13 +200,10 @@ async function fetchNews() {
       `;
       NEWS_CONTAINER.appendChild(item);
 
-      // collect top 4 headlines for hero
       if (i < 4) headlines.push(article.title);
-
       if (i === 0) latestHeadline = article.title;
     });
 
-    // immediately update hero to first headline
     if (headlines.length > 0) {
       index = 0;
       headlineEl.textContent = headlines[0];
