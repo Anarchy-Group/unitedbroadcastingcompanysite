@@ -6,35 +6,24 @@
   <title>UBC | United Broadcasting Company</title>
   <style>
     body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #ffffff; color: #111; }
-
-    header { display: flex; justify-content: space-between; align-items: center; padding: 18px 50px; background: #f5f5f5; color: #111; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 10; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 18px 50px; background: #f5f5f5; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 10; }
     header h1 { letter-spacing: 2px; }
     nav a { margin-left: 25px; text-decoration: none; color: #333; font-size: 14px; }
     nav a:hover { text-decoration: underline; color: #000; }
 
-    .hero { position: relative; padding: 100px 20px; background: #f2f2f2; text-align: center; overflow: hidden; }
-    .hero::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,0,0,0.03) 10%, transparent 10%), radial-gradient(circle, rgba(0,0,0,0.03) 10%, transparent 10%); background-size: 60px 60px; animation: moveBg 25s linear infinite; z-index: 0; }
-    .hero * { position: relative; z-index: 1; }
-    @keyframes moveBg { from { transform: translate(0,0); } to { transform: translate(60px, 60px); } }
+    .ticker { background: #000; color: #fff; padding: 8px 20px; overflow: hidden; }
+    .ticker div { display: inline-block; padding-right: 100%; animation: scroll 20s linear infinite; }
+    @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-    .ticker { background: #000; color: #fff; font-size: 14px; padding: 8px 20px; white-space: nowrap; overflow: hidden; position: relative; }
-    .ticker div { display: inline-block; padding-right: 100%; animation: scrollTicker 20s linear infinite; }
-    @keyframes scrollTicker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+    .hero { padding: 100px 20px; background: #f2f2f2; text-align: center; }
 
     .section { padding: 60px 50px; }
-    .section h2 { margin-bottom: 20px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 
-    .card { border: 1px solid #ddd; padding: 20px; background: white; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; text-decoration: none; color: inherit; display: block; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); border-color: #bbb; }
-    .card:active { transform: translateY(0px) scale(0.98); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .card h3 { margin-top: 0; transition: color 0.2s ease; }
-    .card:hover h3 { color: #000; }
+    .card { border: 1px solid #ddd; padding: 20px; background: white; text-decoration: none; color: inherit; display: block; transition: 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
 
-    .news-list article { border-bottom: 1px solid #ddd; padding: 15px 0; }
-    .news-list h4 { margin: 0 0 5px; }
-
-    footer { background: #000; color: #aaa; padding: 30px; text-align: center; font-size: 14px; }
+    footer { background: #000; color: #aaa; padding: 30px; text-align: center; }
   </style>
 </head>
 <body>
@@ -44,184 +33,145 @@
   <nav>
     <a href="#">Home</a>
     <a href="#news">News</a>
-    <a href="#education">Education</a>
-    <a href="#player">Player</a>
-    <a href="#listen">Listen</a>
     <a href="#weather">Weather</a>
-    <a href="#sport">Sport</a>
-    <a href="#archive">Archive</a>
   </nav>
 </header>
 
 <div class="ticker">
   <div id="ticker-text">Loading updates...</div>
 </div>
-</div>
 
 <section class="hero">
   <h2>United Broadcasting Company</h2>
-  <p>A public-focused national broadcaster for the United Kingdom. Delivering trusted news, education, and content for everyone.</p>
-  <p id="featured-headline">Top Story: National Weather Warning Issued Across Scotland</p>
+  <p id="featured-headline">Loading headlines...</p>
 </section>
 
 <section class="section">
   <h2>Top Stories</h2>
-  <div id="news-container" class="news-list">
+  <div id="news-container">
     <p>Loading latest news...</p>
   </div>
 </section>
 
 <section class="section">
-  <h2>Our Services</h2>
+  <h2>Services</h2>
   <div class="grid">
-    <a class="card" href="#news"><h3>UBC News</h3><p>Accurate, impartial reporting across the UK and world.</p></a>
-    <a class="card" href="#education"><h3>UBC Education</h3><p>Free learning resources for all ages.</p></a>
-    <a class="card" href="#player"><h3>UBC Player</h3><p>On-demand content and future live services in one place.</p></a>
-    <a class="card" href="#listen"><h3>UBC Listen</h3><p>Radio, podcasts, and audio content from across the UK.</p></a>
-    <a class="card" href="#weather">
+    <div class="card">
       <h3>UBC Weather</h3>
-      <p id="weather-temp">Loading temperature...</p>
-      <p id="weather-desc">Loading conditions...</p>
-    </a>
-    <a class="card" href="#sport"><h3>UBC Sport</h3><p>Coverage of UK and international sport, results, and analysis.</p></a>
-    <a class="card" href="#archive"><h3>UBC Archive</h3><p>Explore past broadcasts, articles, and historical content.</p></a>
+      <p id="weather-temp">Loading...</p>
+      <p id="weather-desc"></p>
+    </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  <p>© 2026 UBC</p>
 </footer>
 
 <script>
-// Featured headline rotation (now driven by GNews)
-let headlines = ['Loading headlines...'];
+// GLOBAL STATE (ONLY DECLARED ONCE ✅)
+let headlines = [];
+let latestHeadline = 'Loading news...';
 let index = 0;
+
 const headlineEl = document.getElementById('featured-headline');
-
-function rotateHeadline() {
-  if (!headlines.length) return;
-  index = (index + 1) % headlines.length;
-  headlineEl.textContent = headlines[index];
-}
-setInterval(rotateHeadline, 5000);
-
-// OpenWeatherMap integration (replace YOUR_OWM_API_KEY)
-const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
-const CITY = 'London,uk';
+const NEWS_CONTAINER = document.getElementById('news-container');
 const WEATHER_ELEMENT = document.getElementById('weather-temp');
 const WEATHER_DESC = document.getElementById('weather-desc');
 const TICKER = document.getElementById('ticker-text');
 
+// ROTATE HEADLINES
+setInterval(() => {
+  if (headlines.length > 0) {
+    index = (index + 1) % headlines.length;
+    headlineEl.textContent = headlines[index];
+  }
+}, 5000);
+
+// WEATHER (OpenWeatherMap)
+const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
+
 async function fetchWeather() {
   try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${OWM_API_KEY}&units=metric`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Weather fetch failed');
-    const data = await response.json();
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${OWM_API_KEY}&units=metric`);
+    const data = await res.json();
 
-    const tempC = Math.round(data.main.temp);
+    const temp = Math.round(data.main.temp);
     const desc = data.weather[0].description;
 
-    WEATHER_ELEMENT.textContent = `${tempC}°C`;
+    WEATHER_ELEMENT.textContent = temp + '°C';
     WEATHER_DESC.textContent = desc;
 
-    updateTicker(tempC, desc);
+    updateTicker(temp, desc);
 
-  } catch (err) {
-    console.error(err);
+  } catch {
     WEATHER_ELEMENT.textContent = 'N/A';
-    WEATHER_DESC.textContent = 'Unable to load weather';
+    WEATHER_DESC.textContent = 'Weather unavailable';
     updateTicker(null, null);
   }
 }
 
-// Guardian API integration (primary) + GNews fallback
+// NEWS (Guardian → fallback GNews)
 const GUARDIAN_API_KEY = 'b07f7414-c20c-418a-b745-696d952c17bd';
 const GNEWS_API_KEY = 'acf154b8b851151150251ac346d49683';
-const NEWS_CONTAINER = document.getElementById('news-container');
-let latestHeadline = 'Loading news...';
-let headlines = [];
 
 async function fetchNews() {
   try {
-    // Try Guardian first
-    const guardianUrl = `https://content.guardianapis.com/search?api-key=${GUARDIAN_API_KEY}&show-fields=trailText&order-by=newest&page-size=5`;
-    const response = await fetch(guardianUrl);
+    const res = await fetch(`https://content.guardianapis.com/search?api-key=${GUARDIAN_API_KEY}&page-size=5`);
+    const data = await res.json();
 
-    if (!response.ok) throw new Error('Guardian failed');
+    headlines = [];
+    NEWS_CONTAINER.innerHTML = '';
 
-    const data = await response.json();
-    processGuardian(data);
+    data.response.results.forEach((a, i) => {
+      const el = document.createElement('div');
+      el.innerHTML = `<strong>${a.webTitle}</strong>`;
+      NEWS_CONTAINER.appendChild(el);
 
-  } catch (err) {
-    console.warn('Guardian failed, switching to GNews', err);
+      if (i < 4) headlines.push(a.webTitle);
+      if (i === 0) latestHeadline = a.webTitle;
+    });
+
+    headlineEl.textContent = headlines[0];
+    updateTicker();
+
+  } catch {
     fetchGNews();
   }
 }
 
-function processGuardian(data) {
-  NEWS_CONTAINER.innerHTML = '';
-  headlines = [];
-
-  data.response.results.forEach((article, i) => {
-    const item = document.createElement('article');
-    item.innerHTML = `
-      <h4>${article.webTitle}</h4>
-      <p>${article.fields?.trailText || ''}</p>
-    `;
-    NEWS_CONTAINER.appendChild(item);
-
-    if (i < 4) headlines.push(article.webTitle);
-    if (i === 0) latestHeadline = article.webTitle;
-  });
-
-  if (headlines.length > 0) {
-    index = 0;
-    headlineEl.textContent = headlines[0];
-  }
-}
-
-// Fallback: GNews
 async function fetchGNews() {
   try {
-    const url = `https://gnews.io/api/v4/top-headlines?country=gb&max=5&apikey=${GNEWS_API_KEY}`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('GNews failed');
-    const data = await response.json();
+    const res = await fetch(`https://gnews.io/api/v4/top-headlines?country=gb&apikey=${GNEWS_API_KEY}`);
+    const data = await res.json();
 
-    NEWS_CONTAINER.innerHTML = '';
     headlines = [];
+    NEWS_CONTAINER.innerHTML = '';
 
-    data.articles.forEach((article, i) => {
-      const item = document.createElement('article');
-      item.innerHTML = `
-        <h4>${article.title}</h4>
-        <p>${article.description || ''}</p>
-      `;
-      NEWS_CONTAINER.appendChild(item);
+    data.articles.forEach((a, i) => {
+      const el = document.createElement('div');
+      el.innerHTML = `<strong>${a.title}</strong>`;
+      NEWS_CONTAINER.appendChild(el);
 
-      if (i < 4) headlines.push(article.title);
-      if (i === 0) latestHeadline = article.title;
+      if (i < 4) headlines.push(a.title);
+      if (i === 0) latestHeadline = a.title;
     });
 
-    if (headlines.length > 0) {
-      index = 0;
-      headlineEl.textContent = headlines[0];
-    }
+    headlineEl.textContent = headlines[0];
+    updateTicker();
 
-  } catch (err) {
-    console.error(err);
-    NEWS_CONTAINER.innerHTML = '<p>Unable to load news.</p>';
-    latestHeadline = 'News unavailable';
+  } catch {
+    NEWS_CONTAINER.innerHTML = 'News unavailable';
   }
 }
 
-// Combined ticker update
+// TICKER
 function updateTicker(temp, desc) {
-  const weatherText = temp !== null ? `🌦️ ${temp}°C in London, ${desc}` : '🌦️ Weather unavailable';
-  TICKER.textContent = `📰 ${latestHeadline} | ${weatherText} | 🎧 New podcast: Tech Today`;
+  const weather = temp ? `🌦️ ${temp}°C, ${desc}` : '🌦️ Weather unavailable';
+  TICKER.textContent = `📰 ${latestHeadline} | ${weather}`;
 }
 
+// INIT
 fetchWeather();
 fetchNews();
 setInterval(() => { fetchWeather(); fetchNews(); }, 600000);
