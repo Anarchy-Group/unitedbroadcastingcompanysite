@@ -93,16 +93,17 @@
 </footer>
 
 <script>
-// Featured headline rotation
-const headlines = [
-  'Top Story: National Weather Warning Issued Across Scotland',
-  'Breaking: UK Parliament Announces New Education Reforms',
-  'Sport Update: Premier League Highlights',
-  'Listen Now: New Episode of Tech Today Podcast'
-];
+// Featured headline rotation (now driven by GNews)
+let headlines = ['Loading headlines...'];
 let index = 0;
 const headlineEl = document.getElementById('featured-headline');
-setInterval(() => { index = (index + 1) % headlines.length; headlineEl.textContent = headlines[index]; }, 5000);
+
+function rotateHeadline() {
+  if (!headlines.length) return;
+  index = (index + 1) % headlines.length;
+  headlineEl.textContent = headlines[index];
+}
+setInterval(rotateHeadline, 5000);
 
 // OpenWeatherMap integration (replace YOUR_OWM_API_KEY)
 const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
@@ -148,7 +149,9 @@ async function fetchNews() {
 
     NEWS_CONTAINER.innerHTML = '';
 
-    data.articles.forEach((article, index) => {
+    headlines = [];
+
+    data.articles.forEach((article, i) => {
       const item = document.createElement('article');
       item.innerHTML = `
         <h4>${article.title}</h4>
@@ -156,8 +159,17 @@ async function fetchNews() {
       `;
       NEWS_CONTAINER.appendChild(item);
 
-      if (index === 0) latestHeadline = article.title;
+      // collect top 4 headlines for hero
+      if (i < 4) headlines.push(article.title);
+
+      if (i === 0) latestHeadline = article.title;
     });
+
+    // immediately update hero to first headline
+    if (headlines.length > 0) {
+      index = 0;
+      headlineEl.textContent = headlines[0];
+    }
 
   } catch (err) {
     console.error(err);
