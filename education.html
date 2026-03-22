@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC Education</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #15803d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
+      border-bottom: 1px solid #d8eadf;
+      padding: 56px 48px 46px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(6, 95, 70, 0.08);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #065f46;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.12;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: #35564a;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    .hero-primary {
+      background: #065f46;
+      color: white;
+    }
+
+    .hero-secondary {
+      background: white;
+      color: #065f46;
+      border: 1px solid #b9d7c7;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+    }
+
+    .page {
+      padding: 34px 48px 56px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .quick-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      min-height: 124px;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border-color: #bbb;
+    }
+
+    .quick-card .tag {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #065f46;
+      margin-bottom: 10px;
+    }
+
+    .quick-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .quick-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .search-panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 18px;
+      margin-bottom: 28px;
+    }
+
+    .search-panel h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-row input,
+    .search-row select {
+      padding: 12px 14px;
+      border: 1px solid #d0d0d0;
+      font-size: 14px;
+      background: #fff;
+      color: #111;
+    }
+
+    .search-row input {
+      flex: 1 1 280px;
+      min-width: 220px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: #555;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      min-height: 200px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border-color: #bbb;
+    }
+
+    .subject-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+      background: #eef7f2;
+    }
+
+    .subject-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .subject-card p {
+      margin: 0 0 14px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .subject-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .subject-links span {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 6px 9px;
+      font-size: 12px;
+      color: #444;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+      gap: 20px;
+    }
+
+    .resource-list,
+    .support-panel,
+    .exam-panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+    }
+
+    .resource-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .resource-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .resource-type {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+
+    .resource-item h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .resource-item p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .support-panel h4,
+    .exam-panel h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .support-panel p,
+    .exam-panel p,
+    .support-panel li,
+    .exam-panel li {
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .support-panel ul,
+    .exam-panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .age-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 18px;
+      min-height: 120px;
+    }
+
+    .age-card h4 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .age-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">UBC Education</div>
+      <h2>Study guides, revision support and learning resources for every stage.</h2>
+      <p>A simple, trusted education hub inspired by the structure of a study support platform, with subject pages, revision help, exam support and skills resources for learners across the UK.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="#subjects">Browse subjects</a>
+        <a class="hero-secondary" href="#resources">Latest resources</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="quick-grid">
+      <a class="quick-card" href="#sats">
+        <div class="tag">Level</div>
+        <h3>SATs</h3>
+        <p>Primary support for English, maths, grammar and confidence before assessments.</p>
+      </a>
+      <a class="quick-card" href="#gcse">
+        <div class="tag">Level</div>
+        <h3>GCSE</h3>
+        <p>Revision guides, topic explainers and exam-ready practice materials.</p>
+      </a>
+      <a class="quick-card" href="#alevel">
+        <div class="tag">Level</div>
+        <h3>A-Level</h3>
+        <p>Deeper subject support with advanced topics and structured revision.</p>
+      </a>
+      <a class="quick-card" href="#skills">
+        <div class="tag">Pathway</div>
+        <h3>Skills & Careers</h3>
+        <p>Work skills, digital confidence, employability and progression advice.</p>
+      </a>
+      <a class="quick-card" href="#adults">
+        <div class="tag">Learning</div>
+        <h3>Adult Learning</h3>
+        <p>Useful guides for lifelong learning, reskilling and everyday knowledge.</p>
+      </a>
+    </section>
+
+    <section class="search-panel">
+      <h3>Find a subject or topic</h3>
+      <div class="search-row">
+        <input type="text" id="subject-search" placeholder="Search subjects, topics or revision guides" />
+        <select id="level-filter">
+          <option value="all">All levels</option>
+          <option value="sats">SATs / Primary</option>
+          <option value="gcse">GCSE</option>
+          <option value="alevel">A-Level</option>
+          <option value="skills">Skills & Careers</option>
+          <option value="adults">Adult Learning</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section" id="subjects">
+      <div class="section-header">
+        <div>
+          <h3>Popular subjects</h3>
+          <p>Start with the main subject areas learners are most likely to need quickly, then branch into topic pages later.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid" id="subject-grid">
+        <a class="subject-card" href="#" data-level="sats gcse alevel">
+          <div class="subject-icon">📐</div>
+          <h4>Maths</h4>
+          <p>Core numeracy, arithmetic, algebra, geometry, statistics and exam practice support.</p>
+          <div class="subject-links"><span>Arithmetic</span><span>Algebra</span><span>Geometry</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse alevel">
+          <div class="subject-icon">📚</div>
+          <h4>English</h4>
+          <p>Reading, writing, grammar, comprehension, language and literature support.</p>
+          <div class="subject-links"><span>Reading</span><span>Writing</span><span>Grammar</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse alevel">
+          <div class="subject-icon">🧪</div>
+          <h4>Science</h4>
+          <p>Biology, chemistry and physics with clear topic-by-topic revision help.</p>
+          <div class="subject-links"><span>Biology</span><span>Chemistry</span><span>Physics</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse">
+          <div class="subject-icon">✍️</div>
+          <h4>SPaG</h4>
+          <p>Spelling, punctuation and grammar support for primary and lower secondary learners.</p>
+          <div class="subject-links"><span>Spelling</span><span>Punctuation</span><span>Grammar</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse alevel">
+          <div class="subject-icon">🌍</div>
+          <h4>Geography</h4>
+          <p>Human and physical geography, case studies and revision summaries.</p>
+          <div class="subject-links"><span>Climate</span><span>Urban</span><span>Maps</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">🏛️</div>
+          <h4>History</h4>
+          <p>Timelines, key events, source analysis and structured historical writing.</p>
+          <div class="subject-links"><span>Timelines</span><span>Sources</span><span>Essays</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel skills">
+          <div class="subject-icon">💻</div>
+          <h4>Computing</h4>
+          <p>Digital skills, programming, computing systems and online understanding.</p>
+          <div class="subject-links"><span>Coding</span><span>Systems</span><span>Safety</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse">
+          <div class="subject-icon">🎨</div>
+          <h4>Art & Design</h4>
+          <p>Creativity, sketchbooks, techniques and visual communication for learners.</p>
+          <div class="subject-links"><span>Drawing</span><span>Design</span><span>Creativity</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse alevel">
+          <div class="subject-icon">🎵</div>
+          <h4>Music</h4>
+          <p>Performance, listening, composition and music theory support.</p>
+          <div class="subject-links"><span>Listening</span><span>Theory</span><span>Composition</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="sats gcse">
+          <div class="subject-icon">⚽</div>
+          <h4>PE</h4>
+          <p>Physical education, movement, health and sport-based learning support.</p>
+          <div class="subject-links"><span>Fitness</span><span>Health</span><span>Sport</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">🧾</div>
+          <h4>Business</h4>
+          <p>Enterprise, finance, marketing and business studies fundamentals.</p>
+          <div class="subject-links"><span>Enterprise</span><span>Finance</span><span>Marketing</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">🗣️</div>
+          <h4>Languages</h4>
+          <p>Vocabulary, speaking, listening and grammar for language learners.</p>
+          <div class="subject-links"><span>French</span><span>Spanish</span><span>Grammar</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">⚖️</div>
+          <h4>Politics</h4>
+          <p>Government, democracy, institutions and political ideas for advanced learners.</p>
+          <div class="subject-links"><span>Government</span><span>Democracy</span><span>Ideas</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">🧠</div>
+          <h4>Psychology</h4>
+          <p>Behaviour, research methods and key theories in human psychology.</p>
+          <div class="subject-links"><span>Memory</span><span>Behaviour</span><span>Research</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="gcse alevel">
+          <div class="subject-icon">📖</div>
+          <h4>Religious Studies</h4>
+          <p>Beliefs, ethics, philosophy and comparative religion topics.</p>
+          <div class="subject-links"><span>Beliefs</span><span>Ethics</span><span>Philosophy</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="skills adults">
+          <div class="subject-icon">🧠</div>
+          <h4>Study Skills</h4>
+          <p>Planning, revision techniques, note-taking and confidence under pressure.</p>
+          <div class="subject-links"><span>Planning</span><span>Memory</span><span>Focus</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="skills adults">
+          <div class="subject-icon">🛡️</div>
+          <h4>Media Literacy</h4>
+          <p>Spot misinformation, understand sources and build safe digital habits.</p>
+          <div class="subject-links"><span>Sources</span><span>Trust</span><span>Online safety</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="skills adults">
+          <div class="subject-icon">💼</div>
+          <h4>Careers</h4>
+          <p>CV writing, interviews, progression routes and workplace confidence.</p>
+          <div class="subject-links"><span>CVs</span><span>Interviews</span><span>Jobs</span></div>
+        </a>
+        <a class="subject-card" href="#" data-level="adults skills">
+          <div class="subject-icon">🏡</div>
+          <h4>Life Skills</h4>
+          <p>Everyday numeracy, communication, digital confidence and practical knowledge.</p>
+          <div class="subject-links"><span>Money</span><span>Communication</span><span>Digital</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Learning by stage</h3>
+          <p>Simple pathways help learners and parents quickly find the right level.</p>
+        </div>
+      </div>
+      <div class="age-grid">
+        <div class="age-card" id="sats">
+          <h4>SATs / Primary</h4>
+          <p>Early support for maths, English, SPaG and confidence before assessments.</p>
+        </div>
+        <div class="age-card" id="gcse">
+          <h4>GCSE</h4>
+          <p>Short explainers, key topics, past-paper support and revision essentials.</p>
+        </div>
+        <div class="age-card" id="alevel">
+          <h4>A-Level</h4>
+          <p>More advanced content with deeper topic breakdowns and essay guidance.</p>
+        </div>
+        <div class="age-card" id="skills">
+          <h4>Skills & Careers</h4>
+          <p>Digital literacy, interview basics, workplace confidence and progression.</p>
+        </div>
+        <div class="age-card" id="adults">
+          <h4>Adult Learning</h4>
+          <p>Flexible learning materials for personal growth, reskilling and everyday knowledge.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-header">
+        <div>
+          <h3>Latest resources</h3>
+          <p>Highlight timely, useful education content that feels fresh and practical.</p>
+        </div>
+      </div>
+
+      <div class="two-column">
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-type">Primary support</div>
+            <h4>Getting ready for SATs without panic</h4>
+            <p>A gentle approach to reading, arithmetic and grammar practice for younger learners.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Revision guide</div>
+            <h4>How to build a realistic revision timetable</h4>
+            <p>A structured, calmer way to organise your week without overloading yourself before exams.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Exam support</div>
+            <h4>What to do the night before an exam</h4>
+            <p>Practical steps for sleep, preparation, checking materials and managing stress.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Digital skills</div>
+            <h4>Spotting misleading information online</h4>
+            <p>A simple guide to source checking, headlines, context and safe sharing habits.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Careers</div>
+            <h4>Writing a short personal statement that feels genuine</h4>
+            <p>Clear tips for structure, tone and showing strengths without sounding forced.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; gap:20px;">
+          <div class="support-panel">
+            <h4>Exam support</h4>
+            <ul>
+              <li>SATs preparation and confidence support</li>
+              <li>Revision planning and subject prioritisation</li>
+              <li>Short explainers for difficult topics</li>
+              <li>Memory, recall and confidence strategies</li>
+              <li>Help with stress and keeping a routine</li>
+            </ul>
+          </div>
+          <div class="exam-panel">
+            <h4>Useful page ideas later</h4>
+            <ul>
+              <li>SATs English and maths practice hubs</li>
+              <li>Maths topic page with lessons and quizzes</li>
+              <li>Science revision hub by subject</li>
+              <li>English text guides and essay help</li>
+              <li>Careers hub with CV and interview support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('subject-search');
+    const levelFilter = document.getElementById('level-filter');
+    const subjectCards = Array.from(document.querySelectorAll('.subject-card'));
+
+    function filterSubjects() {
+      const query = searchInput.value.toLowerCase().trim();
+      const selectedLevel = levelFilter.value;
+
+      subjectCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const levels = (card.dataset.level || '').toLowerCase();
+
+        const matchesQuery = !query || text.includes(query);
+        const matchesLevel = selectedLevel === 'all' || levels.includes(selectedLevel);
+
+        card.style.display = matchesQuery && matchesLevel ? 'block' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterSubjects);
+    levelFilter.addEventListener('change', filterSubjects);
+  </script>
+</body>
+</html>
