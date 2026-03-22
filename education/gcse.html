@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC GCSE</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #15803d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
+      border-bottom: 1px solid #d8eadf;
+      padding: 56px 48px 46px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(6, 95, 70, 0.08);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #065f46;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.12;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: #35564a;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    .hero-primary {
+      background: #065f46;
+      color: white;
+    }
+
+    .hero-secondary {
+      background: white;
+      color: #065f46;
+      border: 1px solid #b9d7c7;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+    }
+
+    .page {
+      padding: 34px 48px 56px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: #555;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      min-height: 210px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border-color: #bbb;
+    }
+
+    .subject-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+      background: #eef7f2;
+    }
+
+    .subject-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .subject-card p {
+      margin: 0 0 14px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .subject-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .subject-links span {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 6px 9px;
+      font-size: 12px;
+      color: #444;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+      gap: 20px;
+    }
+
+    .support-panel,
+    .resource-list,
+    .exam-panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+    }
+
+    .resource-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .resource-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .resource-type {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+
+    .resource-item h4,
+    .support-panel h4,
+    .exam-panel h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .resource-item p,
+    .support-panel p,
+    .exam-panel p,
+    .support-panel li,
+    .exam-panel li {
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .support-panel ul,
+    .exam-panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">UBC Education</div>
+      <h2>GCSE Support</h2>
+      <p>You are currently viewing GCSE resources. Explore revision guides, exam support, subject summaries and practical study help for learners across core and optional subjects.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="#subjects">Browse GCSE subjects</a>
+        <a class="hero-secondary" href="#resources">Helpful resources</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="section" id="subjects">
+      <div class="section-header">
+        <div>
+          <h3>Core GCSE Subjects</h3>
+          <p>Start with the main subjects most learners will revise regularly throughout the year.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card"><h4>Art & Design</h4><p>Creative projects, sketchbooks and techniques.</p></div>
+        <div class="subject-card"><h4>Biology</h4><p>Cells, systems and living organisms.</p></div>
+        <div class="subject-card"><h4>Business</h4><p>Enterprise, marketing and finance basics.</p></div>
+        <div class="subject-card"><h4>Chemistry</h4><p>Reactions, elements and chemical processes.</p></div>
+        <div class="subject-card"><h4>Combined Science</h4><p>Biology, chemistry and physics combined.</p></div>
+        <div class="subject-card"><h4>Computer Science</h4><p>Programming, algorithms and systems.</p></div>
+        <div class="subject-card"><h4>Design & Technology</h4><p>Product design and materials.</p></div>
+        <div class="subject-card"><h4>Digital Technology</h4><p>Digital systems and creative tech skills.</p></div>
+        <div class="subject-card"><h4>Drama</h4><p>Performance and theatre studies.</p></div>
+        <div class="subject-card"><h4>English Language</h4><p>Reading, writing and analysis.</p></div>
+        <div class="subject-card"><h4>English Literature</h4><p>Texts, themes and essays.</p></div>
+        <div class="subject-card"><h4>French</h4><p>Vocabulary, grammar and speaking skills.</p></div>
+        <div class="subject-card"><h4>Geography</h4><p>Human and physical geography.</p></div>
+        <div class="subject-card"><h4>German</h4><p>Language skills and communication.</p></div>
+        <div class="subject-card"><h4>History</h4><p>Events, timelines and source work.</p></div>
+        <div class="subject-card"><h4>Home Economics</h4><p>Food, nutrition and practical skills.</p></div>
+        <div class="subject-card"><h4>ICT</h4><p>Information and communication technology.</p></div>
+        <div class="subject-card"><h4>Irish</h4><p>Language and cultural studies.</p></div>
+        <div class="subject-card"><h4>Learning for Life</h4><p>Personal development and wellbeing.</p></div>
+        <div class="subject-card"><h4>Mandarin</h4><p>Chinese language fundamentals.</p></div>
+        <div class="subject-card"><h4>Maths</h4><p>Algebra, geometry and statistics.</p></div>
+        <div class="subject-card"><h4>Media Studies</h4><p>Media analysis and production.</p></div>
+        <div class="subject-card"><h4>Modern Foreign Languages</h4><p>Multiple languages and communication.</p></div>
+        <div class="subject-card"><h4>Moving Image Arts</h4><p>Film creation and analysis.</p></div>
+        <div class="subject-card"><h4>Music</h4><p>Performance, listening and composition.</p></div>
+        <div class="subject-card"><h4>Physical Education</h4><p>Fitness, sport and health.</p></div>
+        <div class="subject-card"><h4>Physics</h4><p>Energy, forces and matter.</p></div>
+        <div class="subject-card"><h4>Religious Studies</h4><p>Beliefs, ethics and philosophy.</p></div>
+        <div class="subject-card"><h4>Science</h4><p>General science topics and support.</p></div>
+        <div class="subject-card"><h4>Spanish</h4><p>Language learning and communication.</p></div>
+        <div class="subject-card"><h4>Welsh</h4><p>Language and cultural understanding.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Other GCSE Subjects</h3>
+          <p>A wider range of subjects learners might want support with across revision season.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card">
+          <div class="subject-icon">🌍</div>
+          <h4>Geography</h4>
+          <p>Human and physical geography, case studies and map skills.</p>
+          <div class="subject-links"><span>Climate</span><span>Urban</span><span>Case studies</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🏛️</div>
+          <h4>History</h4>
+          <p>Key events, timelines, source work and structured extended writing.</p>
+          <div class="subject-links"><span>Timelines</span><span>Sources</span><span>Essays</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">💻</div>
+          <h4>Computing</h4>
+          <p>Programming, algorithms, systems and cyber security foundations.</p>
+          <div class="subject-links"><span>Coding</span><span>Algorithms</span><span>Systems</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🗣️</div>
+          <h4>Languages</h4>
+          <p>Vocabulary, grammar, listening, speaking and writing support.</p>
+          <div class="subject-links"><span>French</span><span>Spanish</span><span>Grammar</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🎨</div>
+          <h4>Art & Design</h4>
+          <p>Creative development, sketchbooks, themes and techniques.</p>
+          <div class="subject-links"><span>Sketchbooks</span><span>Themes</span><span>Technique</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🎵</div>
+          <h4>Music</h4>
+          <p>Listening, performance, composition and theory.</p>
+          <div class="subject-links"><span>Listening</span><span>Performance</span><span>Theory</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">⚽</div>
+          <h4>PE</h4>
+          <p>Health, fitness, sport science and practical understanding.</p>
+          <div class="subject-links"><span>Fitness</span><span>Health</span><span>Sport</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🧾</div>
+          <h4>Business</h4>
+          <p>Enterprise, finance, marketing and decision-making basics.</p>
+          <div class="subject-links"><span>Enterprise</span><span>Finance</span><span>Marketing</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Revision & Practice Areas</h3>
+          <p>Useful support around how to revise, not just what to revise.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <div class="subject-card">
+          <div class="subject-icon">📝</div>
+          <h4>Past Paper Practice</h4>
+          <p>Learn timing, question style and how marks are awarded.</p>
+          <div class="subject-links"><span>Timing</span><span>Marks</span><span>Practice</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">🧠</div>
+          <h4>Memory & Recall</h4>
+          <p>Revision strategies for keeping key information in mind.</p>
+          <div class="subject-links"><span>Recall</span><span>Flashcards</span><span>Review</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">📅</div>
+          <h4>Revision Planning</h4>
+          <p>Organise topics across the week without overloading yourself.</p>
+          <div class="subject-links"><span>Planning</span><span>Routine</span><span>Balance</span></div>
+        </div>
+        <div class="subject-card">
+          <div class="subject-icon">✅</div>
+          <h4>Exam Technique</h4>
+          <p>Improve structure, timing, confidence and answer quality.</p>
+          <div class="subject-links"><span>Structure</span><span>Timing</span><span>Confidence</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Exam Tips</h3>
+          <p>Practical steps that help keep revision steady and exam days calmer.</p>
+        </div>
+      </div>
+
+      <div class="support-panel">
+        <ul>
+          <li>Break large subjects into smaller topic lists</li>
+          <li>Use past papers to spot patterns in question styles</li>
+          <li>Focus on understanding before memorising quotes or formulas</li>
+          <li>Build a revision routine you can actually keep up with</li>
+          <li>Leave time for rest, meals and sleep during exam season</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-header">
+        <div>
+          <h3>Helpful Resources</h3>
+          <p>Useful support for routines, organisation and GCSE revision confidence.</p>
+        </div>
+      </div>
+
+      <div class="two-column">
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-type">Revision guide</div>
+            <h4>How to build a GCSE revision timetable</h4>
+            <p>Create a realistic weekly plan without trying to revise everything at once.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Exam support</div>
+            <h4>What to do the night before an exam</h4>
+            <p>Simple steps for checking equipment, reviewing calmly and getting proper rest.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Study help</div>
+            <h4>How to revise when you feel stuck</h4>
+            <p>Practical ways to restart when motivation drops or topics feel overwhelming.</p>
+          </div>
+        </div>
+
+        <div class="exam-panel">
+          <h4>Good next pages</h4>
+          <ul>
+            <li>GCSE Maths topic page</li>
+            <li>GCSE English Language support</li>
+            <li>GCSE Science revision hub</li>
+            <li>Past paper practice and mark scheme help</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+</body>
+</html>
