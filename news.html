@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC News</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #15803d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      padding: 52px 48px 40px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #b91c1c;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    .page {
+      padding: 36px 48px 56px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .source-badge,
+    .status-badge {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .refresh-button {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .refresh-button:hover {
+      background: #000;
+    }
+
+    .sort-select {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: #222;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .featured {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 28px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-tag {
+      color: #b91c1c;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .featured h3 {
+      margin: 0 0 14px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .featured p {
+      margin: 0 0 18px;
+      color: #555;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    .featured a {
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .featured a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .headline-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .headline-list a {
+      text-decoration: none;
+      color: #111;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .headline-list a:hover {
+      text-decoration: underline;
+    }
+
+    .grid-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .grid-header h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .article-reader {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .article-reader-label {
+      color: #b91c1c;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .article-reader h3 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .reader-meta {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .article-reader p {
+      margin: 0 0 18px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 900px;
+    }
+
+    .article-reader a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .article-reader a:hover {
+      text-decoration: underline;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border-color: #bbb;
+    }
+
+    .story-card.active {
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 1px #b91c1c inset;
+    }
+
+    .story-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .story-card p {
+      margin: 0 0 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .story-card-meta {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .story-card a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .story-card a:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 24px;
+      color: #555;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-label">UBC News</div>
+    <h2>Latest headlines from across the United Kingdom and beyond.</h2>
+    <p>A dedicated live news page with an internal article reader, sortable headline grid, and credited sources throughout.</p>
+  </section>
+
+  <main class="page">
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="source-badge" id="news-source-badge">Guardian + GNews</div>
+        <div class="status-badge" id="news-status">Connecting to live feed...</div>
+      </div>
+      <div class="toolbar-left">
+        <label for="sort-select" class="status-badge">Sort</label>
+        <select id="sort-select" class="sort-select">
+          <option value="newest">Newest to oldest</option>
+          <option value="oldest">Oldest to newest</option>
+          <option value="source">By source</option>
+        </select>
+        <button class="refresh-button" id="refresh-news-button" type="button">Refresh headlines</button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <section class="featured">
+        <div class="featured-tag">Featured story</div>
+        <h3 id="featured-story-title">Loading featured story...</h3>
+        <p id="featured-story-desc">Please wait while the latest headlines are loaded.</p>
+        <a id="featured-story-link" href="#" target="_blank" rel="noopener noreferrer">Read full story</a>
+      </section>
+
+      <aside class="sidebar">
+        <div class="panel">
+          <h3>Top headlines</h3>
+          <div class="headline-list" id="headline-list">
+            <p>Loading headlines...</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>About this page</h3>
+          <p>Articles open inside this page in a reading panel, while each card still credits its original source and publication time.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="grid-header">
+      <h3>All headlines</h3>
+    </div>
+
+    <section class="article-reader" id="article-reader">
+      <div class="article-reader-label">Article reader</div>
+      <h3 id="reader-title">Select a headline to read the story summary here.</h3>
+      <div class="reader-meta" id="reader-meta">Source and time will appear here.</div>
+      <p id="reader-body">Choose any headline from the grid below to load its article summary into this page without sending visitors away. A link to the original source is still provided for full credit.</p>
+      <a id="reader-link" href="#" target="_blank" rel="noopener noreferrer">Open original source</a>
+    </section>
+
+    <section class="story-grid" id="news-grid">
+      <div class="empty">Loading latest stories...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+
+  <script>
+    const GUARDIAN_API_KEY = 'YOUR_GUARDIAN_API_KEY';
+    const GNEWS_API_KEY = 'YOUR_GNEWS_API_KEY';
+
+    const featuredStoryTitle = document.getElementById('featured-story-title');
+    const featuredStoryDesc = document.getElementById('featured-story-desc');
+    const featuredStoryLink = document.getElementById('featured-story-link');
+    const headlineList = document.getElementById('headline-list');
+    const newsStatus = document.getElementById('news-status');
+    const newsSourceBadge = document.getElementById('news-source-badge');
+    const newsGrid = document.getElementById('news-grid');
+    const refreshButton = document.getElementById('refresh-news-button');
+    const sortSelect = document.getElementById('sort-select');
+    const readerTitle = document.getElementById('reader-title');
+    const readerMeta = document.getElementById('reader-meta');
+    const readerBody = document.getElementById('reader-body');
+    const readerLink = document.getElementById('reader-link');
+
+    let allStories = [];
+
+    function stripHtml(html) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html || '';
+      return tmp.textContent || tmp.innerText || '';
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return 'Unknown time';
+      const date = new Date(dateString);
+      if (Number.isNaN(date.getTime())) return 'Unknown time';
+      return date.toLocaleString('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function openInReader(story, cardElement = null) {
+      readerTitle.textContent = story.title;
+      readerMeta.textContent = `${story.source} • ${formatDate(story.publishedAt)}`;
+      readerBody.textContent = story.content || story.description || 'Read the original source for the full article.';
+      readerLink.href = story.url;
+
+      document.querySelectorAll('.story-card').forEach(card => card.classList.remove('active'));
+      if (cardElement) cardElement.classList.add('active');
+      window.scrollTo({ top: document.getElementById('article-reader').offsetTop - 90, behavior: 'smooth' });
+    }
+
+    function sortStories(stories, mode) {
+      const sorted = [...stories];
+      if (mode === 'oldest') {
+        sorted.sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
+      } else if (mode === 'source') {
+        sorted.sort((a, b) => a.source.localeCompare(b.source) || new Date(b.publishedAt) - new Date(a.publishedAt));
+      } else {
+        sorted.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+      }
+      return sorted;
+    }
+
+    function renderStories(stories) {
+      allStories = [...stories];
+      const sortedStories = sortStories(allStories, sortSelect.value);
+
+      if (!sortedStories.length) {
+        newsSourceBadge.textContent = 'Source: Unavailable';
+        newsStatus.textContent = 'No live stories available right now.';
+        headlineList.innerHTML = '<p>No headlines available.</p>';
+        newsGrid.innerHTML = '<div class="empty">Unable to load stories right now.</div>';
+        featuredStoryTitle.textContent = 'No featured story available';
+        featuredStoryDesc.textContent = 'Please try again shortly.';
+        featuredStoryLink.href = '#';
+        readerTitle.textContent = 'No article available';
+        readerMeta.textContent = 'Source and time unavailable';
+        readerBody.textContent = 'Please refresh and try again shortly.';
+        readerLink.href = '#';
+        return;
+      }
+
+      const guardianCount = sortedStories.filter(story => story.source === 'The Guardian').length;
+      const gnewsCount = sortedStories.filter(story => story.source !== 'The Guardian').length;
+      newsSourceBadge.textContent = `Guardian ${guardianCount} • GNews ${gnewsCount}`;
+      newsStatus.textContent = `${sortedStories.length} stories loaded. Sorted ${sortSelect.options[sortSelect.selectedIndex].text.toLowerCase()}.`;
+
+      const featured = sortedStories[0];
+      featuredStoryTitle.textContent = featured.title;
+      featuredStoryDesc.textContent = featured.description || 'Read the full story for more details.';
+      featuredStoryLink.href = featured.url;
+
+      headlineList.innerHTML = '';
+      sortedStories.slice(0, 8).forEach(story => {
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = story.title;
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          openInReader(story);
+        });
+        headlineList.appendChild(link);
+      });
+
+      newsGrid.innerHTML = '';
+      sortedStories.forEach((story, index) => {
+        const article = document.createElement('article');
+        article.className = 'story-card';
+        article.innerHTML = `
+          <div>
+            <div class="story-card-meta">${story.source} • ${formatDate(story.publishedAt)}</div>
+            <h4>${story.title}</h4>
+            <p>${story.description || 'Read more from this story.'}</p>
+          </div>
+          <a href="${story.url}" target="_blank" rel="noopener noreferrer">Open original source</a>
+        `;
+        article.addEventListener('click', event => {
+          if (event.target.tagName.toLowerCase() === 'a') return;
+          openInReader(story, article);
+        });
+        newsGrid.appendChild(article);
+        if (index === 0) article.classList.add('active');
+      });
+
+      openInReader(sortedStories[0], newsGrid.querySelector('.story-card'));
+    }
+
+    async function fetchGuardianNews() {
+      const response = await fetch(`https://content.guardianapis.com/search?api-key=${GUARDIAN_API_KEY}&show-fields=trailText,bodyText&order-by=newest&page-size=18`);
+      if (!response.ok) throw new Error('Guardian request failed');
+      const data = await response.json();
+      const results = data.response && data.response.results ? data.response.results : [];
+
+      return results.map(item => ({
+        title: item.webTitle,
+        description: stripHtml(item.fields && item.fields.trailText ? item.fields.trailText : ''),
+        content: stripHtml(item.fields && item.fields.bodyText ? item.fields.bodyText : '').slice(0, 900) + '…',
+        url: item.webUrl,
+        source: 'The Guardian',
+        publishedAt: item.webPublicationDate
+      }));
+    }
+
+    async function fetchGNews() {
+      const response = await fetch(`https://gnews.io/api/v4/top-headlines?country=gb&max=12&apikey=${GNEWS_API_KEY}`);
+      if (!response.ok) throw new Error('GNews request failed');
+      const data = await response.json();
+      const articles = data.articles || [];
+
+      return articles.map(item => ({
+        title: item.title,
+        description: item.description || '',
+        content: item.content || item.description || 'Read the original source for the full article.',
+        url: item.url,
+        source: item.source && item.source.name ? item.source.name : 'GNews',
+        publishedAt: item.publishedAt
+      }));
+    }
+
+    async function loadNews() {
+      newsStatus.textContent = 'Refreshing headlines...';
+
+      try {
+        const [guardianStories, gnewsStories] = await Promise.all([
+          fetchGuardianNews().catch(() => []),
+          fetchGNews().catch(() => [])
+        ]);
+
+        const combinedStories = [...guardianStories, ...gnewsStories];
+        renderStories(combinedStories);
+      } catch (error) {
+        renderStories([]);
+      }
+    }
+
+    refreshButton.addEventListener('click', loadNews);
+    sortSelect.addEventListener('change', () => renderStories(allStories));
+
+    loadNews();
+    setInterval(loadNews, 600000);
+  </script>
+</body>
+</html>
