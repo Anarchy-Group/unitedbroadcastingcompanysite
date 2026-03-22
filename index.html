@@ -37,13 +37,42 @@
     nav {
       display: flex;
       flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
       gap: 22px;
     }
 
     nav a {
       text-decoration: none;
-      color: #333;
-      font-size: 14px;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; } /* Home - blue */
+    nav a:nth-child(2) { background: #b91c1c; } /* News - red */
+    nav a:nth-child(3) { background: #065f46; } /* Education - green */
+    nav a:nth-child(4) { background: #7c3aed; } /* Player - purple */
+    nav a:nth-child(5) { background: #0e7490; } /* Listen - teal */
+    nav a:nth-child(6) { background: #ea580c; } /* Weather - orange */
+    nav a:nth-child(7) { background: #15803d; } /* Sport - green */
+    nav a:nth-child(8) { background: #374151; } /* Archive - grey */
+
+    nav a:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    nav a:hover {
+      background: #d6d6d6;
+      color: #000;
     }
 
     nav a:hover {
@@ -320,9 +349,9 @@
   </footer>
 
   <script>
-    const OWM_API_KEY = '59bccfaee9dd5b6516a79e9a567cb43b';
-    const GUARDIAN_API_KEY = 'b07f7414-c20c-418a-b745-696d952c17bd';
-    const GNEWS_API_KEY = 'acf154b8b851151150251ac346d49683';
+    const OWM_API_KEY = 'YOUR_OWM_API_KEY';
+    const GUARDIAN_API_KEY = 'YOUR_GUARDIAN_API_KEY';
+    const GNEWS_API_KEY = 'YOUR_GNEWS_API_KEY';
 
     const headlineEl = document.getElementById('featured-headline');
     const newsContainer = document.getElementById('news-container');
