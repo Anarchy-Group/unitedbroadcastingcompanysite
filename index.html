@@ -11,9 +11,28 @@
     header h1 { letter-spacing: 2px; }
     nav a { margin-left: 25px; text-decoration: none; color: #333; font-size: 14px; }
 
-    .ticker { background: #000; color: #fff; padding: 8px 20px; overflow: hidden; }
-    .ticker div { display: inline-block; padding-right: 100%; animation: scroll 20s linear infinite; }
-    @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+    .ticker {
+      background: #000;
+      color: #fff;
+      padding: 10px 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .ticker div {
+      display: inline-block;
+      white-space: nowrap;
+      min-width: 100%;
+      padding-left: 100%;
+      box-sizing: border-box;
+      animation: scroll 28s linear infinite;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    } to { transform: translateX(-100%); } }
 
     .hero { padding: 100px 20px; background: #f2f2f2; text-align: center; }
     .hero h2 { margin-bottom: 10px; }
@@ -181,7 +200,11 @@ async function fetchGNews() {
 
 // TICKER
 function updateTicker(temp, desc) {
-  const weather = temp ? `🌦️ ${temp}°C, ${desc}` : '🌦️ Weather unavailable';
+  const weather = temp !== null && temp !== undefined
+    ? `🌦️ ${temp}°C, ${desc}`
+    : '🌦️ Weather unavailable';
+  TICKER.textContent = `📰 ${latestHeadline}   •   ${weather}   •   🎧 New podcast: Tech Today`;
+}°C, ${desc}` : '🌦️ Weather unavailable';
   TICKER.textContent = `📰 ${latestHeadline} | ${weather}`;
 }
 
