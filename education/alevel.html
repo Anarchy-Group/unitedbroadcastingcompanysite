@@ -63,8 +63,8 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #ece7ff 0%, #f7f5ff 100%);
-      border-bottom: 1px solid #ddd7ff;
+      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
+      border-bottom: 1px solid #d8eadf;
       padding: 56px 48px 46px;
       position: relative;
       overflow: hidden;
@@ -78,7 +78,7 @@
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(124, 58, 237, 0.08);
+      background: rgba(6, 95, 70, 0.08);
     }
 
     .hero-inner {
@@ -89,7 +89,7 @@
 
     .hero-label {
       display: inline-block;
-      background: #7c3aed;
+      background: #065f46;
       color: white;
       font-size: 12px;
       font-weight: 700;
@@ -109,7 +109,7 @@
     .hero p {
       margin: 0;
       max-width: 780px;
-      color: #4f4a63;
+      color: #35564a;
       line-height: 1.65;
       font-size: 17px;
     }
@@ -131,14 +131,14 @@
     }
 
     .hero-primary {
-      background: #7c3aed;
+      background: #065f46;
       color: white;
     }
 
     .hero-secondary {
       background: white;
-      color: #7c3aed;
-      border: 1px solid #d8cbff;
+      color: #065f46;
+      border: 1px solid #b9d7c7;
     }
 
     .hero-actions a:hover {
@@ -197,6 +197,10 @@
       border-color: #bbb;
     }
 
+    .subject-card:active {
+      transform: scale(0.985);
+    }
+
     .subject-icon {
       width: 42px;
       height: 42px;
@@ -205,7 +209,7 @@
       justify-content: center;
       font-size: 22px;
       margin-bottom: 14px;
-      background: #f3efff;
+      background: #eef7f2;
     }
 
     .subject-card h4 {
@@ -263,7 +267,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #7c3aed;
+      color: #065f46;
       margin-bottom: 8px;
     }
 
@@ -327,27 +331,27 @@
   <header>
     <h1>UBC</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">News</a>
-      <a href="#">Education</a>
-      <a href="#">Player</a>
-      <a href="#">Listen</a>
-      <a href="#">Weather</a>
-      <a href="#">Sport</a>
-      <a href="#">Archive</a>
+      <a href="/index">Home</a>
+      <a href="/news">News</a>
+      <a href="/education">Education</a>
+      <a href="/player">Player</a>
+      <a href="/listen">Listen</a>
+      <a href="/weather">Weather</a>
+      <a href="/sport">Sport</a>
+      <a href="/archive">Archive</a>
     </nav>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-label">UBC Education</a>
+      <div class="hero-label">UBC Education</div>
       <h2>A-Level Support</h2>
       <p>You are currently viewing A-Level resources. Explore advanced subject guides, essay support, exam preparation and study help across a wide range of academic and creative courses.</p>
       <div class="hero-actions">
         <a class="hero-primary" href="#subjects">Browse A-Level subjects</a>
         <a class="hero-secondary" href="#resources">Helpful resources</a>
-      </a>
-    </a>
+      </div>
+    </div>
   </section>
 
   <main class="page">
@@ -356,21 +360,21 @@
         <div>
           <h3>Core A-Level Subjects</h3>
           <p>Start with the major subjects many learners take as part of academic sixth form study.</p>
-        </a>
-      </a>
+        </div>
+      </div>
 
       <div class="subject-grid">
-        <a href="#" class="subject-card"><div class="subject-icon">📐</a><h4>Mathematics</h4><p>Pure maths, mechanics and statistics with deeper advanced problem solving.</p><div class="subject-links"><span>Pure</span><span>Mechanics</span><span>Statistics</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">➕</a><h4>Further Mathematics</h4><p>Advanced mathematical ideas, proofs and specialist topics beyond standard A-Level maths.</p><div class="subject-links"><span>Proof</span><span>Matrices</span><span>Complex</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧬</a><h4>Biology</h4><p>Cells, genetics, ecosystems, physiology and practical investigation.</p><div class="subject-links"><span>Cells</span><span>Genetics</span><span>Ecology</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧪</a><h4>Chemistry</h4><p>Organic, physical and inorganic chemistry with applied practical understanding.</p><div class="subject-links"><span>Organic</span><span>Physical</span><span>Inorganic</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">⚛️</a><h4>Physics</h4><p>Forces, electricity, fields, particles and advanced calculations.</p><div class="subject-links"><span>Fields</span><span>Particles</span><span>Electricity</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📝</a><h4>English Language</h4><p>Language analysis, representation, writing and linguistic study.</p><div class="subject-links"><span>Language</span><span>Analysis</span><span>Linguistics</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📚</a><h4>English Literature</h4><p>Texts, criticism, comparisons and essay writing across prose, drama and poetry.</p><div class="subject-links"><span>Poetry</span><span>Drama</span><span>Essays</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🌍</a><h4>Geography</h4><p>Human and physical geography, data work and case study analysis.</p><div class="subject-links"><span>Human</span><span>Physical</span><span>Case studies</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏛️</a><h4>History</h4><p>Interpretations, evidence, argument and extended historical writing.</p><div class="subject-links"><span>Sources</span><span>Interpretation</span><span>Essays</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">💼</a><h4>Business</h4><p>Strategy, finance, operations, markets and decision-making at greater depth.</p><div class="subject-links"><span>Strategy</span><span>Finance</span><span>Markets</span></a></a>
-      </a>
+        <a href="#" class="subject-card"><div class="subject-icon">📐</div><h4>Mathematics</h4><p>Pure maths, mechanics and statistics with deeper advanced problem solving.</p><div class="subject-links"><span>Pure</span><span>Mechanics</span><span>Statistics</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">➕</div><h4>Further Mathematics</h4><p>Advanced mathematical ideas, proofs and specialist topics beyond standard A-Level maths.</p><div class="subject-links"><span>Proof</span><span>Matrices</span><span>Complex</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧬</div><h4>Biology</h4><p>Cells, genetics, ecosystems, physiology and practical investigation.</p><div class="subject-links"><span>Cells</span><span>Genetics</span><span>Ecology</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧪</div><h4>Chemistry</h4><p>Organic, physical and inorganic chemistry with applied practical understanding.</p><div class="subject-links"><span>Organic</span><span>Physical</span><span>Inorganic</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">⚛️</div><h4>Physics</h4><p>Forces, electricity, fields, particles and advanced calculations.</p><div class="subject-links"><span>Fields</span><span>Particles</span><span>Electricity</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📝</div><h4>English Language</h4><p>Language analysis, representation, writing and linguistic study.</p><div class="subject-links"><span>Language</span><span>Analysis</span><span>Linguistics</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📚</div><h4>English Literature</h4><p>Texts, criticism, comparisons and essay writing across prose, drama and poetry.</p><div class="subject-links"><span>Poetry</span><span>Drama</span><span>Essays</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🌍</div><h4>Geography</h4><p>Human and physical geography, data work and case study analysis.</p><div class="subject-links"><span>Human</span><span>Physical</span><span>Case studies</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏛️</div><h4>History</h4><p>Interpretations, evidence, argument and extended historical writing.</p><div class="subject-links"><span>Sources</span><span>Interpretation</span><span>Essays</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">💼</div><h4>Business</h4><p>Strategy, finance, operations, markets and decision-making at greater depth.</p><div class="subject-links"><span>Strategy</span><span>Finance</span><span>Markets</span></div></a>
+      </div>
     </section>
 
     <section class="section">
@@ -378,50 +382,50 @@
         <div>
           <h3>All A-Level Subjects</h3>
           <p>A broader catalogue of academic, creative, technical and social science subjects.</p>
-        </a>
-      </a>
+        </div>
+      </div>
 
       <div class="subject-grid">
-        <a href="#" class="subject-card"><div class="subject-icon">📊</a><h4>Economics</h4><p>Microeconomics, macroeconomics, markets and government intervention.</p><div class="subject-links"><span>Micro</span><span>Macro</span><span>Markets</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧠</a><h4>Psychology</h4><p>Research methods, memory, behaviour, social influence and approaches.</p><div class="subject-links"><span>Research</span><span>Memory</span><span>Behaviour</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">⚖️</a><h4>Politics</h4><p>Government, democracy, ideologies and comparative politics.</p><div class="subject-links"><span>Government</span><span>Ideologies</span><span>Democracy</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📖</a><h4>Religious Studies</h4><p>Beliefs, philosophy, ethics and theological argument.</p><div class="subject-links"><span>Ethics</span><span>Beliefs</span><span>Philosophy</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">💻</a><h4>Computer Science</h4><p>Programming, algorithms, data structures and computational thinking.</p><div class="subject-links"><span>Coding</span><span>Algorithms</span><span>Data</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🎨</a><h4>Art & Design</h4><p>Portfolio development, experimentation, themes and final outcomes.</p><div class="subject-links"><span>Portfolio</span><span>Themes</span><span>Outcomes</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🎭</a><h4>Drama & Theatre</h4><p>Performance, practitioners, interpretation and theatre analysis.</p><div class="subject-links"><span>Performance</span><span>Theatre</span><span>Analysis</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🎵</a><h4>Music</h4><p>Listening, performance, composition and advanced music study.</p><div class="subject-links"><span>Listening</span><span>Composition</span><span>Performance</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🎬</a><h4>Film Studies</h4><p>Film movements, analysis, representation and production understanding.</p><div class="subject-links"><span>Analysis</span><span>Movements</span><span>Representation</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📰</a><h4>Media Studies</h4><p>Media language, audience, institutions and practical production work.</p><div class="subject-links"><span>Audience</span><span>Language</span><span>Institutions</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇫🇷</a><h4>French</h4><p>Advanced speaking, grammar, translation and cultural study.</p><div class="subject-links"><span>Speaking</span><span>Grammar</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇪🇸</a><h4>Spanish</h4><p>Communication, literature and cultural understanding.</p><div class="subject-links"><span>Speaking</span><span>Translation</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇩🇪</a><h4>German</h4><p>Advanced language work with grammar and interpretation.</p><div class="subject-links"><span>Speaking</span><span>Grammar</span><span>Texts</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇮🇹</a><h4>Italian</h4><p>Language, translation and cultural topics.</p><div class="subject-links"><span>Language</span><span>Translation</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇷🇺</a><h4>Russian</h4><p>Vocabulary, grammar and cultural understanding.</p><div class="subject-links"><span>Language</span><span>Grammar</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🇨🇳</a><h4>Chinese</h4><p>Listening, speaking, reading and writing in advanced language study.</p><div class="subject-links"><span>Characters</span><span>Speaking</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">☘️</a><h4>Irish</h4><p>Advanced language and literary understanding.</p><div class="subject-links"><span>Language</span><span>Literature</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏴</a><h4>Welsh</h4><p>Language, identity and cultural studies.</p><div class="subject-links"><span>Language</span><span>Identity</span><span>Culture</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">⚙️</a><h4>Design & Technology</h4><p>Design processes, materials, testing and technical innovation.</p><div class="subject-links"><span>Design</span><span>Materials</span><span>Innovation</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📡</a><h4>Electronics</h4><p>Circuits, logic, components and system design.</p><div class="subject-links"><span>Circuits</span><span>Logic</span><span>Systems</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏗️</a><h4>Engineering</h4><p>Applied design, mechanics and technical problem solving.</p><div class="subject-links"><span>Mechanics</span><span>Design</span><span>Applied</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📐</a><h4>Architecture / Built Environment</h4><p>Design thinking, spatial planning and construction ideas.</p><div class="subject-links"><span>Design</span><span>Space</span><span>Planning</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🍳</a><h4>Food Science / Nutrition</h4><p>Food chemistry, health, nutrition and practical understanding.</p><div class="subject-links"><span>Nutrition</span><span>Health</span><span>Food science</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🌱</a><h4>Environmental Science</h4><p>Ecosystems, climate, energy and sustainability issues.</p><div class="subject-links"><span>Climate</span><span>Ecosystems</span><span>Sustainability</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🌾</a><h4>Agriculture</h4><p>Food production, land use and environmental management.</p><div class="subject-links"><span>Production</span><span>Land</span><span>Management</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧑‍⚖️</a><h4>Law</h4><p>Legal principles, case application and argument.</p><div class="subject-links"><span>Principles</span><span>Cases</span><span>Argument</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧑‍🏫</a><h4>Sociology</h4><p>Society, culture, education, families and inequality.</p><div class="subject-links"><span>Families</span><span>Education</span><span>Inequality</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏺</a><h4>Classics</h4><p>Ancient worlds, literature and classical civilisation.</p><div class="subject-links"><span>Ancient</span><span>Literature</span><span>Civilisation</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏛️</a><h4>Ancient History</h4><p>Historical interpretation from classical civilisations.</p><div class="subject-links"><span>Sources</span><span>Ancient</span><span>Essays</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🗿</a><h4>Archaeology</h4><p>Evidence, excavation and the interpretation of the past.</p><div class="subject-links"><span>Evidence</span><span>Past</span><span>Interpretation</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧵</a><h4>Textiles</h4><p>Materials, design, fashion and practical production.</p><div class="subject-links"><span>Materials</span><span>Fashion</span><span>Design</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🩰</a><h4>Dance</h4><p>Performance, choreography and critical appreciation.</p><div class="subject-links"><span>Performance</span><span>Choreography</span><span>Appreciation</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">⚽</a><h4>Physical Education</h4><p>Sport, physiology, biomechanics and performance analysis.</p><div class="subject-links"><span>Sport</span><span>Physiology</span><span>Performance</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧭</a><h4>Travel & Tourism</h4><p>Destinations, industry knowledge and visitor experience.</p><div class="subject-links"><span>Industry</span><span>Destinations</span><span>Tourism</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🏨</a><h4>Hospitality</h4><p>Service, management and customer experience in hospitality sectors.</p><div class="subject-links"><span>Service</span><span>Management</span><span>Experience</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">💰</a><h4>Accounting</h4><p>Financial records, costing and business accounting principles.</p><div class="subject-links"><span>Costs</span><span>Finance</span><span>Records</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧾</a><h4>Finance</h4><p>Financial planning, markets and economic understanding.</p><div class="subject-links"><span>Markets</span><span>Planning</span><span>Finance</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🌐</a><h4>Global Perspectives</h4><p>World issues, debate, evidence and critical thinking.</p><div class="subject-links"><span>Debate</span><span>World issues</span><span>Evidence</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🧑‍🔬</a><h4>Applied Science</h4><p>Scientific skills, lab work and career-focused science pathways.</p><div class="subject-links"><span>Labs</span><span>Skills</span><span>Applied</span></a></a>
-      </a>
+        <a href="#" class="subject-card"><div class="subject-icon">📊</div><h4>Economics</h4><p>Microeconomics, macroeconomics, markets and government intervention.</p><div class="subject-links"><span>Micro</span><span>Macro</span><span>Markets</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧠</div><h4>Psychology</h4><p>Research methods, memory, behaviour, social influence and approaches.</p><div class="subject-links"><span>Research</span><span>Memory</span><span>Behaviour</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">⚖️</div><h4>Politics</h4><p>Government, democracy, ideologies and comparative politics.</p><div class="subject-links"><span>Government</span><span>Ideologies</span><span>Democracy</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📖</div><h4>Religious Studies</h4><p>Beliefs, philosophy, ethics and theological argument.</p><div class="subject-links"><span>Ethics</span><span>Beliefs</span><span>Philosophy</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">💻</div><h4>Computer Science</h4><p>Programming, algorithms, data structures and computational thinking.</p><div class="subject-links"><span>Coding</span><span>Algorithms</span><span>Data</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🎨</div><h4>Art & Design</h4><p>Portfolio development, experimentation, themes and final outcomes.</p><div class="subject-links"><span>Portfolio</span><span>Themes</span><span>Outcomes</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🎭</div><h4>Drama & Theatre</h4><p>Performance, practitioners, interpretation and theatre analysis.</p><div class="subject-links"><span>Performance</span><span>Theatre</span><span>Analysis</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🎵</div><h4>Music</h4><p>Listening, performance, composition and advanced music study.</p><div class="subject-links"><span>Listening</span><span>Composition</span><span>Performance</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🎬</div><h4>Film Studies</h4><p>Film movements, analysis, representation and production understanding.</p><div class="subject-links"><span>Analysis</span><span>Movements</span><span>Representation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📰</div><h4>Media Studies</h4><p>Media language, audience, institutions and practical production work.</p><div class="subject-links"><span>Audience</span><span>Language</span><span>Institutions</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇫🇷</div><h4>French</h4><p>Advanced speaking, grammar, translation and cultural study.</p><div class="subject-links"><span>Speaking</span><span>Grammar</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇪🇸</div><h4>Spanish</h4><p>Communication, literature and cultural understanding.</p><div class="subject-links"><span>Speaking</span><span>Translation</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇩🇪</div><h4>German</h4><p>Advanced language work with grammar and interpretation.</p><div class="subject-links"><span>Speaking</span><span>Grammar</span><span>Texts</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇮🇹</div><h4>Italian</h4><p>Language, translation and cultural topics.</p><div class="subject-links"><span>Language</span><span>Translation</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇷🇺</div><h4>Russian</h4><p>Vocabulary, grammar and cultural understanding.</p><div class="subject-links"><span>Language</span><span>Grammar</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🇨🇳</div><h4>Chinese</h4><p>Listening, speaking, reading and writing in advanced language study.</p><div class="subject-links"><span>Characters</span><span>Speaking</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">☘️</div><h4>Irish</h4><p>Advanced language and literary understanding.</p><div class="subject-links"><span>Language</span><span>Literature</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏴</div><h4>Welsh</h4><p>Language, identity and cultural studies.</p><div class="subject-links"><span>Language</span><span>Identity</span><span>Culture</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">⚙️</div><h4>Design & Technology</h4><p>Design processes, materials, testing and technical innovation.</p><div class="subject-links"><span>Design</span><span>Materials</span><span>Innovation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📡</div><h4>Electronics</h4><p>Circuits, logic, components and system design.</p><div class="subject-links"><span>Circuits</span><span>Logic</span><span>Systems</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏗️</div><h4>Engineering</h4><p>Applied design, mechanics and technical problem solving.</p><div class="subject-links"><span>Mechanics</span><span>Design</span><span>Applied</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📐</div><h4>Architecture / Built Environment</h4><p>Design thinking, spatial planning and construction ideas.</p><div class="subject-links"><span>Design</span><span>Space</span><span>Planning</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🍳</div><h4>Food Science / Nutrition</h4><p>Food chemistry, health, nutrition and practical understanding.</p><div class="subject-links"><span>Nutrition</span><span>Health</span><span>Food science</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🌱</div><h4>Environmental Science</h4><p>Ecosystems, climate, energy and sustainability issues.</p><div class="subject-links"><span>Climate</span><span>Ecosystems</span><span>Sustainability</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🌾</div><h4>Agriculture</h4><p>Food production, land use and environmental management.</p><div class="subject-links"><span>Production</span><span>Land</span><span>Management</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧑‍⚖️</div><h4>Law</h4><p>Legal principles, case application and argument.</p><div class="subject-links"><span>Principles</span><span>Cases</span><span>Argument</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧑‍🏫</div><h4>Sociology</h4><p>Society, culture, education, families and inequality.</p><div class="subject-links"><span>Families</span><span>Education</span><span>Inequality</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏺</div><h4>Classics</h4><p>Ancient worlds, literature and classical civilisation.</p><div class="subject-links"><span>Ancient</span><span>Literature</span><span>Civilisation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏛️</div><h4>Ancient History</h4><p>Historical interpretation from classical civilisations.</p><div class="subject-links"><span>Sources</span><span>Ancient</span><span>Essays</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🗿</div><h4>Archaeology</h4><p>Evidence, excavation and the interpretation of the past.</p><div class="subject-links"><span>Evidence</span><span>Past</span><span>Interpretation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧵</div><h4>Textiles</h4><p>Materials, design, fashion and practical production.</p><div class="subject-links"><span>Materials</span><span>Fashion</span><span>Design</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🩰</div><h4>Dance</h4><p>Performance, choreography and critical appreciation.</p><div class="subject-links"><span>Performance</span><span>Choreography</span><span>Appreciation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">⚽</div><h4>Physical Education</h4><p>Sport, physiology, biomechanics and performance analysis.</p><div class="subject-links"><span>Sport</span><span>Physiology</span><span>Performance</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧭</div><h4>Travel & Tourism</h4><p>Destinations, industry knowledge and visitor experience.</p><div class="subject-links"><span>Industry</span><span>Destinations</span><span>Tourism</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🏨</div><h4>Hospitality</h4><p>Service, management and customer experience in hospitality sectors.</p><div class="subject-links"><span>Service</span><span>Management</span><span>Experience</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">💰</div><h4>Accounting</h4><p>Financial records, costing and business accounting principles.</p><div class="subject-links"><span>Costs</span><span>Finance</span><span>Records</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧾</div><h4>Finance</h4><p>Financial planning, markets and economic understanding.</p><div class="subject-links"><span>Markets</span><span>Planning</span><span>Finance</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🌐</div><h4>Global Perspectives</h4><p>World issues, debate, evidence and critical thinking.</p><div class="subject-links"><span>Debate</span><span>World issues</span><span>Evidence</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧑‍🔬</div><h4>Applied Science</h4><p>Scientific skills, lab work and career-focused science pathways.</p><div class="subject-links"><span>Labs</span><span>Skills</span><span>Applied</span></div></a>
+      </div>
     </section>
 
     <section class="section">
@@ -429,17 +433,17 @@
         <div>
           <h3>Revision & Study Areas</h3>
           <p>Advanced support around essays, exam structure, independent study and revision management.</p>
-        </a>
-      </a>
+        </div>
+      </div>
 
       <div class="subject-grid">
-        <a href="#" class="subject-card"><div class="subject-icon">🧠</a><h4>Memory & Recall</h4><p>Develop strategies for holding detailed knowledge across long courses.</p><div class="subject-links"><span>Recall</span><span>Review</span><span>Retention</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📅</a><h4>Revision Planning</h4><p>Manage subjects with larger content loads across weeks and months.</p><div class="subject-links"><span>Planning</span><span>Routine</span><span>Balance</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📝</a><h4>Essay Technique</h4><p>Build stronger arguments, structure and analytical depth in writing.</p><div class="subject-links"><span>Argument</span><span>Structure</span><span>Analysis</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">✅</a><h4>Exam Technique</h4><p>Improve timing, question interpretation and marks-focused responses.</p><div class="subject-links"><span>Timing</span><span>Questions</span><span>Marks</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">📄</a><h4>Past Paper Practice</h4><p>Use examiner-style questions to sharpen performance under pressure.</p><div class="subject-links"><span>Past papers</span><span>Practice</span><span>Review</span></a></a>
-        <a href="#" class="subject-card"><div class="subject-icon">🔎</a><h4>Independent Research</h4><p>Strengthen note-taking, wider reading and study independence.</p><div class="subject-links"><span>Research</span><span>Reading</span><span>Notes</span></a></a>
-      </a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧠</div><h4>Memory & Recall</h4><p>Develop strategies for holding detailed knowledge across long courses.</p><div class="subject-links"><span>Recall</span><span>Review</span><span>Retention</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📅</div><h4>Revision Planning</h4><p>Manage subjects with larger content loads across weeks and months.</p><div class="subject-links"><span>Planning</span><span>Routine</span><span>Balance</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📝</div><h4>Essay Technique</h4><p>Build stronger arguments, structure and analytical depth in writing.</p><div class="subject-links"><span>Argument</span><span>Structure</span><span>Analysis</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">✅</div><h4>Exam Technique</h4><p>Improve timing, question interpretation and marks-focused responses.</p><div class="subject-links"><span>Timing</span><span>Questions</span><span>Marks</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📄</div><h4>Past Paper Practice</h4><p>Use examiner-style questions to sharpen performance under pressure.</p><div class="subject-links"><span>Past papers</span><span>Practice</span><span>Review</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🔎</div><h4>Independent Research</h4><p>Strengthen note-taking, wider reading and study independence.</p><div class="subject-links"><span>Research</span><span>Reading</span><span>Notes</span></div></a>
+      </div>
     </section>
 
     <section class="section">
@@ -447,8 +451,8 @@
         <div>
           <h3>Exam Tips</h3>
           <p>Practical support for staying organised and handling higher-level study demands.</p>
-        </a>
-      </a>
+        </div>
+      </div>
 
       <div class="support-panel">
         <ul>
@@ -458,7 +462,7 @@
           <li>Keep returning to old topics so revision stays cumulative</li>
           <li>Build routines that include sleep, breaks and time away from study</li>
         </ul>
-      </a>
+      </div>
     </section>
 
     <section class="section" id="resources">
@@ -466,27 +470,27 @@
         <div>
           <h3>Helpful Resources</h3>
           <p>Useful support for independent study, revision structure and long-term preparation.</p>
-        </a>
-      </a>
+        </div>
+      </div>
 
       <div class="two-column">
         <div class="resource-list">
           <div class="resource-item">
-            <div class="resource-type">Revision guide</a>
+            <div class="resource-type">Revision guide</div>
             <h4>How to build an A-Level revision timetable</h4>
             <p>Organise larger subjects realistically across a longer study period.</p>
-          </a>
+          </div>
           <div class="resource-item">
-            <div class="resource-type">Study help</a>
+            <div class="resource-type">Study help</div>
             <h4>How to revise essay-based subjects effectively</h4>
             <p>Move beyond rereading notes and start improving structure and argument.</p>
-          </a>
+          </div>
           <div class="resource-item">
-            <div class="resource-type">Exam support</a>
+            <div class="resource-type">Exam support</div>
             <h4>What to do when revision feels overwhelming</h4>
             <p>Simple ways to reset, prioritise and make progress again.</p>
-          </a>
-        </a>
+          </div>
+        </div>
 
         <div class="exam-panel">
           <h4>Good next pages</h4>
@@ -496,8 +500,8 @@
             <li>Essay skills for English, History and Politics</li>
             <li>Independent study and sixth form planning support</li>
           </ul>
-        </a>
-      </a>
+        </div>
+      </div>
     </section>
   </main>
 
