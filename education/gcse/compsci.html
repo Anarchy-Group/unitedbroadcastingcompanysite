@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE Computer Science</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:1px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="/index">Home</a>
+<a href="/news">News</a>
+<a href="/education">Education</a>
+<a href="/player">Player</a>
+<a href="/listen">Listen</a>
+<a href="/weather">Weather</a>
+<a href="/sport">Sport</a>
+<a href="/archive">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE Computer Science</h2>
+<p>Explore GCSE Computer Science with support for algorithms, programming, data representation, networks, cyber security and exam technique.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse computing topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE Computer Science areas most learners revise throughout the course.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">🧠</div><h4>Algorithms</h4><p>Learn decomposition, abstraction, logic and step-by-step problem solving.</p><div class="tags"><span>Logic</span><span>Steps</span><span>Problem solving</span></div></a>
+    <a href="#" class="card"><div class="icon">💻</div><h4>Programming</h4><p>Build code using variables, selection, iteration and subprograms.</p><div class="tags"><span>Variables</span><span>Loops</span><span>Functions</span></div></a>
+    <a href="#" class="card"><div class="icon">🔢</div><h4>Data Representation</h4><p>Understand binary, hexadecimal, images, sound and character encoding.</p><div class="tags"><span>Binary</span><span>Hex</span><span>Encoding</span></div></a>
+    <a href="#" class="card"><div class="icon">🖥️</div><h4>Computer Systems</h4><p>Study CPU, memory, storage and system architecture basics.</p><div class="tags"><span>CPU</span><span>Memory</span><span>Storage</span></div></a>
+    <a href="#" class="card"><div class="icon">🌐</div><h4>Networks</h4><p>Explore LANs, WANs, topologies, protocols and the internet.</p><div class="tags"><span>LAN</span><span>Protocols</span><span>Internet</span></div></a>
+    <a href="#" class="card"><div class="icon">🛡️</div><h4>Cyber Security</h4><p>Look at threats, vulnerabilities and methods of protection.</p><div class="tags"><span>Threats</span><span>Protection</span><span>Security</span></div></a>
+    <a href="#" class="card"><div class="icon">🗂️</div><h4>Databases</h4><p>Understand tables, fields, records and simple data organisation.</p><div class="tags"><span>Tables</span><span>Fields</span><span>Records</span></div></a>
+    <a href="#" class="card"><div class="icon">📜</div><h4>Pseudocode & Flowcharts</h4><p>Represent algorithms clearly without writing full code.</p><div class="tags"><span>Pseudocode</span><span>Flowcharts</span><span>Logic</span></div></a>
+    <a href="#" class="card"><div class="icon">⚖️</div><h4>Ethical & Legal Issues</h4><p>Explore privacy, copyright, AI ethics and responsible use of technology.</p><div class="tags"><span>Privacy</span><span>Copyright</span><span>Ethics</span></div></a>
+    <a href="#" class="card"><div class="icon">🧩</div><h4>Problem Solving</h4><p>Combine logic, testing and debugging to solve computational tasks.</p><div class="tags"><span>Testing</span><span>Debugging</span><span>Solutions</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with GCSE Computer Science questions and coding skills.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">📄</div><h4>Exam Questions</h4><p>Practise short-answer, theory and extended computer science questions.</p><div class="tags"><span>Questions</span><span>Theory</span><span>Practice</span></div></a>
+    <a href="#" class="card"><div class="icon">⌨️</div><h4>Programming Tasks</h4><p>Build confidence with small coding challenges and logic exercises.</p><div class="tags"><span>Coding</span><span>Challenges</span><span>Logic</span></div></a>
+    <a href="#" class="card"><div class="icon">🐞</div><h4>Debugging Practice</h4><p>Spot errors in code and improve your logical thinking.</p><div class="tags"><span>Errors</span><span>Debugging</span><span>Fixing</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Use keywords, explain processes and answer clearly in context.</p><div class="tags"><span>Keywords</span><span>Explain</span><span>Technique</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> What does CPU stand for?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type your answer" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep revision simple and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Practise both theory and programming regularly so one doesn’t get left behind</li>
+        <li>Learn the meaning of key technical terms carefully</li>
+        <li>Use binary and logic exercises little and often so they become easier over time</li>
+        <li>When coding, test small parts first instead of trying to fix everything at once</li>
+        <li>Revise examples of cyber security threats and protections together</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Algorithms & programming</label>
+        <label><input type="checkbox"> Data representation</label>
+        <label><input type="checkbox"> Systems & networks</label>
+        <label><input type="checkbox"> Cyber security & ethics</label>
+        <label><input type="checkbox"> Programming tasks & exam questions</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toLowerCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (
+    value === 'central processing unit' ||
+    value === 'central processingunit'
+  ) {
+    resultEl.textContent = 'Correct! CPU stands for Central Processing Unit 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think about the main processor inside a computer.';
+  }
+});
+</script>
+</body>
+</html>
