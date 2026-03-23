@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE Chemistry</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:6px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#">News</a>
+<a href="#">Education</a>
+<a href="#">Player</a>
+<a href="#">Listen</a>
+<a href="#">Weather</a>
+<a href="#">Sport</a>
+<a href="#">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE Chemistry</h2>
+<p>Explore GCSE Chemistry with support for atomic structure, bonding, reactions, calculations, rates, energy changes and exam technique.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse chemistry topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE Chemistry areas most learners revise throughout the course.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">⚛️</div><h4>Atomic Structure</h4><p>Learn about atoms, elements, compounds and the periodic table.</p><div class="tags"><span>Atoms</span><span>Elements</span><span>Periodic table</span></div></a>
+    <a href="#" class="card"><div class="icon">🔗</div><h4>Bonding</h4><p>Understand ionic, covalent and metallic bonding and their properties.</p><div class="tags"><span>Ionic</span><span>Covalent</span><span>Metallic</span></div></a>
+    <a href="#" class="card"><div class="icon">🧪</div><h4>Chemical Changes</h4><p>Study reactions, acids, alkalis, salts and electrolysis.</p><div class="tags"><span>Acids</span><span>Salts</span><span>Electrolysis</span></div></a>
+    <a href="#" class="card"><div class="icon">🔥</div><h4>Energy Changes</h4><p>Explore exothermic and endothermic reactions and energy profiles.</p><div class="tags"><span>Exothermic</span><span>Endothermic</span><span>Energy</span></div></a>
+    <a href="#" class="card"><div class="icon">⚖️</div><h4>Quantitative Chemistry</h4><p>Work with relative masses, moles, equations and calculations.</p><div class="tags"><span>Moles</span><span>Mass</span><span>Equations</span></div></a>
+    <a href="#" class="card"><div class="icon">⏱️</div><h4>Rates of Reaction</h4><p>Investigate factors that affect reaction speed and collision theory.</p><div class="tags"><span>Rate</span><span>Collision theory</span><span>Factors</span></div></a>
+    <a href="#" class="card"><div class="icon">🌍</div><h4>Earth's Resources</h4><p>Look at water, metals, resources and sustainability.</p><div class="tags"><span>Water</span><span>Resources</span><span>Sustainability</span></div></a>
+    <a href="#" class="card"><div class="icon">💨</div><h4>The Atmosphere</h4><p>Explore atmospheric gases, climate change and pollutants.</p><div class="tags"><span>Gases</span><span>Climate</span><span>Pollution</span></div></a>
+    <a href="#" class="card"><div class="icon">🛢️</div><h4>Organic Chemistry</h4><p>Study hydrocarbons, crude oil, cracking and common organic compounds.</p><div class="tags"><span>Hydrocarbons</span><span>Crude oil</span><span>Cracking</span></div></a>
+    <a href="#" class="card"><div class="icon">🧫</div><h4>Required Practicals</h4><p>Revise experiments, methods, variables and evaluating data.</p><div class="tags"><span>Methods</span><span>Variables</span><span>Evaluation</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with GCSE Chemistry questions, calculations and required practicals.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">📄</div><h4>Exam Questions</h4><p>Practise short-answer, calculation and extended-response chemistry questions.</p><div class="tags"><span>Questions</span><span>Marks</span><span>Practice</span></div></a>
+    <a href="#" class="card"><div class="icon">🧮</div><h4>Chemistry Calculations</h4><p>Strengthen your confidence with moles, masses and formula calculations.</p><div class="tags"><span>Moles</span><span>Mass</span><span>Formulae</span></div></a>
+    <a href="#" class="card"><div class="icon">📊</div><h4>Graphs & Data</h4><p>Interpret results from reaction rates and practical investigations.</p><div class="tags"><span>Graphs</span><span>Tables</span><span>Results</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Use key terminology, show working and explain chemistry clearly.</p><div class="tags"><span>Keywords</span><span>Working</span><span>Technique</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> What is the chemical symbol for sodium?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type your answer" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep revision simple and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Learn key definitions carefully because chemistry mark schemes depend on precise wording</li>
+        <li>Practise balancing equations regularly so it becomes automatic</li>
+        <li>Show every step in calculations so you can still earn method marks</li>
+        <li>Use the periodic table actively during revision, not just for reference</li>
+        <li>Link required practicals to the topic they support so the content feels more connected</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Atomic structure & bonding</label>
+        <label><input type="checkbox"> Reactions & energy changes</label>
+        <label><input type="checkbox"> Quantitative chemistry</label>
+        <label><input type="checkbox"> Organic chemistry & resources</label>
+        <label><input type="checkbox"> Required practicals & exam questions</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toUpperCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (value === 'NA') {
+    resultEl.textContent = 'Correct! The chemical symbol for sodium is Na 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think of the symbol from the Latin name natrium.';
+  }
+});
+</script>
+</body>
+</html>
