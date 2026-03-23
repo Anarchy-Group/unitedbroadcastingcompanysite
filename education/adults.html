@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC Adult Learning</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #15803d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
+      border-bottom: 1px solid #d8eadf;
+      padding: 56px 48px 46px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(6, 95, 70, 0.08);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #065f46;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.12;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 780px;
+      color: #35564a;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    .hero-primary {
+      background: #065f46;
+      color: white;
+    }
+
+    .hero-secondary {
+      background: white;
+      color: #065f46;
+      border: 1px solid #b9d7c7;
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+    }
+
+    .page {
+      padding: 34px 48px 56px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: #555;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      min-height: 210px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border-color: #bbb;
+    }
+
+    .subject-card:active {
+      transform: scale(0.985);
+    }
+
+    .subject-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+      background: #eef7f2;
+    }
+
+    .subject-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .subject-card p {
+      margin: 0 0 14px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .subject-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .subject-links span {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 6px 9px;
+      font-size: 12px;
+      color: #444;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+      gap: 20px;
+    }
+
+    .support-panel,
+    .resource-list,
+    .exam-panel {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 22px;
+    }
+
+    .resource-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .resource-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .resource-type {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #065f46;
+      margin-bottom: 8px;
+    }
+
+    .resource-item h4,
+    .support-panel h4,
+    .exam-panel h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .resource-item p,
+    .support-panel p,
+    .exam-panel p,
+    .support-panel li,
+    .exam-panel li {
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .support-panel ul,
+    .exam-panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">UBC Education</div>
+      <h2>Adult Learning</h2>
+      <p>You are currently viewing adult learning resources. Explore practical learning, digital confidence, personal development and everyday knowledge for learners returning to study or building new skills.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="#subjects">Browse learning areas</a>
+        <a class="hero-secondary" href="#resources">Helpful resources</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="section" id="subjects">
+      <div class="section-header">
+        <div>
+          <h3>Core Learning Areas</h3>
+          <p>Start with the main areas many adult learners find most useful for confidence, independence and progression.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <a href="#" class="subject-card"><div class="subject-icon">💻</div><h4>Digital Skills</h4><p>Build confidence with online tools, documents, email and everyday technology.</p><div class="subject-links"><span>Email</span><span>Documents</span><span>Online tools</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">💰</div><h4>Money Skills</h4><p>Understand budgeting, saving, bills and practical personal finance.</p><div class="subject-links"><span>Budgeting</span><span>Saving</span><span>Bills</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📝</div><h4>Everyday English</h4><p>Improve writing, reading and communication for real-life situations.</p><div class="subject-links"><span>Reading</span><span>Writing</span><span>Communication</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📊</div><h4>Everyday Maths</h4><p>Build confidence with percentages, measurements and numeracy in daily life.</p><div class="subject-links"><span>Percentages</span><span>Measurements</span><span>Numeracy</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧠</div><h4>Confidence & Learning</h4><p>Strengthen mindset, motivation and confidence when returning to learning.</p><div class="subject-links"><span>Confidence</span><span>Mindset</span><span>Motivation</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">💼</div><h4>Work & Progression</h4><p>Develop skills for work, progression and practical next steps.</p><div class="subject-links"><span>Work</span><span>Progression</span><span>Goals</span></div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Life Skills & Practical Learning</h3>
+          <p>Useful areas that support independent living, confidence and everyday problem-solving.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <a href="#" class="subject-card"><div class="subject-icon">🏡</div><h4>Independent Living</h4><p>Practical knowledge for routines, responsibilities and day-to-day life.</p><div class="subject-links"><span>Routine</span><span>Living</span><span>Responsibility</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🍳</div><h4>Food & Nutrition</h4><p>Healthy choices, cooking basics and understanding nutrition.</p><div class="subject-links"><span>Cooking</span><span>Nutrition</span><span>Health</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🛡️</div><h4>Online Safety</h4><p>Protect yourself online with stronger digital awareness and safer habits.</p><div class="subject-links"><span>Privacy</span><span>Safety</span><span>Scams</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📱</div><h4>Using Technology</h4><p>Understand smartphones, apps, browsers and everyday digital tasks.</p><div class="subject-links"><span>Apps</span><span>Browsers</span><span>Devices</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🗂️</div><h4>Organisation Skills</h4><p>Build routines, manage paperwork and stay on top of tasks.</p><div class="subject-links"><span>Routine</span><span>Planning</span><span>Tasks</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🗣️</div><h4>Communication Skills</h4><p>Speak, write and respond more clearly in everyday and professional settings.</p><div class="subject-links"><span>Speaking</span><span>Writing</span><span>Confidence</span></div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Learning for Progression</h3>
+          <p>Support for adults building toward further study, work, qualifications or new opportunities.</p>
+        </div>
+      </div>
+
+      <div class="subject-grid">
+        <a href="#" class="subject-card"><div class="subject-icon">🎓</div><h4>Returning to Study</h4><p>Find your confidence again and understand pathways back into learning.</p><div class="subject-links"><span>Study</span><span>Confidence</span><span>Pathways</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📄</div><h4>Applications</h4><p>Complete forms, write clearly and prepare for new opportunities.</p><div class="subject-links"><span>Forms</span><span>Writing</span><span>Applications</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧰</div><h4>Practical Work Skills</h4><p>Reliability, teamwork and professional habits that support employment.</p><div class="subject-links"><span>Teamwork</span><span>Reliability</span><span>Habits</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">📚</div><h4>Study Skills</h4><p>Note-taking, revision, memory and handling information more effectively.</p><div class="subject-links"><span>Notes</span><span>Revision</span><span>Memory</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🌍</div><h4>General Knowledge</h4><p>Build awareness, understanding and confidence through wider learning.</p><div class="subject-links"><span>Awareness</span><span>Understanding</span><span>Learning</span></div></a>
+        <a href="#" class="subject-card"><div class="subject-icon">🧭</div><h4>Personal Development</h4><p>Set goals, reflect on progress and build a clearer sense of direction.</p><div class="subject-links"><span>Goals</span><span>Progress</span><span>Direction</span></div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Practical Tips</h3>
+          <p>Simple advice for building steady routines and making adult learning feel manageable.</p>
+        </div>
+      </div>
+
+      <div class="support-panel">
+        <ul>
+          <li>Start small and build up your routine instead of trying to do everything at once</li>
+          <li>Choose learning goals that feel practical and useful in everyday life</li>
+          <li>Use repetition and short practice sessions to build confidence gradually</li>
+          <li>Keep notes of progress so you can see how much you are improving</li>
+          <li>Ask for help early when something feels unclear or overwhelming</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-header">
+        <div>
+          <h3>Helpful Resources</h3>
+          <p>Extra support for confidence, practical knowledge and returning to learning.</p>
+        </div>
+      </div>
+
+      <div class="two-column">
+        <div class="resource-list">
+          <div class="resource-item">
+            <div class="resource-type">Getting started</div>
+            <h4>How to return to learning with confidence</h4>
+            <p>Simple steps for beginning again without feeling pressured or overwhelmed.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Digital help</div>
+            <h4>Understanding everyday technology</h4>
+            <p>Support for email, online forms, documents and using the internet safely.</p>
+          </div>
+          <div class="resource-item">
+            <div class="resource-type">Life skills</div>
+            <h4>Budgeting and practical independence</h4>
+            <p>Build stronger confidence with money, organisation and everyday planning.</p>
+          </div>
+        </div>
+
+        <div class="exam-panel">
+          <h4>Good next pages</h4>
+          <ul>
+            <li>Everyday maths support</li>
+            <li>Digital confidence and online safety</li>
+            <li>Communication and writing skills</li>
+            <li>Returning to study step-by-step</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+</body>
+</html>
