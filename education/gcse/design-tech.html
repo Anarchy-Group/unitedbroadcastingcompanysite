@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE Design & Technology</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:1px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="/index">Home</a>
+<a href="/news">News</a>
+<a href="/education">Education</a>
+<a href="/player">Player</a>
+<a href="/listen">Listen</a>
+<a href="/weather">Weather</a>
+<a href="/sport">Sport</a>
+<a href="/archive">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE Design & Technology</h2>
+<p>Explore GCSE Design & Technology with support for design thinking, materials, manufacturing, technical principles, evaluation and coursework development.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse D&T topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE Design & Technology areas most learners develop through theory and project work.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">💡</div><h4>Designing</h4><p>Develop ideas, respond to briefs and create purposeful solutions.</p><div class="tags"><span>Ideas</span><span>Briefs</span><span>Solutions</span></div></a>
+    <a href="#" class="card"><div class="icon">📐</div><h4>Drawing & Communication</h4><p>Use sketches, technical drawings and annotations to explain designs.</p><div class="tags"><span>Sketches</span><span>Technical</span><span>Annotation</span></div></a>
+    <a href="#" class="card"><div class="icon">🪵</div><h4>Materials</h4><p>Study woods, metals, polymers, papers, boards and textiles.</p><div class="tags"><span>Woods</span><span>Metals</span><span>Polymers</span></div></a>
+    <a href="#" class="card"><div class="icon">⚙️</div><h4>Manufacturing Processes</h4><p>Understand tools, machinery and methods used to make products.</p><div class="tags"><span>Tools</span><span>Machinery</span><span>Processes</span></div></a>
+    <a href="#" class="card"><div class="icon">🏗️</div><h4>Construction & Structure</h4><p>Explore how products are built for strength, function and stability.</p><div class="tags"><span>Structure</span><span>Strength</span><span>Function</span></div></a>
+    <a href="#" class="card"><div class="icon">🌍</div><h4>Sustainability</h4><p>Consider environmental issues, recycling and responsible design choices.</p><div class="tags"><span>Environment</span><span>Recycling</span><span>Responsible</span></div></a>
+    <a href="#" class="card"><div class="icon">🧠</div><h4>Technical Principles</h4><p>Learn how design decisions affect materials, performance and quality.</p><div class="tags"><span>Principles</span><span>Performance</span><span>Quality</span></div></a>
+    <a href="#" class="card"><div class="icon">🔍</div><h4>Investigating Contexts</h4><p>Research existing products, users and design needs in detail.</p><div class="tags"><span>Research</span><span>Users</span><span>Needs</span></div></a>
+    <a href="#" class="card"><div class="icon">🧪</div><h4>Testing & Evaluation</h4><p>Assess prototypes, gather feedback and improve final outcomes.</p><div class="tags"><span>Testing</span><span>Feedback</span><span>Improve</span></div></a>
+    <a href="#" class="card"><div class="icon">📂</div><h4>NEA Coursework</h4><p>Plan, record and develop your design project from start to finish.</p><div class="tags"><span>Coursework</span><span>Development</span><span>Project</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with theory, design work and coursework presentation.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">✏️</div><h4>Design Tasks</h4><p>Practise developing and improving ideas from a short design brief.</p><div class="tags"><span>Ideas</span><span>Briefs</span><span>Development</span></div></a>
+    <a href="#" class="card"><div class="icon">📝</div><h4>Annotation Practice</h4><p>Improve how you explain design choices and development clearly.</p><div class="tags"><span>Explain</span><span>Choices</span><span>Development</span></div></a>
+    <a href="#" class="card"><div class="icon">🛠️</div><h4>Materials & Processes</h4><p>Revise which materials and tools suit different design outcomes.</p><div class="tags"><span>Materials</span><span>Processes</span><span>Tools</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Use subject vocabulary, justify decisions and answer clearly in context.</p><div class="tags"><span>Vocabulary</span><span>Justify</span><span>Context</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> Which word best describes a first model used to test an idea?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type your answer" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div style="margin-top:12px; color:#555;">
+      Hint: it often comes before the final product.
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep your theory and coursework organised and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Always link your design choices back to the user and the design brief</li>
+        <li>Use clear annotations so your thinking is easy to follow</li>
+        <li>Show development, not just a final idea, in your project work</li>
+        <li>Learn the strengths and weaknesses of different materials and processes</li>
+        <li>Evaluate honestly so improvements feel realistic and thoughtful</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Design ideas & communication</label>
+        <label><input type="checkbox"> Materials & manufacturing</label>
+        <label><input type="checkbox"> Sustainability & technical principles</label>
+        <label><input type="checkbox"> Testing & evaluation</label>
+        <label><input type="checkbox"> NEA coursework & exam questions</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toLowerCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (value === 'prototype' || value === 'a prototype') {
+    resultEl.textContent = 'Correct! A prototype is an early model used to test an idea 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think about the early version of a product used for testing.';
+  }
+});
+</script>
+</body>
+</html>
