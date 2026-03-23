@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE Business</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:1px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="/index">Home</a>
+<a href="/news">News</a>
+<a href="/education">Education</a>
+<a href="/player">Player</a>
+<a href="/listen">Listen</a>
+<a href="/weather">Weather</a>
+<a href="/sport">Sport</a>
+<a href="/archive">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE Business</h2>
+<p>Explore GCSE Business with support for enterprise, marketing, finance, operations, human resources and exam technique.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse business topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE Business areas most learners revise throughout the course.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">💡</div><h4>Enterprise & Entrepreneurship</h4><p>Understand business ideas, risk-taking and spotting opportunities.</p><div class="tags"><span>Ideas</span><span>Risk</span><span>Opportunity</span></div></a>
+    <a href="#" class="card"><div class="icon">👥</div><h4>Customers & Market Research</h4><p>Learn about customer needs, market research and market segments.</p><div class="tags"><span>Customers</span><span>Research</span><span>Segments</span></div></a>
+    <a href="#" class="card"><div class="icon">📣</div><h4>Marketing</h4><p>Explore product, price, promotion and place in business decisions.</p><div class="tags"><span>Product</span><span>Price</span><span>Promotion</span></div></a>
+    <a href="#" class="card"><div class="icon">🏢</div><h4>Business Operations</h4><p>Study production, quality, procurement and customer service.</p><div class="tags"><span>Production</span><span>Quality</span><span>Service</span></div></a>
+    <a href="#" class="card"><div class="icon">💰</div><h4>Finance</h4><p>Look at costs, revenue, profit, cash flow and financial planning.</p><div class="tags"><span>Costs</span><span>Profit</span><span>Cash flow</span></div></a>
+    <a href="#" class="card"><div class="icon">📈</div><h4>Business Growth</h4><p>Understand expansion, economies of scale and changing objectives.</p><div class="tags"><span>Growth</span><span>Scale</span><span>Objectives</span></div></a>
+    <a href="#" class="card"><div class="icon">🤝</div><h4>Human Resources</h4><p>Explore recruitment, training, motivation and organisation structures.</p><div class="tags"><span>Recruitment</span><span>Training</span><span>Motivation</span></div></a>
+    <a href="#" class="card"><div class="icon">🌍</div><h4>External Influences</h4><p>Study competition, the economy, ethics and environmental issues.</p><div class="tags"><span>Competition</span><span>Economy</span><span>Ethics</span></div></a>
+    <a href="#" class="card"><div class="icon">📊</div><h4>Business Calculations</h4><p>Work with percentages, averages and simple financial calculations.</p><div class="tags"><span>Percentages</span><span>Averages</span><span>Calculations</span></div></a>
+    <a href="#" class="card"><div class="icon">🧠</div><h4>Decision Making</h4><p>Compare options and justify the best business decisions clearly.</p><div class="tags"><span>Compare</span><span>Justify</span><span>Decisions</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with GCSE Business questions, calculations and case studies.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">📄</div><h4>Case Study Questions</h4><p>Practise answering questions using business scenarios and evidence.</p><div class="tags"><span>Case study</span><span>Evidence</span><span>Application</span></div></a>
+    <a href="#" class="card"><div class="icon">🧮</div><h4>Business Calculations</h4><p>Build confidence with profit, revenue, break-even and percentages.</p><div class="tags"><span>Profit</span><span>Revenue</span><span>Break-even</span></div></a>
+    <a href="#" class="card"><div class="icon">✍️</div><h4>Explain & Evaluate</h4><p>Strengthen how you explain, analyse and judge business decisions.</p><div class="tags"><span>Explain</span><span>Analyse</span><span>Evaluate</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Use key terms, apply context and structure longer answers clearly.</p><div class="tags"><span>Context</span><span>Keywords</span><span>Structure</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> What is the difference between total revenue and total costs called?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type your answer" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep revision simple and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Always apply your answer to the business in the question or case study</li>
+        <li>Use business vocabulary accurately, not just general opinions</li>
+        <li>Practise short calculations until they feel quick and confident</li>
+        <li>When evaluating, explain why one option may be better than another</li>
+        <li>Read command words carefully so you know whether to explain, analyse or evaluate</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Enterprise & marketing</label>
+        <label><input type="checkbox"> Finance & calculations</label>
+        <label><input type="checkbox"> Operations & HR</label>
+        <label><input type="checkbox"> External influences</label>
+        <label><input type="checkbox"> Case studies & exam questions</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toLowerCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (value === 'profit') {
+    resultEl.textContent = 'Correct! Total revenue minus total costs gives profit 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think about what a business keeps after costs are taken away.';
+  }
+});
+</script>
+</body>
+</html>
