@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE Drama</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:1px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="/index">Home</a>
+<a href="/news">News</a>
+<a href="/education">Education</a>
+<a href="/player">Player</a>
+<a href="/listen">Listen</a>
+<a href="/weather">Weather</a>
+<a href="/sport">Sport</a>
+<a href="/archive">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE Drama</h2>
+<p>Explore GCSE Drama with support for performance skills, devising, script work, theatre roles, design ideas and written evaluation.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse drama topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE Drama areas most learners develop through rehearsal, performance and written work.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">🎭</div><h4>Performance Skills</h4><p>Develop voice, movement, facial expression and stage presence.</p><div class="tags"><span>Voice</span><span>Movement</span><span>Expression</span></div></a>
+    <a href="#" class="card"><div class="icon">💡</div><h4>Devising Drama</h4><p>Create original performances from ideas, themes and stimuli.</p><div class="tags"><span>Ideas</span><span>Stimuli</span><span>Original work</span></div></a>
+    <a href="#" class="card"><div class="icon">📖</div><h4>Scripted Performance</h4><p>Interpret a play text and bring characters to life in performance.</p><div class="tags"><span>Script</span><span>Character</span><span>Interpretation</span></div></a>
+    <a href="#" class="card"><div class="icon">👤</div><h4>Characterisation</h4><p>Build believable characters through intention, choices and interaction.</p><div class="tags"><span>Role</span><span>Choices</span><span>Interaction</span></div></a>
+    <a href="#" class="card"><div class="icon">📝</div><h4>Annotation & Notes</h4><p>Record ideas, rehearsal thoughts and performance decisions clearly.</p><div class="tags"><span>Notes</span><span>Rehearsal</span><span>Decisions</span></div></a>
+    <a href="#" class="card"><div class="icon">🎬</div><h4>Stage Direction</h4><p>Understand blocking, positioning and how movement shapes meaning.</p><div class="tags"><span>Blocking</span><span>Positioning</span><span>Meaning</span></div></a>
+    <a href="#" class="card"><div class="icon">🎟️</div><h4>Theatre Roles</h4><p>Explore acting, directing and how creative teams shape performance.</p><div class="tags"><span>Acting</span><span>Directing</span><span>Teamwork</span></div></a>
+    <a href="#" class="card"><div class="icon">💡</div><h4>Design Elements</h4><p>Study lighting, costume, set, sound and props in theatre.</p><div class="tags"><span>Lighting</span><span>Costume</span><span>Set</span></div></a>
+    <a href="#" class="card"><div class="icon">🏛️</div><h4>Live Theatre Review</h4><p>Respond to performance choices and evaluate theatre effectively.</p><div class="tags"><span>Review</span><span>Evaluation</span><span>Live theatre</span></div></a>
+    <a href="#" class="card"><div class="icon">🧠</div><h4>Drama Terminology</h4><p>Use subject vocabulary accurately in written and practical work.</p><div class="tags"><span>Vocabulary</span><span>Terms</span><span>Analysis</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with performance, rehearsal and written drama work.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">🎤</div><h4>Performance Practice</h4><p>Strengthen projection, control and expression in short scenes.</p><div class="tags"><span>Projection</span><span>Control</span><span>Scenes</span></div></a>
+    <a href="#" class="card"><div class="icon">📚</div><h4>Script Analysis</h4><p>Break down extracts, intentions and character relationships.</p><div class="tags"><span>Extracts</span><span>Intentions</span><span>Relationships</span></div></a>
+    <a href="#" class="card"><div class="icon">✍️</div><h4>Evaluation Writing</h4><p>Practise explaining choices and judging strengths and weaknesses.</p><div class="tags"><span>Explain</span><span>Evaluate</span><span>Reflect</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Use drama vocabulary, refer to performance detail and answer clearly.</p><div class="tags"><span>Vocabulary</span><span>Detail</span><span>Technique</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> What is the name for where an actor stands or moves on stage?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type your answer" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div style="margin-top:12px; color:#555;">
+      Hint: it is often planned carefully during rehearsal.
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep your practical and written work organised and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Always make your performance choices clear and purposeful</li>
+        <li>Use drama terminology accurately when writing about performance</li>
+        <li>Explain how voice, movement and staging affect the audience</li>
+        <li>Practise short extracts often so confidence builds naturally</li>
+        <li>When evaluating, be honest about what worked and what could improve</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Performance skills</label>
+        <label><input type="checkbox"> Devising & scripted work</label>
+        <label><input type="checkbox"> Characterisation & staging</label>
+        <label><input type="checkbox"> Theatre design & live review</label>
+        <label><input type="checkbox"> Evaluation writing & exam questions</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toLowerCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (value === 'blocking' || value === 'stage blocking') {
+    resultEl.textContent = 'Correct! Blocking is the planned movement and positioning of actors on stage 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think about the word used for planned stage movement.';
+  }
+});
+</script>
+</body>
+</html>
