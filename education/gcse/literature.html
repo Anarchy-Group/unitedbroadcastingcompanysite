@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UBC GCSE English Literature</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#f5f5f5;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:20}
+header h1{margin:0;font-size:22px;letter-spacing:2px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav a{color:#fff;padding:8px 14px;text-decoration:none;border-radius:6px;font-size:13px;transition:.2s ease;font-weight:500}
+nav a:nth-child(1){background:#1e3a8a}
+nav a:nth-child(2){background:#b91c1c}
+nav a:nth-child(3){background:#065f46}
+nav a:nth-child(4){background:#7c3aed}
+nav a:nth-child(5){background:#0e7490}
+nav a:nth-child(6){background:#ea580c}
+nav a:nth-child(7){background:#15803d}
+nav a:nth-child(8){background:#374151}
+nav a:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#dff3e7,#f3fbf6);border-bottom:1px solid #d8eadf;padding:56px 48px 46px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(6,95,70,.08)}
+.hero-inner{position:relative;z-index:1;max-width:1100px}
+.hero-label{display:inline-block;background:#065f46;color:#fff;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 10px;margin-bottom:16px}
+.hero h2{margin:0 0 12px;font-size:44px;line-height:1.12;max-width:760px}
+.hero p{margin:0;max-width:760px;color:#35564a;line-height:1.65;font-size:17px}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-actions a{text-decoration:none;padding:11px 16px;font-size:14px;font-weight:600;border-radius:8px;transition:.2s ease}
+.hero-primary{background:#065f46;color:#fff}
+.hero-secondary{background:#fff;color:#065f46;border:1px solid #b9d7c7}
+.hero-actions a:hover{transform:translateY(-1px)}
+
+.page{padding:34px 48px 56px}
+.section{margin-bottom:34px}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.section-header h3{margin:0;font-size:26px}
+.section-header p{margin:0;color:#555;max-width:760px;line-height:1.6}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:20px;text-decoration:none;color:inherit;display:block;min-height:210px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.07);border-color:#bbb}
+.card:active{transform:scale(.985)}
+.icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:#eef7f2}
+.card h4{margin:0 0 10px;font-size:21px}
+.card p{margin:0 0 14px;color:#555;line-height:1.6;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 9px;font-size:12px;color:#444}
+
+.progress-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.progress-card{background:#fff;border:1px solid #ddd;padding:18px}
+.progress-card strong{display:block;font-size:26px;margin-bottom:6px}
+
+.two-column{display:grid;grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:20px}
+.panel,.tips-box,.quiz-box{background:#fff;border:1px solid #ddd;padding:22px}
+.tips-box ul,.quiz-box ul{margin:0;padding-left:18px}
+.quiz-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.quiz-row input{padding:12px 14px;border:1px solid #d0d0d0;font-size:14px;min-width:180px}
+.quiz-row button{padding:12px 16px;border:none;background:#065f46;color:#fff;font-weight:600;cursor:pointer}
+.quiz-result{margin-top:12px;color:#35564a;font-weight:600}
+.checklist{display:grid;gap:10px;margin-top:14px}
+.checklist label{display:flex;gap:10px;align-items:flex-start;color:#555}
+
+footer{background:#000;color:#aaa;padding:28px;text-align:center;margin-top:24px;font-size:14px}
+
+@media (max-width:900px){
+  header{padding:16px 22px;align-items:flex-start;gap:14px;flex-direction:column}
+  .hero,.page{padding-left:22px;padding-right:22px}
+  .hero h2{font-size:34px}
+  .two-column{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UBC</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#">News</a>
+<a href="#">Education</a>
+<a href="#">Player</a>
+<a href="#">Listen</a>
+<a href="#">Weather</a>
+<a href="#">Sport</a>
+<a href="#">Archive</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+<div class="hero-label">UBC Education</div>
+<h2>GCSE English Literature</h2>
+<p>Explore GCSE English Literature with support for poetry, prose, drama, themes, characters, quotes and essay technique.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="#topics">Browse literature topics</a>
+<a class="hero-secondary" href="#practice">Try practice</a>
+</div>
+</div>
+</section>
+
+<main class="page">
+<section class="progress-strip">
+  <div class="progress-card"><strong>10</strong><span>core topic areas</span></div>
+  <div class="progress-card"><strong>4</strong><span>practice sections</span></div>
+  <div class="progress-card"><strong>1</strong><span>mini quick quiz</span></div>
+  <div class="progress-card"><strong>5</strong><span>revision checks</span></div>
+</section>
+
+<section class="section" id="topics">
+  <div class="section-header">
+    <div>
+      <h3>Core Topics</h3>
+      <p>Start with the main GCSE English Literature areas most learners revise throughout the course.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">📖</div><h4>Prose Texts</h4><p>Explore novels in detail through themes, characters and writer methods.</p><div class="tags"><span>Novels</span><span>Themes</span><span>Characters</span></div></a>
+    <a href="#" class="card"><div class="icon">🎭</div><h4>Drama Texts</h4><p>Study plays through character relationships, conflict and staging ideas.</p><div class="tags"><span>Plays</span><span>Conflict</span><span>Stagecraft</span></div></a>
+    <a href="#" class="card"><div class="icon">📝</div><h4>Poetry</h4><p>Analyse imagery, tone, structure and meaning in individual poems.</p><div class="tags"><span>Imagery</span><span>Tone</span><span>Structure</span></div></a>
+    <a href="#" class="card"><div class="icon">⚖️</div><h4>Poetry Comparison</h4><p>Compare ideas, methods and meanings across two poems clearly.</p><div class="tags"><span>Compare</span><span>Methods</span><span>Meaning</span></div></a>
+    <a href="#" class="card"><div class="icon">👤</div><h4>Character Analysis</h4><p>Track how characters are presented, developed and interpreted.</p><div class="tags"><span>Presentation</span><span>Change</span><span>Interpretation</span></div></a>
+    <a href="#" class="card"><div class="icon">💭</div><h4>Themes</h4><p>Follow big ideas like power, conflict, love, guilt or ambition.</p><div class="tags"><span>Ideas</span><span>Links</span><span>Meaning</span></div></a>
+    <a href="#" class="card"><div class="icon">💬</div><h4>Quotes</h4><p>Choose, learn and use quotations effectively in essays.</p><div class="tags"><span>Quotes</span><span>Evidence</span><span>Memory</span></div></a>
+    <a href="#" class="card"><div class="icon">🏗️</div><h4>Writer's Methods</h4><p>Explore language, structure and form in literary texts.</p><div class="tags"><span>Language</span><span>Structure</span><span>Form</span></div></a>
+    <a href="#" class="card"><div class="icon">📚</div><h4>Context</h4><p>Understand how ideas from the time influence texts and interpretations.</p><div class="tags"><span>Context</span><span>Society</span><span>Background</span></div></a>
+    <a href="#" class="card"><div class="icon">✍️</div><h4>Essay Writing</h4><p>Write clear, analytical responses with strong structure and evidence.</p><div class="tags"><span>Essay</span><span>Structure</span><span>Analysis</span></div></a>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="section-header">
+    <div>
+      <h3>Practice Areas</h3>
+      <p>Use these to build confidence with GCSE-style literature questions and essays.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <a href="#" class="card"><div class="icon">📄</div><h4>Extract Practice</h4><p>Work through short extracts and connect them to the rest of the text.</p><div class="tags"><span>Extracts</span><span>Links</span><span>Texts</span></div></a>
+    <a href="#" class="card"><div class="icon">🧩</div><h4>Essay Planning</h4><p>Organise ideas before writing so arguments stay focused and clear.</p><div class="tags"><span>Planning</span><span>Points</span><span>Focus</span></div></a>
+    <a href="#" class="card"><div class="icon">⏱️</div><h4>Timed Essays</h4><p>Practise writing under timed conditions with control and confidence.</p><div class="tags"><span>Timing</span><span>Essays</span><span>Practice</span></div></a>
+    <a href="#" class="card"><div class="icon">✅</div><h4>Exam Technique</h4><p>Answer directly, use evidence well and stay closely linked to the question.</p><div class="tags"><span>Question</span><span>Evidence</span><span>Technique</span></div></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Mini Quick Quiz</h3>
+      <p>A simple starter quiz to make the page feel more interactive.</p>
+    </div>
+  </div>
+  <div class="quiz-box">
+    <p><strong>Question:</strong> Which answer best explains why quotations matter in literature essays?</p>
+    <div class="quiz-row">
+      <input id="quiz-answer" type="text" placeholder="Type A, B or C" />
+      <button id="check-answer" type="button">Check answer</button>
+    </div>
+    <div style="margin-top:12px; color:#555;">
+      A. They show evidence from the text to support your ideas.<br>
+      B. They make your essay longer without adding meaning.<br>
+      C. They replace the need for explanation.
+    </div>
+    <div class="quiz-result" id="quiz-result">Give it a try 😊</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h3>Tips & Revision Checklist</h3>
+      <p>Keep revision simple and tick off areas as you cover them.</p>
+    </div>
+  </div>
+  <div class="two-column">
+    <div class="tips-box">
+      <ul>
+        <li>Always connect your ideas back to the question being asked</li>
+        <li>Use short quotations and explain them clearly</li>
+        <li>Revise themes and characters together so links feel natural</li>
+        <li>Practise planning essays before writing full answers</li>
+        <li>Learn a few strong quotations really well instead of too many weak ones</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 style="margin-top:0">My revision checklist</h4>
+      <div class="checklist">
+        <label><input type="checkbox"> Themes & ideas</label>
+        <label><input type="checkbox"> Character analysis</label>
+        <label><input type="checkbox"> Quotes & evidence</label>
+        <label><input type="checkbox"> Poetry comparison</label>
+        <label><input type="checkbox"> Essay planning & timed writing</label>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 United Broadcasting Company</p>
+</footer>
+
+<script>
+const answerInput = document.getElementById('quiz-answer');
+const checkButton = document.getElementById('check-answer');
+const resultEl = document.getElementById('quiz-result');
+
+checkButton.addEventListener('click', () => {
+  const value = answerInput.value.trim().toUpperCase();
+  if (!value) {
+    resultEl.textContent = 'Type an answer first.';
+    return;
+  }
+  if (value === 'A') {
+    resultEl.textContent = 'Correct! Quotations provide evidence from the text and strengthen your ideas 🎉';
+  } else {
+    resultEl.textContent = 'Not quite — try again and think about what quotations actually do in an essay.';
+  }
+});
+</script>
+</body>
+</html>
