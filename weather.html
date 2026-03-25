@@ -64,8 +64,8 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #dff3e7 0%, #f3fbf6 100%);
-      border-bottom: 1px solid #d8eadf;
+      background: linear-gradient(135deg, #ffe6d5 0%, #fff5ee 100%);
+      border-bottom: 1px solid #ffd3b5;
       padding: 56px 48px 46px;
       position: relative;
       overflow: hidden;
@@ -79,7 +79,7 @@
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(6, 95, 70, 0.08);
+      background: rgba(234, 88, 12, 0.08);
     }
 
     .hero-inner {
@@ -90,7 +90,7 @@
 
     .hero-label {
       display: inline-block;
-      background: #065f46;
+      background: #ea580c;
       color: white;
       font-size: 12px;
       font-weight: 700;
@@ -110,7 +110,7 @@
     .hero p {
       margin: 0;
       max-width: 760px;
-      color: #35564a;
+      color: #8a4a1d;
       line-height: 1.65;
       font-size: 17px;
     }
@@ -142,7 +142,8 @@
     .search-panel,
     .weather-panel,
     .forecast-panel,
-    .status-panel {
+    .status-panel,
+    .memory-panel {
       background: white;
       border: 1px solid #ddd;
       padding: 22px;
@@ -164,9 +165,11 @@
     }
 
     .search-form button,
-    .location-button {
+    .location-button,
+    .save-button,
+    .memory-chip button {
       border: none;
-      background: #065f46;
+      background: #ea580c;
       color: white;
       padding: 12px 16px;
       font-size: 14px;
@@ -176,7 +179,9 @@
     }
 
     .search-form button:hover,
-    .location-button:hover {
+    .location-button:hover,
+    .save-button:hover,
+    .memory-chip button:hover {
       filter: brightness(1.05);
       transform: translateY(-1px);
     }
@@ -196,8 +201,8 @@
     }
 
     .current-summary {
-      background: #f8fcf9;
-      border: 1px solid #d8eadf;
+      background: #fff8f3;
+      border: 1px solid #ffd9c2;
       padding: 22px;
     }
 
@@ -206,7 +211,7 @@
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #065f46;
+      color: #ea580c;
       margin-bottom: 10px;
     }
 
@@ -216,7 +221,7 @@
     }
 
     .condition-line {
-      color: #45665a;
+      color: #8a4a1d;
       font-size: 16px;
       margin-bottom: 20px;
     }
@@ -309,9 +314,79 @@
       text-transform: capitalize;
     }
 
+    .hourly-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .hour-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .hour-time {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .hour-card img {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 6px;
+      display: block;
+    }
+
+    .hour-temp {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hour-desc {
+      font-size: 12px;
+      color: #666;
+      text-transform: capitalize;
+    }
+
     .status-panel {
       color: #555;
       line-height: 1.6;
+    }
+
+    .memory-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .memory-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff8f3;
+      border: 1px solid #ffd9c2;
+      padding: 8px;
+    }
+
+    .memory-chip span {
+      font-size: 14px;
+      color: #8a4a1d;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+
+    .memory-chip button {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .memory-chip .remove-btn {
+      background: #9a3412;
     }
 
     .hidden {
@@ -355,22 +430,22 @@
   <header>
     <h1>UBC</h1>
     <nav>
-      <a href="/index">Home</a>
-      <a href="/news">News</a>
-      <a href="/education">Education</a>
-      <a href="/player">Player</a>
-      <a href="/listen">Listen</a>
-      <a href="/weather">Weather</a>
-      <a href="/sport">Sport</a>
-      <a href="/archive">Archive</a>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
     </nav>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-label">UBC Weather</div>
-      <h2>Live weather for your location and anywhere else</h2>
-      <p>View current local weather automatically using your device location, or search manually for another town, city or region.</p>
+      <h2>Live weather for your location and saved places</h2>
+      <p>View current local weather automatically, search manually for another place, and save known locations for quick access later.</p>
     </div>
   </section>
 
@@ -378,7 +453,7 @@
     <section class="section">
       <div class="section-header">
         <h3>Find weather</h3>
-        <p>Use your current location, or search for somewhere else manually.</p>
+        <p>Use your current location, search somewhere else, or save places for later.</p>
       </div>
 
       <div class="search-panel">
@@ -394,7 +469,19 @@
 
         <div class="search-tools">
           <button class="location-button" id="useLocationBtn" type="button">Use my current location</button>
+          <button class="save-button" id="saveLocationBtn" type="button">Save current location</button>
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h3>Saved locations</h3>
+        <p>Your browser can remember saved places for quick weather lookups.</p>
+      </div>
+
+      <div class="memory-panel">
+        <div class="memory-list" id="memoryList"></div>
       </div>
     </section>
 
@@ -453,6 +540,17 @@
       </div>
     </section>
 
+    <section class="section hidden" id="hourlySection">
+      <div class="section-header">
+        <h3>Hourly forecast</h3>
+        <p>A short-term view of the next few forecast points.</p>
+      </div>
+
+      <div class="forecast-panel">
+        <div class="hourly-strip" id="hourlyStrip"></div>
+      </div>
+    </section>
+
     <section class="section hidden" id="forecastSection">
       <div class="section-header">
         <h3>5 day outlook</h3>
@@ -471,15 +569,20 @@
 
   <script>
     const API_KEY = "59bccfaee9dd5b6516a79e9a567cb43b";
+    const STORAGE_KEY = "ubc_saved_weather_locations";
 
     const statusPanel = document.getElementById("statusPanel");
     const weatherSection = document.getElementById("weatherSection");
+    const hourlySection = document.getElementById("hourlySection");
     const forecastSection = document.getElementById("forecastSection");
     const forecastGrid = document.getElementById("forecastGrid");
+    const hourlyStrip = document.getElementById("hourlyStrip");
+    const memoryList = document.getElementById("memoryList");
 
     const searchForm = document.getElementById("searchForm");
     const locationInput = document.getElementById("locationInput");
     const useLocationBtn = document.getElementById("useLocationBtn");
+    const saveLocationBtn = document.getElementById("saveLocationBtn");
 
     const locationNameEl = document.getElementById("locationName");
     const conditionLineEl = document.getElementById("conditionLine");
@@ -492,12 +595,15 @@
     const visibilityEl = document.getElementById("visibility");
     const highLowEl = document.getElementById("highLow");
 
+    let currentLoadedLocation = "";
+
     function setStatus(message) {
       statusPanel.textContent = message;
     }
 
     function showWeatherSections() {
       weatherSection.classList.remove("hidden");
+      hourlySection.classList.remove("hidden");
       forecastSection.classList.remove("hidden");
     }
 
@@ -508,6 +614,14 @@
     function formatDayName(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString("en-GB", { weekday: "short" });
+    }
+
+    function formatHour(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
     }
 
     function pickDailyForecast(list) {
@@ -534,9 +648,80 @@
       return Array.from(dailyMap.values()).slice(0, 5);
     }
 
+    function getSavedLocations() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveLocations(locations) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(locations));
+    }
+
+    function addSavedLocation(locationName) {
+      if (!locationName) return;
+
+      const existing = getSavedLocations();
+      if (existing.includes(locationName)) {
+        setStatus(`${locationName} is already saved.`);
+        return;
+      }
+
+      existing.push(locationName);
+      saveLocations(existing);
+      renderSavedLocations();
+      setStatus(`${locationName} has been saved.`);
+    }
+
+    function removeSavedLocation(locationName) {
+      const updated = getSavedLocations().filter(loc => loc !== locationName);
+      saveLocations(updated);
+      renderSavedLocations();
+      setStatus(`${locationName} has been removed.`);
+    }
+
+    function renderSavedLocations() {
+      const saved = getSavedLocations();
+      memoryList.innerHTML = "";
+
+      if (saved.length === 0) {
+        memoryList.innerHTML = `<span style="color:#666;">No saved locations yet.</span>`;
+        return;
+      }
+
+      saved.forEach(location => {
+        const chip = document.createElement("div");
+        chip.className = "memory-chip";
+        chip.innerHTML = `
+          <span>${location}</span>
+          <button type="button" data-load="${location}">Load</button>
+          <button type="button" class="remove-btn" data-remove="${location}">Remove</button>
+        `;
+        memoryList.appendChild(chip);
+      });
+
+      memoryList.querySelectorAll("[data-load]").forEach(button => {
+        button.addEventListener("click", () => {
+          const loc = button.getAttribute("data-load");
+          loadWeatherBySearch(loc);
+        });
+      });
+
+      memoryList.querySelectorAll("[data-remove]").forEach(button => {
+        button.addEventListener("click", () => {
+          const loc = button.getAttribute("data-remove");
+          removeSavedLocation(loc);
+        });
+      });
+    }
+
     function renderCurrentWeather(data) {
       const placeName = `${data.name}${data.sys?.country ? ", " + data.sys.country : ""}`;
       const description = capitaliseWords(data.weather[0].description);
+
+      currentLoadedLocation = placeName;
 
       locationNameEl.textContent = placeName;
       conditionLineEl.textContent = `${description} • Updated live for this location`;
@@ -580,6 +765,29 @@
       });
     }
 
+    function renderHourlyForecast(data) {
+      hourlyStrip.innerHTML = "";
+
+      data.list.slice(0, 8).forEach(item => {
+        const card = document.createElement("div");
+        card.className = "hour-card";
+
+        const time = formatHour(item.dt_txt);
+        const icon = item.weather[0].icon;
+        const desc = capitaliseWords(item.weather[0].description);
+        const temp = `${Math.round(item.main.temp)}°C`;
+
+        card.innerHTML = `
+          <div class="hour-time">${time}</div>
+          <img src="https://openweathermap.org/img/wn/${icon}.png" alt="${desc}">
+          <div class="hour-temp">${temp}</div>
+          <div class="hour-desc">${desc}</div>
+        `;
+
+        hourlyStrip.appendChild(card);
+      });
+    }
+
     async function fetchCurrentWeatherByCoords(lat, lon) {
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
       const response = await fetch(url);
@@ -619,6 +827,7 @@
 
         renderCurrentWeather(currentWeather);
         renderForecast(forecast);
+        renderHourlyForecast(forecast);
       } catch (error) {
         console.error(error);
         setStatus("Sorry, weather could not be loaded for your location.");
@@ -636,6 +845,7 @@
 
         renderCurrentWeather(currentWeather);
         renderForecast(forecast);
+        renderHourlyForecast(forecast);
       } catch (error) {
         console.error(error);
         setStatus("Sorry, that location could not be found. Try another town or city.");
@@ -686,6 +896,15 @@
       requestCurrentLocationWeather();
     });
 
+    saveLocationBtn.addEventListener("click", () => {
+      if (!currentLoadedLocation) {
+        setStatus("Load a location first, then save it.");
+        return;
+      }
+      addSavedLocation(currentLoadedLocation);
+    });
+
+    renderSavedLocations();
     requestCurrentLocationWeather();
   </script>
 </body>
