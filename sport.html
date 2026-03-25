@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC Sport</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f7f5;
+      color: #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    nav a:nth-child(1) { background: #1e3a8a; }
+    nav a:nth-child(2) { background: #b91c1c; }
+    nav a:nth-child(3) { background: #065f46; }
+    nav a:nth-child(4) { background: #7c3aed; }
+    nav a:nth-child(5) { background: #0e7490; }
+    nav a:nth-child(6) { background: #ea580c; }
+    nav a:nth-child(7) { background: #14532d; }
+    nav a:nth-child(8) { background: #374151; }
+
+    nav a:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f2f22 0%, #174d34 100%);
+      color: white;
+      padding: 58px 48px 48px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #1b5e3f;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: #22c55e;
+      color: #082012;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 46px;
+      line-height: 1.1;
+      max-width: 760px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: #d8efe0;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      text-decoration: none;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: 0.2s ease;
+    }
+
+    .hero-primary {
+      background: #22c55e;
+      color: #082012;
+    }
+
+    .hero-secondary {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .hero-actions a:hover {
+      transform: translateY(-1px);
+    }
+
+    .page {
+      padding: 34px 48px 56px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 28px;
+      color: #103120;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: #555;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #d9e5dd;
+      padding: 22px;
+    }
+
+    .status-panel {
+      background: #ffffff;
+      border: 1px solid #d9e5dd;
+      padding: 18px 22px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-row button {
+      border: none;
+      background: #14532d;
+      color: white;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-row button.active {
+      background: #22c55e;
+      color: #082012;
+    }
+
+    .filter-row button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .live-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .live-card {
+      background: #0f2f22;
+      color: white;
+      padding: 16px;
+      border: 1px solid #1b5e3f;
+    }
+
+    .live-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bde5ca;
+    }
+
+    .live-status {
+      background: #22c55e;
+      color: #082012;
+      padding: 4px 8px;
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .match-line {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .team-right {
+      text-align: right;
+    }
+
+    .score-box {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .match-sub {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #c9dfd0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .news-card,
+    .league-card,
+    .team-card,
+    .rss-card,
+    .table-card {
+      background: white;
+      border: 1px solid #d9e5dd;
+      overflow: hidden;
+    }
+
+    .news-image,
+    .league-image,
+    .team-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #edf4ef;
+      display: block;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #14532d;
+      margin-bottom: 10px;
+    }
+
+    .news-card h4,
+    .league-card h4,
+    .team-card h4,
+    .rss-card h4,
+    .table-card h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.3;
+      color: #103120;
+    }
+
+    .news-card p,
+    .league-card p,
+    .team-card p,
+    .rss-card p,
+    .table-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .meta-line {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .headline-link,
+    .rss-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      height: 100%;
+    }
+
+    .headline-link:hover h4,
+    .rss-link:hover h4 {
+      text-decoration: underline;
+    }
+
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .standings-table th,
+    .standings-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e8eeea;
+      text-align: left;
+    }
+
+    .standings-table th {
+      background: #f3f8f4;
+      color: #14532d;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .standings-wrap {
+      overflow-x: auto;
+    }
+
+    .small-note {
+      margin-top: 12px;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 28px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 16px 22px;
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+
+      .hero,
+      .page {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UBC</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Education</a>
+      <a href="#">Player</a>
+      <a href="#">Listen</a>
+      <a href="#">Weather</a>
+      <a href="#">Sport</a>
+      <a href="#">Archive</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">UBC Sport</div>
+      <h2>Live sport, latest headlines, league tables and broadcaster-style updates</h2>
+      <p>Follow live scores, featured competitions, club and league coverage, standings and the latest sport headlines from a blended multi-source setup.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="#live">Live now</a>
+        <a class="hero-secondary" href="#headlines">Top sport headlines</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Choose a sport focus</h3>
+          <p>Filter the page to focus on a particular sport or keep it broad.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="filter-row" id="sportFilters">
+          <button class="active" data-sport="all">All sport</button>
+          <button data-sport="football">Football</button>
+          <button data-sport="f1">F1</button>
+          <button data-sport="cricket">Cricket</button>
+          <button data-sport="rugby">Rugby</button>
+          <button data-sport="tennis">Tennis</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="status-panel" id="statusPanel">Loading UBC Sport coverage…</div>
+    </section>
+
+    <section class="section" id="live">
+      <div class="section-header">
+        <div>
+          <h3>Live now</h3>
+          <p>Live and recent matches powered by your structured sports data feed.</p>
+        </div>
+      </div>
+
+      <div class="live-strip" id="liveStrip"></div>
+    </section>
+
+    <section class="section" id="headlines">
+      <div class="section-header">
+        <div>
+          <h3>Latest sport headlines</h3>
+          <p>Headline coverage from your news and RSS sources.</p>
+        </div>
+      </div>
+
+      <div class="card-grid" id="headlineGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Featured leagues</h3>
+          <p>Competition hubs with artwork and quick context.</p>
+        </div>
+      </div>
+
+      <div class="card-grid" id="leagueGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Standings</h3>
+          <p>Current league table or standings panel from your main sports data source.</p>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="card-body">
+          <h4 id="standingsTitle">League standings</h4>
+          <div class="standings-wrap">
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Team</th>
+                  <th>P</th>
+                  <th>Pts</th>
+                </tr>
+              </thead>
+              <tbody id="standingsBody"></tbody>
+            </table>
+          </div>
+          <div class="small-note">This section works best when your backend returns a clean standings array from API-Sports.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Featured teams</h3>
+          <p>Teams and clubs with artwork and short descriptions.</p>
+        </div>
+      </div>
+
+      <div class="card-grid" id="teamGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h3>Broadcaster feed</h3>
+          <p>RSS-powered sport updates for a more public service style presentation.</p>
+        </div>
+      </div>
+
+      <div class="card-grid" id="rssGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+
+  <script>
+    const statusPanel = document.getElementById("statusPanel");
+    const liveStrip = document.getElementById("liveStrip");
+    const headlineGrid = document.getElementById("headlineGrid");
+    const leagueGrid = document.getElementById("leagueGrid");
+    const standingsBody = document.getElementById("standingsBody");
+    const standingsTitle = document.getElementById("standingsTitle");
+    const teamGrid = document.getElementById("teamGrid");
+    const rssGrid = document.getElementById("rssGrid");
+    const sportFilters = document.getElementById("sportFilters");
+
+    let currentSport = "all";
+
+    function setStatus(message) {
+      statusPanel.textContent = message;
+    }
+
+    function safeArray(value) {
+      return Array.isArray(value) ? value : [];
+    }
+
+    async function fetchJson(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Request failed: ${url}`);
+      return res.json();
+    }
+
+    function renderLive(matches) {
+      liveStrip.innerHTML = "";
+
+      if (!matches.length) {
+        liveStrip.innerHTML = `<div class="panel">No live or recent matches are available right now.</div>`;
+        return;
+      }
+
+      matches.forEach(match => {
+        const card = document.createElement("div");
+        card.className = "live-card";
+
+        card.innerHTML = `
+          <div class="live-top">
+            <span>${match.league || "Competition"}</span>
+            <span class="live-status">${match.status || "Live"}</span>
+          </div>
+          <div class="match-line">
+            <div>${match.homeTeam || "Home"}</div>
+            <div class="score-box">${match.homeScore ?? "-"} : ${match.awayScore ?? "-"}</div>
+            <div class="team-right">${match.awayTeam || "Away"}</div>
+          </div>
+          <div class="match-sub">${match.kickoff || match.time || "Live update"}</div>
+        `;
+
+        liveStrip.appendChild(card);
+      });
+    }
+
+    function renderHeadlines(items) {
+      headlineGrid.innerHTML = "";
+
+      if (!items.length) {
+        headlineGrid.innerHTML = `<div class="panel">No sport headlines are available right now.</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "news-card";
+
+        card.innerHTML = `
+          <a class="headline-link" href="${item.url || "#"}" target="_blank" rel="noopener noreferrer">
+            ${item.image ? `<img class="news-image" src="${item.image}" alt="${item.title || "Sport headline"}">` : ""}
+            <div class="card-body">
+              <div class="tag">${item.source || "Sport news"}</div>
+              <h4>${item.title || "Untitled headline"}</h4>
+              <p>${item.description || "Latest sport coverage from your configured headline sources."}</p>
+              <div class="meta-line">${item.published || ""}</div>
+            </div>
+          </a>
+        `;
+
+        headlineGrid.appendChild(card);
+      });
+    }
+
+    function renderLeagues(items) {
+      leagueGrid.innerHTML = "";
+
+      if (!items.length) {
+        leagueGrid.innerHTML = `<div class="panel">No featured leagues are available right now.</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "league-card";
+
+        card.innerHTML = `
+          ${item.image ? `<img class="league-image" src="${item.image}" alt="${item.name || "League"}">` : ""}
+          <div class="card-body">
+            <div class="tag">${item.sport || "Competition"}</div>
+            <h4>${item.name || "League"}</h4>
+            <p>${item.description || "League coverage with structured sports data and artwork."}</p>
+          </div>
+        `;
+
+        leagueGrid.appendChild(card);
+      });
+    }
+
+    function renderStandings(payload) {
+      standingsBody.innerHTML = "";
+
+      const rows = safeArray(payload.rows);
+      standingsTitle.textContent = payload.title || "League standings";
+
+      if (!rows.length) {
+        standingsBody.innerHTML = `
+          <tr>
+            <td colspan="4">No standings are available right now.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      rows.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.position ?? "-"}</td>
+          <td>${row.team || "-"}</td>
+          <td>${row.played ?? "-"}</td>
+          <td>${row.points ?? "-"}</td>
+        `;
+        standingsBody.appendChild(tr);
+      });
+    }
+
+    function renderTeams(items) {
+      teamGrid.innerHTML = "";
+
+      if (!items.length) {
+        teamGrid.innerHTML = `<div class="panel">No featured teams are available right now.</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "team-card";
+
+        card.innerHTML = `
+          ${item.image ? `<img class="team-image" src="${item.image}" alt="${item.name || "Team"}">` : ""}
+          <div class="card-body">
+            <div class="tag">${item.league || "Team"}</div>
+            <h4>${item.name || "Club"}</h4>
+            <p>${item.description || "Featured club profile, artwork and competition context."}</p>
+          </div>
+        `;
+
+        teamGrid.appendChild(card);
+      });
+    }
+
+    function renderRss(items) {
+      rssGrid.innerHTML = "";
+
+      if (!items.length) {
+        rssGrid.innerHTML = `<div class="panel">No RSS sport items are available right now.</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "rss-card";
+
+        card.innerHTML = `
+          <a class="rss-link" href="${item.url || "#"}" target="_blank" rel="noopener noreferrer">
+            <div class="card-body">
+              <div class="tag">${item.source || "RSS"}</div>
+              <h4>${item.title || "Sport update"}</h4>
+              <p>${item.description || "Latest broadcaster-style sport feed item."}</p>
+              <div class="meta-line">${item.published || ""}</div>
+            </div>
+          </a>
+        `;
+
+        rssGrid.appendChild(card);
+      });
+    }
+
+    async function loadSportPage() {
+      try {
+        setStatus(`Loading sport coverage for ${currentSport === "all" ? "all sports" : currentSport}…`);
+
+        const query = currentSport === "all" ? "" : `?sport=${encodeURIComponent(currentSport)}`;
+
+        const [live, headlines, rss, standings, leagues, teams] = await Promise.all([
+          fetchJson(`/api/sport/live${query}`),
+          fetchJson(`/api/sport/headlines${query}`),
+          fetchJson(`/api/sport/rss${query}`),
+          fetchJson(`/api/sport/standings${query}`),
+          fetchJson(`/api/sport/leagues${query}`),
+          fetchJson(`/api/sport/teams${query}`)
+        ]);
+
+        renderLive(safeArray(live.matches || live.items || live));
+        renderHeadlines(safeArray(headlines.items || headlines));
+        renderRss(safeArray(rss.items || rss));
+        renderStandings(standings || {});
+        renderLeagues(safeArray(leagues.items || leagues));
+        renderTeams(safeArray(teams.items || teams));
+
+        setStatus(`Showing UBC Sport coverage for ${currentSport === "all" ? "all sports" : currentSport}.`);
+      } catch (error) {
+        console.error(error);
+        setStatus("Sorry, UBC Sport could not load right now. Check your backend endpoints.");
+      }
+    }
+
+    sportFilters.querySelectorAll("button").forEach(button => {
+      button.addEventListener("click", async () => {
+        sportFilters.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        currentSport = button.dataset.sport || "all";
+        await loadSportPage();
+      });
+    });
+
+    loadSportPage();
+  </script>
+</body>
+</html>
