@@ -43,7 +43,7 @@
       text-decoration: none;
       font-size: 13px;
       padding: 8px 14px;
-      border-radius: 1px;
+      border-radius: 6px;
       transition: all 0.2s ease;
       font-weight: 500;
       color: white;
@@ -139,17 +139,15 @@
       line-height: 1.6;
     }
 
-    .search-panel,
-    .weather-panel,
-    .forecast-panel,
-    .status-panel,
-    .memory-panel {
+    .panel,
+    .status-panel {
       background: white;
       border: 1px solid #ddd;
       padding: 22px;
     }
 
-    .search-form {
+    .search-form,
+    .toolbar {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
@@ -164,10 +162,7 @@
       outline: none;
     }
 
-    .search-form button,
-    .location-button,
-    .save-button,
-    .memory-chip button {
+    button {
       border: none;
       background: #ea580c;
       color: white;
@@ -178,19 +173,56 @@
       transition: 0.2s ease;
     }
 
-    .search-form button:hover,
-    .location-button:hover,
-    .save-button:hover,
-    .memory-chip button:hover {
+    button:hover {
       filter: brightness(1.05);
       transform: translateY(-1px);
     }
 
-    .search-tools {
+    .provider-switch {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 14px;
+    }
+
+    .provider-btn {
+      background: #9a3412;
+    }
+
+    .provider-btn.active {
+      background: #ea580c;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35);
+    }
+
+    .memory-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .memory-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff8f3;
+      border: 1px solid #ffd9c2;
+      padding: 8px;
+    }
+
+    .memory-chip span {
+      font-size: 14px;
+      color: #8a4a1d;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+
+    .memory-chip button {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .remove-btn {
+      background: #7c2d12;
     }
 
     .weather-main {
@@ -276,117 +308,71 @@
       font-size: 13px;
     }
 
-    .forecast-grid {
+    .hourly-strip,
+    .forecast-grid,
+    .obs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-    }
-
-    .forecast-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .forecast-card h4 {
-      margin: 0 0 10px;
-      font-size: 15px;
-    }
-
-    .forecast-card img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 8px;
-    }
-
-    .forecast-temp {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .forecast-desc {
-      color: #666;
-      font-size: 13px;
-      text-transform: capitalize;
-    }
-
-    .hourly-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 12px;
     }
 
-    .hour-card {
+    .hourly-strip {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .forecast-grid {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .obs-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .hour-card,
+    .forecast-card,
+    .obs-card {
       background: #fff;
       border: 1px solid #e5e7eb;
       padding: 14px;
       text-align: center;
     }
 
-    .hour-time {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .hour-card img {
+    .hour-card img,
+    .forecast-card img {
       width: 44px;
       height: 44px;
       margin: 0 auto 6px;
       display: block;
     }
 
-    .hour-temp {
+    .hour-time,
+    .obs-time {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .hour-temp,
+    .forecast-temp,
+    .obs-value {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 6px;
     }
 
-    .hour-desc {
+    .hour-desc,
+    .forecast-desc,
+    .obs-label {
       font-size: 12px;
       color: #666;
       text-transform: capitalize;
     }
 
-    .status-panel {
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .memory-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .memory-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff8f3;
-      border: 1px solid #ffd9c2;
-      padding: 8px;
-    }
-
-    .memory-chip span {
-      font-size: 14px;
-      color: #8a4a1d;
-      font-weight: 600;
-      padding-left: 4px;
-    }
-
-    .memory-chip button {
-      padding: 8px 10px;
-      font-size: 12px;
-    }
-
-    .memory-chip .remove-btn {
-      background: #9a3412;
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 10px;
+      line-height: 1.5;
     }
 
     .hidden {
@@ -444,8 +430,8 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-label">UBC Weather</div>
-      <h2>Live weather for your location and saved places</h2>
-      <p>View current local weather automatically, search manually for another place, and save known locations for quick access later.</p>
+      <h2>Switch between OpenWeather and Met Office</h2>
+      <p>Use your location automatically, search manually, save places, and switch between OpenWeatherMap and Met Office Land Observations.</p>
     </div>
   </section>
 
@@ -453,23 +439,28 @@
     <section class="section">
       <div class="section-header">
         <h3>Find weather</h3>
-        <p>Use your current location, search somewhere else, or save places for later.</p>
+        <p>Search a place, use your current location, save places, or switch weather provider.</p>
       </div>
 
-      <div class="search-panel">
+      <div class="panel">
         <form class="search-form" id="searchForm">
-          <input
-            type="text"
-            id="locationInput"
-            placeholder="Enter a city, town or place name"
-            autocomplete="off"
-          />
+          <input id="locationInput" type="text" placeholder="Enter a city, town or place name" />
           <button type="submit">Search location</button>
         </form>
 
-        <div class="search-tools">
-          <button class="location-button" id="useLocationBtn" type="button">Use my current location</button>
-          <button class="save-button" id="saveLocationBtn" type="button">Save current location</button>
+        <div class="toolbar" style="margin-top:12px;">
+          <button type="button" id="useLocationBtn">Use my current location</button>
+          <button type="button" id="saveLocationBtn">Save current location</button>
+        </div>
+
+        <div class="provider-switch">
+          <button type="button" class="provider-btn active" id="owmBtn">OpenWeatherMap</button>
+          <button type="button" class="provider-btn" id="metBtn">Met Office</button>
+        </div>
+
+        <div class="note">
+          OpenWeatherMap mode shows current conditions plus forecast.
+          Met Office mode shows UK land observations only, using recent hourly station data.
         </div>
       </div>
     </section>
@@ -477,30 +468,28 @@
     <section class="section">
       <div class="section-header">
         <h3>Saved locations</h3>
-        <p>Your browser can remember saved places for quick weather lookups.</p>
+        <p>Your browser can remember locations for quick access later.</p>
       </div>
 
-      <div class="memory-panel">
+      <div class="panel">
         <div class="memory-list" id="memoryList"></div>
       </div>
     </section>
 
     <section class="section">
-      <div class="status-panel" id="statusPanel">
-        Trying to detect your location and load local weather…
-      </div>
+      <div class="status-panel" id="statusPanel">Trying to detect your location…</div>
     </section>
 
     <section class="section hidden" id="weatherSection">
       <div class="section-header">
         <h3>Current weather</h3>
-        <p>Live conditions for the selected location.</p>
+        <p id="sectionSubheading">Live conditions for the selected location.</p>
       </div>
 
-      <div class="weather-panel">
+      <div class="panel">
         <div class="weather-main">
           <div class="current-summary">
-            <div class="eyebrow">Current conditions</div>
+            <div class="eyebrow" id="sourceEyebrow">OpenWeatherMap</div>
             <h4 class="location-name" id="locationName">Loading…</h4>
             <div class="condition-line" id="conditionLine">Loading weather details…</div>
 
@@ -521,15 +510,15 @@
             </div>
             <div class="detail-card">
               <div class="label">Wind</div>
-              <div class="value" id="windSpeed">-- m/s</div>
+              <div class="value" id="windSpeed">--</div>
             </div>
             <div class="detail-card">
               <div class="label">Pressure</div>
-              <div class="value" id="pressure">-- hPa</div>
+              <div class="value" id="pressure">--</div>
             </div>
             <div class="detail-card">
               <div class="label">Visibility</div>
-              <div class="value" id="visibility">-- km</div>
+              <div class="value" id="visibility">--</div>
             </div>
             <div class="detail-card">
               <div class="label">High / Low</div>
@@ -543,10 +532,9 @@
     <section class="section hidden" id="hourlySection">
       <div class="section-header">
         <h3>Hourly forecast</h3>
-        <p>A short-term view of the next few forecast points.</p>
+        <p>Short-term forecast from OpenWeatherMap.</p>
       </div>
-
-      <div class="forecast-panel">
+      <div class="panel">
         <div class="hourly-strip" id="hourlyStrip"></div>
       </div>
     </section>
@@ -554,11 +542,23 @@
     <section class="section hidden" id="forecastSection">
       <div class="section-header">
         <h3>5 day outlook</h3>
-        <p>A simple daily forecast view for the selected location.</p>
+        <p>Daily forecast view from OpenWeatherMap.</p>
       </div>
-
-      <div class="forecast-panel">
+      <div class="panel">
         <div class="forecast-grid" id="forecastGrid"></div>
+      </div>
+    </section>
+
+    <section class="section hidden" id="metObsSection">
+      <div class="section-header">
+        <h3>Met Office land observations</h3>
+        <p>Recent hourly UK station-based observation details.</p>
+      </div>
+      <div class="panel">
+        <div class="obs-grid" id="obsGrid"></div>
+        <div class="note">
+          Met Office Land Observations are UK station observations rather than a standard global forecast feed.
+        </div>
       </div>
     </section>
   </main>
@@ -568,15 +568,25 @@
   </footer>
 
   <script>
-    const API_KEY = "59bccfaee9dd5b6516a79e9a567cb43b";
+    const OWM_API_KEY = "59bccfaee9dd5b6516a79e9a567cb43b";
+    const METOFFICE_API_KEY = "eyJ4NXQjUzI1NiI6Ik5XVTVZakUxTkRjeVl6a3hZbUl4TkdSaFpqSmpOV1l6T1dGaE9XWXpNMk0yTWpRek5USm1OVEE0TXpOaU9EaG1NVFJqWVdNellXUm1ZalUyTTJJeVpBPT0iLCJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ==.eyJzdWIiOiJhcmkuc0BhbmFyY2h5Z3JvdXAudWtAY2FyYm9uLnN1cGVyIiwiYXBwbGljYXRpb24iOnsib3duZXIiOiJhcmkuc0BhbmFyY2h5Z3JvdXAudWsiLCJ0aWVyUXVvdGFUeXBlIjpudWxsLCJ0aWVyIjoiVW5saW1pdGVkIiwibmFtZSI6InNpdGVfc3BlY2lmaWMtMDRhM2ZhNjYtZjNiOC00NTU2LWI0M2ItOTUxZjBjNmYzNDE4IiwiaWQiOjQzMDk4LCJ1dWlkIjoiODQ2ZWY3ZGItZjRkNS00NThlLTk3ZWYtMDI1Njg4MTYwZDQwIn0sImlzcyI6Imh0dHBzOlwvXC9hcGktbWFuYWdlci5hcGktbWFuYWdlbWVudC5tZXRvZmZpY2UuY2xvdWQ6NDQzXC9vYXV0aDJcL3Rva2VuIiwidGllckluZm8iOnsid2RoX3NpdGVfc3BlY2lmaWNfZnJlZSI6eyJ0aWVyUXVvdGFUeXBlIjoicmVxdWVzdENvdW50IiwiZ3JhcGhRTE1heENvbXBsZXhpdHkiOjAsImdyYXBoUUxNYXhEZXB0aCI6MCwic3RvcE9uUXVvdGFSZWFjaCI6dHJ1ZSwic3Bpa2VBcnJlc3RMaW1pdCI6MCwic3Bpa2VBcnJlc3RVbml0Ijoic2VjIn19LCJrZXl0eXBlIjoiUFJPRFVDVElPTiIsInN1YnNjcmliZWRBUElzIjpbeyJzdWJzY3JpYmVyVGVuYW50RG9tYWluIjoiY2FyYm9uLnN1cGVyIiwibmFtZSI6IlNpdGVTcGVjaWZpY0ZvcmVjYXN0IiwiY29udGV4dCI6Ilwvc2l0ZXNwZWNpZmljXC92MCIsInB1Ymxpc2hlciI6IkphZ3Vhcl9DSSIsInZlcnNpb24iOiJ2MCIsInN1YnNjcmlwdGlvblRpZXIiOiJ3ZGhfc2l0ZV9zcGVjaWZpY19mcmVlIn1dLCJ0b2tlbl90eXBlIjoiYXBpS2V5IiwiaWF0IjoxNzc0NDE4MTYwLCJqdGkiOiJkZGMyZGFhNy1lZDZlLTRiMTMtYjU5My1mYWEyYjk1N2EwNTcifQ==.NYScZKZWvSpdtSr_KcWC4gTBR4KR07COjtbqXxbvbEJx_UsLfuKOihLCXrj64MX3CjBr0LmD4F0pF5wSLkRw7WeaoP1AcFcUa_1I8QYoFReux4zIPkhw3lNTwaeHK7SJeuaCWlTaXo8Y_-VNB21a_6yY9u_SMzA-v1SJpO1tzI6MjDP_B2xWNPmrP7GeVkXqXOoRDejIMucOKsTMXS_pDHLxxTqR6jDsEC--IwMydmKA7f7c0SckQGNbH70i3qIgJ7Y-uQjlmyuIvuwl7LjvUbtK6XNUTrQnTKR9_566CjHql7Ta_vnb8Hku77PyVpUBg9y7I8yE9DNbnDMG88St6Q==";
+
+    /*
+      Replace this with your exact Met Office Land Observations endpoint if needed.
+      This is the typical docs family for the observations product, but your subscribed
+      URL shape may vary depending on how you configured your DataHub access.
+    */
+    const METOFFICE_LAND_OBS_URL =
+      "https://data.hub.api.metoffice.gov.uk/observations/v0/collections/land-observations/items";
+
     const STORAGE_KEY = "ubc_saved_weather_locations";
 
+    let activeProvider = "owm";
+    let currentLoadedLocation = "";
+    let currentCoords = null;
+    let currentCountryCode = "";
+
     const statusPanel = document.getElementById("statusPanel");
-    const weatherSection = document.getElementById("weatherSection");
-    const hourlySection = document.getElementById("hourlySection");
-    const forecastSection = document.getElementById("forecastSection");
-    const forecastGrid = document.getElementById("forecastGrid");
-    const hourlyStrip = document.getElementById("hourlyStrip");
     const memoryList = document.getElementById("memoryList");
 
     const searchForm = document.getElementById("searchForm");
@@ -584,6 +594,16 @@
     const useLocationBtn = document.getElementById("useLocationBtn");
     const saveLocationBtn = document.getElementById("saveLocationBtn");
 
+    const owmBtn = document.getElementById("owmBtn");
+    const metBtn = document.getElementById("metBtn");
+
+    const weatherSection = document.getElementById("weatherSection");
+    const hourlySection = document.getElementById("hourlySection");
+    const forecastSection = document.getElementById("forecastSection");
+    const metObsSection = document.getElementById("metObsSection");
+
+    const sectionSubheading = document.getElementById("sectionSubheading");
+    const sourceEyebrow = document.getElementById("sourceEyebrow");
     const locationNameEl = document.getElementById("locationName");
     const conditionLineEl = document.getElementById("conditionLine");
     const mainTempEl = document.getElementById("mainTemp");
@@ -594,21 +614,16 @@
     const pressureEl = document.getElementById("pressure");
     const visibilityEl = document.getElementById("visibility");
     const highLowEl = document.getElementById("highLow");
-
-    let currentLoadedLocation = "";
+    const hourlyStrip = document.getElementById("hourlyStrip");
+    const forecastGrid = document.getElementById("forecastGrid");
+    const obsGrid = document.getElementById("obsGrid");
 
     function setStatus(message) {
       statusPanel.textContent = message;
     }
 
-    function showWeatherSections() {
-      weatherSection.classList.remove("hidden");
-      hourlySection.classList.remove("hidden");
-      forecastSection.classList.remove("hidden");
-    }
-
     function capitaliseWords(text) {
-      return text.replace(/\b\w/g, char => char.toUpperCase());
+      return text.replace(/\b\w/g, c => c.toUpperCase());
     }
 
     function formatDayName(dateString) {
@@ -624,28 +639,24 @@
       });
     }
 
-    function pickDailyForecast(list) {
-      const dailyMap = new Map();
+    function setProvider(provider) {
+      activeProvider = provider;
+      owmBtn.classList.toggle("active", provider === "owm");
+      metBtn.classList.toggle("active", provider === "met");
+    }
 
-      list.forEach(item => {
-        const [datePart] = item.dt_txt.split(" ");
-        const hour = item.dt_txt.split(" ")[1];
+    function showOWMSections() {
+      weatherSection.classList.remove("hidden");
+      hourlySection.classList.remove("hidden");
+      forecastSection.classList.remove("hidden");
+      metObsSection.classList.add("hidden");
+    }
 
-        if (!dailyMap.has(datePart) && hour === "12:00:00") {
-          dailyMap.set(datePart, item);
-        }
-      });
-
-      if (dailyMap.size < 5) {
-        list.forEach(item => {
-          const [datePart] = item.dt_txt.split(" ");
-          if (!dailyMap.has(datePart)) {
-            dailyMap.set(datePart, item);
-          }
-        });
-      }
-
-      return Array.from(dailyMap.values()).slice(0, 5);
+    function showMetSections() {
+      weatherSection.classList.remove("hidden");
+      hourlySection.classList.add("hidden");
+      forecastSection.classList.add("hidden");
+      metObsSection.classList.remove("hidden");
     }
 
     function getSavedLocations() {
@@ -662,13 +673,11 @@
 
     function addSavedLocation(locationName) {
       if (!locationName) return;
-
       const existing = getSavedLocations();
       if (existing.includes(locationName)) {
         setStatus(`${locationName} is already saved.`);
         return;
       }
-
       existing.push(locationName);
       saveLocations(existing);
       renderSavedLocations();
@@ -686,7 +695,7 @@
       const saved = getSavedLocations();
       memoryList.innerHTML = "";
 
-      if (saved.length === 0) {
+      if (!saved.length) {
         memoryList.innerHTML = `<span style="color:#666;">No saved locations yet.</span>`;
         return;
       }
@@ -703,31 +712,96 @@
       });
 
       memoryList.querySelectorAll("[data-load]").forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
           const loc = button.getAttribute("data-load");
-          loadWeatherBySearch(loc);
+          await loadWeatherBySearch(loc);
         });
       });
 
       memoryList.querySelectorAll("[data-remove]").forEach(button => {
         button.addEventListener("click", () => {
-          const loc = button.getAttribute("data-remove");
-          removeSavedLocation(loc);
+          removeSavedLocation(button.getAttribute("data-remove"));
         });
       });
     }
 
-    function renderCurrentWeather(data) {
+    function pickDailyForecast(list) {
+      const dailyMap = new Map();
+
+      list.forEach(item => {
+        const [datePart] = item.dt_txt.split(" ");
+        const hour = item.dt_txt.split(" ")[1];
+        if (!dailyMap.has(datePart) && hour === "12:00:00") {
+          dailyMap.set(datePart, item);
+        }
+      });
+
+      if (dailyMap.size < 5) {
+        list.forEach(item => {
+          const [datePart] = item.dt_txt.split(" ");
+          if (!dailyMap.has(datePart)) {
+            dailyMap.set(datePart, item);
+          }
+        });
+      }
+
+      return Array.from(dailyMap.values()).slice(0, 5);
+    }
+
+    async function fetchOWMCurrentByCoords(lat, lon) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}&units=metric`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("OpenWeather current request failed");
+      return res.json();
+    }
+
+    async function fetchOWMForecastByCoords(lat, lon) {
+      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}&units=metric`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("OpenWeather forecast request failed");
+      return res.json();
+    }
+
+    async function fetchOWMCurrentByQuery(query) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${OWM_API_KEY}&units=metric`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("OpenWeather location not found");
+      return res.json();
+    }
+
+    async function fetchOWMForecastByQuery(query) {
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(query)}&appid=${OWM_API_KEY}&units=metric`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("OpenWeather forecast failed");
+      return res.json();
+    }
+
+    async function fetchMetOfficeLandObservations(lat, lon) {
+      const url = `${METOFFICE_LAND_OBS_URL}?latitude=${lat}&longitude=${lon}`;
+
+      const res = await fetch(url, {
+        headers: {
+          apikey: METOFFICE_API_KEY
+        }
+      });
+
+      if (!res.ok) throw new Error("Met Office observations request failed");
+      return res.json();
+    }
+
+    function renderOWMCurrent(data) {
       const placeName = `${data.name}${data.sys?.country ? ", " + data.sys.country : ""}`;
-      const description = capitaliseWords(data.weather[0].description);
-
       currentLoadedLocation = placeName;
+      currentCountryCode = data.sys?.country || "";
 
+      sourceEyebrow.textContent = "OpenWeatherMap";
+      sectionSubheading.textContent = "Live conditions for the selected location.";
       locationNameEl.textContent = placeName;
-      conditionLineEl.textContent = `${description} • Updated live for this location`;
+      conditionLineEl.textContent = `${capitaliseWords(data.weather[0].description)} • OpenWeatherMap mode`;
       mainTempEl.textContent = `${Math.round(data.main.temp)}°C`;
       weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-      weatherIconEl.alt = description;
+      weatherIconEl.alt = data.weather[0].description;
+      weatherIconEl.style.display = "block";
 
       feelsLikeEl.textContent = `${Math.round(data.main.feels_like)}°C`;
       humidityEl.textContent = `${data.main.humidity}%`;
@@ -735,129 +809,231 @@
       pressureEl.textContent = `${data.main.pressure} hPa`;
       visibilityEl.textContent = `${(data.visibility / 1000).toFixed(1)} km`;
       highLowEl.textContent = `${Math.round(data.main.temp_max)}° / ${Math.round(data.main.temp_min)}°`;
-
-      showWeatherSections();
-      setStatus(`Showing live weather for ${placeName}.`);
     }
 
-    function renderForecast(data) {
-      forecastGrid.innerHTML = "";
-
-      const dailyForecast = pickDailyForecast(data.list);
-
-      dailyForecast.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "forecast-card";
-
-        const day = formatDayName(item.dt_txt);
-        const icon = item.weather[0].icon;
-        const desc = capitaliseWords(item.weather[0].description);
-        const temp = `${Math.round(item.main.temp)}°C`;
-
-        card.innerHTML = `
-          <h4>${day}</h4>
-          <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${desc}">
-          <div class="forecast-temp">${temp}</div>
-          <div class="forecast-desc">${desc}</div>
-        `;
-
-        forecastGrid.appendChild(card);
-      });
-    }
-
-    function renderHourlyForecast(data) {
+    function renderOWMHourly(data) {
       hourlyStrip.innerHTML = "";
-
       data.list.slice(0, 8).forEach(item => {
         const card = document.createElement("div");
         card.className = "hour-card";
-
-        const time = formatHour(item.dt_txt);
-        const icon = item.weather[0].icon;
-        const desc = capitaliseWords(item.weather[0].description);
-        const temp = `${Math.round(item.main.temp)}°C`;
-
         card.innerHTML = `
-          <div class="hour-time">${time}</div>
-          <img src="https://openweathermap.org/img/wn/${icon}.png" alt="${desc}">
-          <div class="hour-temp">${temp}</div>
-          <div class="hour-desc">${desc}</div>
+          <div class="hour-time">${formatHour(item.dt_txt)}</div>
+          <img src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="${item.weather[0].description}">
+          <div class="hour-temp">${Math.round(item.main.temp)}°C</div>
+          <div class="hour-desc">${capitaliseWords(item.weather[0].description)}</div>
         `;
-
         hourlyStrip.appendChild(card);
       });
     }
 
-    async function fetchCurrentWeatherByCoords(lat, lon) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Could not fetch current weather.");
-      return response.json();
+    function renderOWMForecast(data) {
+      forecastGrid.innerHTML = "";
+      const days = pickDailyForecast(data.list);
+
+      days.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "forecast-card";
+        card.innerHTML = `
+          <h4>${formatDayName(item.dt_txt)}</h4>
+          <img src="https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png" alt="${item.weather[0].description}">
+          <div class="forecast-temp">${Math.round(item.main.temp)}°C</div>
+          <div class="forecast-desc">${capitaliseWords(item.weather[0].description)}</div>
+        `;
+        forecastGrid.appendChild(card);
+      });
     }
 
-    async function fetchForecastByCoords(lat, lon) {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Could not fetch forecast.");
-      return response.json();
+    function flattenMetOfficeObservation(raw) {
+      const feature = raw?.features?.[0] || null;
+      const props = feature?.properties || {};
+      const series = props?.timeSeries || [];
+      const latest = series[series.length - 1] || series[0] || null;
+
+      return {
+        feature,
+        latest,
+        series
+      };
     }
 
-    async function fetchCurrentWeatherByQuery(query) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${API_KEY}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Location not found.");
-      return response.json();
+    function renderMetOffice(raw) {
+      const { feature, latest, series } = flattenMetOfficeObservation(raw);
+
+      if (!latest) {
+        throw new Error("No Met Office observation data available");
+      }
+
+      const locationGuess =
+        feature?.properties?.location?.name ||
+        feature?.properties?.name ||
+        currentLoadedLocation ||
+        "UK observation site";
+
+      currentLoadedLocation = locationGuess;
+
+      sourceEyebrow.textContent = "Met Office";
+      sectionSubheading.textContent = "Recent hourly UK land observations.";
+      locationNameEl.textContent = locationGuess;
+      conditionLineEl.textContent = "Nearest UK observation station • Met Office mode";
+      mainTempEl.textContent =
+        typeof latest.screenTemperature === "number"
+          ? `${Math.round(latest.screenTemperature)}°C`
+          : "--°C";
+
+      weatherIconEl.removeAttribute("src");
+      weatherIconEl.alt = "Met Office observations";
+      weatherIconEl.style.display = "none";
+
+      feelsLikeEl.textContent =
+        typeof latest.feelsLikeTemperature === "number"
+          ? `${Math.round(latest.feelsLikeTemperature)}°C`
+          : "--";
+
+      humidityEl.textContent =
+        typeof latest.screenRelativeHumidity === "number"
+          ? `${latest.screenRelativeHumidity}%`
+          : "--";
+
+      windSpeedEl.textContent =
+        typeof latest.windSpeed10m === "number"
+          ? `${latest.windSpeed10m} m/s`
+          : "--";
+
+      pressureEl.textContent =
+        typeof latest.mslp === "number"
+          ? `${latest.mslp} hPa`
+          : "--";
+
+      visibilityEl.textContent =
+        latest.visibility !== undefined ? String(latest.visibility) : "--";
+
+      highLowEl.textContent = "Observed data";
+
+      obsGrid.innerHTML = "";
+
+      const cards = [
+        { label: "Air temperature", value: latest.screenTemperature, suffix: "°C" },
+        { label: "Feels like", value: latest.feelsLikeTemperature, suffix: "°C" },
+        { label: "Humidity", value: latest.screenRelativeHumidity, suffix: "%" },
+        { label: "Wind speed", value: latest.windSpeed10m, suffix: " m/s" },
+        { label: "Pressure", value: latest.mslp, suffix: " hPa" },
+        { label: "Observation time", value: latest.time || latest.timeSeries || "Latest", suffix: "" }
+      ];
+
+      cards.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "obs-card";
+        card.innerHTML = `
+          <div class="obs-time">${item.label}</div>
+          <div class="obs-value">${item.value !== undefined && item.value !== null ? item.value + item.suffix : "--"}</div>
+          <div class="obs-label">Met Office observation</div>
+        `;
+        obsGrid.appendChild(card);
+      });
+
+      if (series.length) {
+        series.slice(-6).reverse().forEach(point => {
+          const card = document.createElement("div");
+          card.className = "obs-card";
+          card.innerHTML = `
+            <div class="obs-time">${point.time || "Observation"}</div>
+            <div class="obs-value">${point.screenTemperature !== undefined ? Math.round(point.screenTemperature) + "°C" : "--"}</div>
+            <div class="obs-label">Recent observed temperature</div>
+          `;
+          obsGrid.appendChild(card);
+        });
+      }
     }
 
-    async function fetchForecastByQuery(query) {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(query)}&appid=${API_KEY}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Forecast could not be loaded.");
-      return response.json();
+    async function loadOWMByCoords(lat, lon) {
+      const [current, forecast] = await Promise.all([
+        fetchOWMCurrentByCoords(lat, lon),
+        fetchOWMForecastByCoords(lat, lon)
+      ]);
+
+      renderOWMCurrent(current);
+      renderOWMHourly(forecast);
+      renderOWMForecast(forecast);
+      showOWMSections();
+      setStatus(`Showing OpenWeatherMap data for ${currentLoadedLocation}.`);
     }
 
-    async function loadWeatherByCoords(lat, lon) {
-      setStatus("Loading live weather for your current location…");
+    async function loadOWMByQuery(query) {
+      const [current, forecast] = await Promise.all([
+        fetchOWMCurrentByQuery(query),
+        fetchOWMForecastByQuery(query)
+      ]);
 
-      try {
-        const [currentWeather, forecast] = await Promise.all([
-          fetchCurrentWeatherByCoords(lat, lon),
-          fetchForecastByCoords(lat, lon)
-        ]);
+      currentCoords = {
+        lat: current.coord.lat,
+        lon: current.coord.lon
+      };
 
-        renderCurrentWeather(currentWeather);
-        renderForecast(forecast);
-        renderHourlyForecast(forecast);
-      } catch (error) {
-        console.error(error);
-        setStatus("Sorry, weather could not be loaded for your location.");
+      renderOWMCurrent(current);
+      renderOWMHourly(forecast);
+      renderOWMForecast(forecast);
+      showOWMSections();
+      setStatus(`Showing OpenWeatherMap data for ${currentLoadedLocation}.`);
+    }
+
+    async function loadMetByCoords(lat, lon) {
+      const raw = await fetchMetOfficeLandObservations(lat, lon);
+      renderMetOffice(raw);
+      showMetSections();
+      setStatus(`Showing Met Office land observations for ${currentLoadedLocation}.`);
+    }
+
+    async function loadCurrentProviderByCoords(lat, lon) {
+      if (activeProvider === "owm") {
+        await loadOWMByCoords(lat, lon);
+      } else {
+        await loadMetByCoords(lat, lon);
       }
     }
 
     async function loadWeatherBySearch(query) {
-      setStatus(`Searching weather for ${query}…`);
-
       try {
-        const [currentWeather, forecast] = await Promise.all([
-          fetchCurrentWeatherByQuery(query),
-          fetchForecastByQuery(query)
-        ]);
+        setStatus(`Searching for ${query}…`);
 
-        renderCurrentWeather(currentWeather);
-        renderForecast(forecast);
-        renderHourlyForecast(forecast);
+        const current = await fetchOWMCurrentByQuery(query);
+        currentCoords = {
+          lat: current.coord.lat,
+          lon: current.coord.lon
+        };
+        currentCountryCode = current.sys?.country || "";
+        currentLoadedLocation = `${current.name}${current.sys?.country ? ", " + current.sys.country : ""}`;
+
+        if (activeProvider === "owm") {
+          const forecast = await fetchOWMForecastByQuery(query);
+          renderOWMCurrent(current);
+          renderOWMHourly(forecast);
+          renderOWMForecast(forecast);
+          showOWMSections();
+          setStatus(`Showing OpenWeatherMap data for ${currentLoadedLocation}.`);
+        } else {
+          if (!["GB", "UK"].includes(currentCountryCode)) {
+            setStatus("Met Office Land Observations are for UK locations. Switched back to OpenWeatherMap.");
+            setProvider("owm");
+            const forecast = await fetchOWMForecastByQuery(query);
+            renderOWMCurrent(current);
+            renderOWMHourly(forecast);
+            renderOWMForecast(forecast);
+            showOWMSections();
+            return;
+          }
+
+          const raw = await fetchMetOfficeLandObservations(current.coord.lat, current.coord.lon);
+          renderMetOffice(raw);
+          showMetSections();
+          setStatus(`Showing Met Office land observations for ${currentLoadedLocation}.`);
+        }
       } catch (error) {
         console.error(error);
-        setStatus("Sorry, that location could not be found. Try another town or city.");
+        setStatus("Sorry, that location could not be loaded.");
       }
     }
 
     function requestCurrentLocationWeather() {
-      if (!API_KEY || API_KEY === "PASTE_YOUR_OPENWEATHERMAP_API_KEY_HERE") {
-        setStatus("Add your OpenWeatherMap API key in the code first.");
-        return;
-      }
-
       if (!navigator.geolocation) {
         setStatus("Geolocation is not supported on this device. Search manually instead.");
         return;
@@ -866,9 +1042,15 @@
       setStatus("Requesting your location…");
 
       navigator.geolocation.getCurrentPosition(
-        position => {
-          const { latitude, longitude } = position.coords;
-          loadWeatherByCoords(latitude, longitude);
+        async position => {
+          try {
+            const { latitude, longitude } = position.coords;
+            currentCoords = { lat: latitude, lon: longitude };
+            await loadCurrentProviderByCoords(latitude, longitude);
+          } catch (error) {
+            console.error(error);
+            setStatus("Sorry, weather could not be loaded for your location.");
+          }
         },
         error => {
           console.error(error);
@@ -882,14 +1064,14 @@
       );
     }
 
-    searchForm.addEventListener("submit", event => {
+    searchForm.addEventListener("submit", async event => {
       event.preventDefault();
       const query = locationInput.value.trim();
       if (!query) {
         setStatus("Type a location name first.");
         return;
       }
-      loadWeatherBySearch(query);
+      await loadWeatherBySearch(query);
     });
 
     useLocationBtn.addEventListener("click", () => {
@@ -902,6 +1084,36 @@
         return;
       }
       addSavedLocation(currentLoadedLocation);
+    });
+
+    owmBtn.addEventListener("click", async () => {
+      setProvider("owm");
+      if (currentCoords) {
+        try {
+          await loadOWMByCoords(currentCoords.lat, currentCoords.lon);
+        } catch (error) {
+          console.error(error);
+          setStatus("Could not switch to OpenWeatherMap.");
+        }
+      }
+    });
+
+    metBtn.addEventListener("click", async () => {
+      setProvider("met");
+
+      if (currentCountryCode && !["GB", "UK"].includes(currentCountryCode)) {
+        setStatus("Met Office Land Observations only support UK locations. Search for a UK place or use a UK location.");
+        return;
+      }
+
+      if (currentCoords) {
+        try {
+          await loadMetByCoords(currentCoords.lat, currentCoords.lon);
+        } catch (error) {
+          console.error(error);
+          setStatus("Could not switch to Met Office observations.");
+        }
+      }
     });
 
     renderSavedLocations();
