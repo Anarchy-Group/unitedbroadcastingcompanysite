@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBC Player</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #ffffff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-top: 1px solid #202020;
+      background: #000;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      min-height: 72px;
+      border-bottom: 1px solid #111;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      padding: 0 56px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ff2c93;
+      min-width: 320px;
+    }
+
+    .brand span {
+      color: #fff;
+      margin-left: 6px;
+    }
+
+    .utility-nav {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+      margin-right: 42px;
+    }
+
+    .utility-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      color: #e8e8e8;
+      font-size: 14px;
+      font-weight: 600;
+      border-left: 1px solid #111;
+      min-height: 72px;
+      background: #000;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .utility-nav a.active,
+    .utility-nav a:hover {
+      background: #111;
+      color: #ff2c93;
+    }
+
+    .channel-bar {
+      display: none;
+      align-items: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      background: #151515;
+      border-bottom: 1px solid #202020;
+      padding: 0 28px;
+    }
+
+    .channel-bar.visible {
+      display: flex;
+    }
+
+    .channel-bar button {
+      background: transparent;
+      color: #fff;
+      border: none;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s ease;
+      opacity: 0.95;
+      flex: 0 0 auto;
+    }
+
+    .channel-bar button[data-channel="all"]:hover,
+    .channel-bar button[data-channel="all"].active {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    .channel-bar button[data-channel="one"]:hover,
+    .channel-bar button[data-channel="one"].active {
+      background: #ff8a8a;
+      color: #111;
+    }
+
+    .channel-bar button[data-channel="two"]:hover,
+    .channel-bar button[data-channel="two"].active {
+      background: #7dd3fc;
+      color: #111;
+    }
+
+    .channel-bar button[data-channel="three"]:hover,
+    .channel-bar button[data-channel="three"].active {
+      background: #a855f7;
+      color: #fff;
+    }
+
+    .channel-bar button[data-channel="four"]:hover,
+    .channel-bar button[data-channel="four"].active {
+      background: #facc15;
+      color: #111;
+    }
+
+    .channel-bar button[data-channel="news"]:hover,
+    .channel-bar button[data-channel="news"].active {
+      background: #e5e7eb;
+      color: #111;
+    }
+
+    .channel-bar button[data-channel="sport"]:hover,
+    .channel-bar button[data-channel="sport"].active {
+      background: #22c55e;
+      color: #111;
+    }
+
+    .channel-bar button[data-channel="kids"]:hover,
+    .channel-bar button[data-channel="kids"].active {
+      background: linear-gradient(90deg, #7dd3fc 0%, #fde047 100%);
+      color: #111;
+    }
+
+    .hero-shell {
+      position: relative;
+      min-height: 680px;
+      background: #000;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-media img,
+    .hero-media video,
+    .hero-media iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+      display: block;
+      background: #000;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      padding: 0 58px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 18%, rgba(0,0,0,0.48) 37%, rgba(0,0,0,0.06) 58%, rgba(0,0,0,0.0) 100%);
+    }
+
+    .hero-copy {
+      max-width: 360px;
+      padding-top: 70px;
+      padding-bottom: 110px;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      line-height: 1.14;
+      font-weight: 800;
+      margin: 0 0 20px;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      line-height: 1.45;
+      color: #d0d0d0;
+      margin: 0 0 22px;
+    }
+
+    .hero-meta {
+      font-size: 15px;
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .watch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      color: #111;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 18px 30px;
+      min-width: 310px;
+      justify-content: center;
+      transition: 0.2s ease;
+    }
+
+    .watch-btn:hover {
+      background: #f0f0f0;
+    }
+
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1f1f1;
+      padding-left: 2px;
+      opacity: 0.95;
+    }
+
+    .secondary-link:hover {
+      text-decoration: underline;
+    }
+
+    .thumb-rail-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 0 58px 22px;
+    }
+
+    .thumb-rail {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 1050px;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .thumb-card {
+      background: #111;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      padding: 0;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .thumb-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .thumb-card.active::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+      height: 5px;
+      background: #fff;
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      background: #222;
+    }
+
+    .thumb-label {
+      position: absolute;
+      left: 14px;
+      top: 12px;
+      background: rgba(0,0,0,0.72);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 6px 8px;
+    }
+
+    .library-section {
+      padding: 42px 58px 58px;
+      background: #0a0a0a;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 18px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .filter-tabs button {
+      border: 1px solid #2a2a2a;
+      background: #121212;
+      color: #ddd;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-tabs button.active,
+    .filter-tabs button:hover {
+      background: #1d1d1d;
+      color: #fff;
+      border-color: #404040;
+    }
+
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .library-card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      cursor: pointer;
+      overflow: hidden;
+      transition: 0.2s ease;
+    }
+
+    .library-card:hover {
+      transform: translateY(-3px);
+      border-color: #3a3a3a;
+    }
+
+    .library-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      background: #222;
+    }
+
+    .library-body {
+      padding: 16px;
+    }
+
+    .library-type {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: #1c1c1c;
+      color: #fff;
+      padding: 5px 8px;
+      margin-bottom: 10px;
+    }
+
+    .live-pill {
+      background: #ff2c93;
+      color: #fff;
+      margin-left: 6px;
+    }
+
+    .library-card h4 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .library-card p {
+      margin: 0;
+      color: #cfcfcf;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .empty-state {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      padding: 22px;
+      color: #bdbdbd;
+    }
+
+    footer {
+      background: #000;
+      color: #888;
+      text-align: center;
+      padding: 26px;
+      border-top: 1px solid #151515;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .thumb-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 760px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .brand {
+        padding: 0 22px;
+        min-width: auto;
+      }
+
+      .utility-nav {
+        margin-right: 0;
+      }
+
+      .utility-nav a {
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .channel-bar {
+        padding: 0 14px;
+      }
+
+      .hero-overlay {
+        padding: 0 22px;
+        min-height: 610px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 38%, rgba(0,0,0,0.78) 100%);
+        align-items: flex-end;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+        padding-top: 36px;
+        padding-bottom: 150px;
+      }
+
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .thumb-rail-wrap {
+        padding: 0 22px 16px;
+      }
+
+      .thumb-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-left: 0;
+      }
+
+      .library-section {
+        padding: 34px 22px 48px;
+      }
+
+      .watch-btn {
+        min-width: 250px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand {
+        min-height: 70px;
+      }
+
+      .utility-nav {
+        margin-right: 0;
+      }
+
+      .utility-nav a {
+        min-height: 54px;
+        flex: 1 1 auto;
+      }
+
+      .thumb-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .hero-desc {
+        font-size: 16px;
+      }
+
+      .watch-btn {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">UBC<span>PLAYER</span></div>
+
+      <nav class="utility-nav">
+        <a href="#" id="channelsToggle">Channels</a>
+        <a href="#">Categories</a>
+        <a href="#">A-Z</a>
+        <a href="#">TV Guide</a>
+        <a href="#">Watchlist</a>
+      </nav>
+    </div>
+
+    <div class="channel-bar" id="channelBar">
+      <button class="active" data-channel="all">HOME</button>
+      <button data-channel="one">ONE</button>
+      <button data-channel="two">TWO</button>
+      <button data-channel="three">THREE</button>
+      <button data-channel="four">FOUR</button>
+      <button data-channel="news">NEWS</button>
+      <button data-channel="sport">SPORT</button>
+      <button data-channel="kids">KIDS</button>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="hero-shell">
+      <div class="hero-media" id="heroMedia"></div>
+
+      <div class="hero-overlay">
+        <div class="hero-copy">
+          <h1 class="hero-title" id="heroTitle">Loading…</h1>
+          <p class="hero-desc" id="heroDescription">Preparing featured content.</p>
+          <div class="hero-meta" id="heroMeta">UBC Player</div>
+
+          <div class="hero-actions">
+            <a href="#" class="watch-btn" id="watchNowBtn">▶ Watch now</a>
+            <a href="#" class="secondary-link" id="secondaryAction">▸ More details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="thumb-rail-wrap">
+        <div class="thumb-rail" id="thumbRail"></div>
+      </div>
+    </section>
+
+    <section class="library-section">
+      <h2 class="section-title">Browse programmes</h2>
+
+      <div class="filter-tabs" id="filterTabs">
+        <button class="active" data-type="all">All</button>
+        <button data-type="live">Live</button>
+        <button data-type="video">Video</button>
+        <button data-type="iframe">Embed</button>
+        <button data-type="link">External</button>
+      </div>
+
+      <div class="library-grid" id="libraryGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 United Broadcasting Company | Anarchy Broadcasting Authority</p>
+  </footer>
+
+  <script>
+    const mediaItems = [
+      {
+        title: "UBC Morning Live",
+        type: "iframe",
+        src: "https://www.youtube.com/embed/jfKfPfyJRdk",
+        description: "Start the day with live programming, rolling updates and featured stories across the network.",
+        meta: "Now streaming on UBC ONE",
+        thumbnail: "https://placehold.co/1200x675/245d45/ffffff?text=UBC+Morning+Live",
+        live: true,
+        channel: "one"
+      },
+      {
+        title: "Evening Bulletin",
+        type: "video",
+        src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        description: "Watch the latest evening bulletin on demand with the main national stories and headlines.",
+        meta: "Available now on UBC NEWS",
+        thumbnail: "https://placehold.co/1200x675/1f2937/ffffff?text=Evening+Bulletin",
+        live: false,
+        channel: "news"
+      },
+      {
+        title: "Weekend Sport Wrap",
+        type: "video",
+        src: "https://www.w3schools.com/html/movie.mp4",
+        description: "Catch up on the latest sport highlights, analysis and standout moments from the weekend.",
+        meta: "Available now on UBC SPORT",
+        thumbnail: "https://placehold.co/1200x675/133625/ffffff?text=Weekend+Sport+Wrap",
+        live: false,
+        channel: "sport"
+      },
+      {
+        title: "Special Event Coverage",
+        type: "link",
+        src: "https://example.com",
+        description: "Open the dedicated external event player where the full experience is hosted.",
+        meta: "External player",
+        thumbnail: "https://placehold.co/1200x675/7c2d12/ffffff?text=Special+Event",
+        live: false,
+        channel: "four"
+      },
+      {
+        title: "UBC Kids Live",
+        type: "iframe",
+        src: "https://www.youtube.com/embed/5qap5aO4i9A",
+        description: "Family-friendly live viewing and special children's programming.",
+        meta: "Streaming on UBC KIDS",
+        thumbnail: "https://placehold.co/1200x675/5b3b70/ffffff?text=UBC+Kids+Live",
+        live: true,
+        channel: "kids"
+      },
+      {
+        title: "UBC Three Presents",
+        type: "video",
+        src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        description: "Entertainment and featured programming on UBC Three.",
+        meta: "Available now on UBC THREE",
+        thumbnail: "https://placehold.co/1200x675/6d28d9/ffffff?text=UBC+Three+Presents",
+        live: false,
+        channel: "three"
+      },
+      {
+        title: "UBC Two Spotlight",
+        type: "video",
+        src: "https://www.w3schools.com/html/movie.mp4",
+        description: "A curated selection of standout programming on UBC Two.",
+        meta: "Available now on UBC TWO",
+        thumbnail: "https://placehold.co/1200x675/0ea5e9/ffffff?text=UBC+Two+Spotlight",
+        live: false,
+        channel: "two"
+      }
+    ];
+
+    const heroMedia = document.getElementById("heroMedia");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroDescription = document.getElementById("heroDescription");
+    const heroMeta = document.getElementById("heroMeta");
+    const watchNowBtn = document.getElementById("watchNowBtn");
+    const secondaryAction = document.getElementById("secondaryAction");
+    const thumbRail = document.getElementById("thumbRail");
+    const libraryGrid = document.getElementById("libraryGrid");
+    const filterTabs = document.getElementById("filterTabs");
+    const channelBar = document.getElementById("channelBar");
+    const channelsToggle = document.getElementById("channelsToggle");
+
+    let activeType = "all";
+    let activeChannel = "all";
+
+    function getFilteredItems() {
+      return mediaItems.filter(item => {
+        const typeMatch =
+          activeType === "all" ||
+          (activeType === "live" ? item.live : item.type === activeType);
+
+        const channelMatch =
+          activeChannel === "all" || item.channel === activeChannel;
+
+        return typeMatch && channelMatch;
+      });
+    }
+
+    function renderHero(item) {
+      heroTitle.textContent = item.title;
+      heroDescription.textContent = item.description;
+      heroMeta.textContent = item.meta || "UBC Player";
+
+      watchNowBtn.onclick = (e) => {
+        e.preventDefault();
+        openMedia(item);
+      };
+
+      secondaryAction.onclick = (e) => {
+        e.preventDefault();
+        document.querySelector(".library-section").scrollIntoView({ behavior: "smooth" });
+      };
+
+      if (item.type === "video") {
+        heroMedia.innerHTML = `
+          <video autoplay muted controls playsinline poster="${item.thumbnail}">
+            <source src="${item.src}">
+          </video>
+        `;
+        return;
+      }
+
+      if (item.type === "iframe") {
+        heroMedia.innerHTML = `
+          <iframe
+            src="${item.src}"
+            title="${item.title}"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowfullscreen>
+          </iframe>
+        `;
+        return;
+      }
+
+      heroMedia.innerHTML = `<img src="${item.thumbnail}" alt="${item.title}">`;
+    }
+
+    function openMedia(item) {
+      if (item.type === "video" || item.type === "iframe") {
+        renderHero(item);
+        return;
+      }
+
+      if (item.type === "link") {
+        window.open(item.src, "_blank", "noopener,noreferrer");
+      }
+    }
+
+    function renderThumbRail() {
+      const items = getFilteredItems().slice(0, 4);
+      thumbRail.innerHTML = "";
+
+      items.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "thumb-card";
+        if (index === 0) button.classList.add("active");
+
+        button.innerHTML = `
+          <img src="${item.thumbnail}" alt="${item.title}">
+          <div class="thumb-label">${item.live ? "Live" : item.type}</div>
+        `;
+
+        button.addEventListener("click", () => {
+          thumbRail.querySelectorAll(".thumb-card").forEach(card => card.classList.remove("active"));
+          button.classList.add("active");
+          renderHero(item);
+        });
+
+        thumbRail.appendChild(button);
+      });
+
+      if (items.length > 0) {
+        renderHero(items[0]);
+      } else {
+        heroMedia.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;background:#111;">No programmes found.</div>`;
+        heroTitle.textContent = "No programmes found";
+        heroDescription.textContent = "Try a different filter or channel.";
+        heroMeta.textContent = "UBC Player";
+      }
+    }
+
+    function renderLibrary() {
+      const items = getFilteredItems();
+      libraryGrid.innerHTML = "";
+
+      if (!items.length) {
+        libraryGrid.innerHTML = `<div class="empty-state">No programmes match the current filters.</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "library-card";
+
+        card.innerHTML = `
+          <img src="${item.thumbnail}" alt="${item.title}">
+          <div class="library-body">
+            <div class="library-type">
+              ${item.type}
+              ${item.live ? `<span class="live-pill">LIVE</span>` : ""}
+            </div>
+            <h4>${item.title}</h4>
+            <p>${item.description}</p>
+          </div>
+        `;
+
+        card.addEventListener("click", () => {
+          renderHero(item);
+          openMedia(item);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        libraryGrid.appendChild(card);
+      });
+    }
+
+    filterTabs.querySelectorAll("button").forEach(button => {
+      button.addEventListener("click", () => {
+        filterTabs.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeType = button.dataset.type;
+        renderThumbRail();
+        renderLibrary();
+      });
+    });
+
+    channelBar.querySelectorAll("button").forEach(button => {
+      button.addEventListener("click", () => {
+        channelBar.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeChannel = button.dataset.channel;
+        renderThumbRail();
+        renderLibrary();
+      });
+    });
+
+    channelsToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      channelsToggle.classList.toggle("active");
+      channelBar.classList.toggle("visible");
+    });
+
+    renderThumbRail();
+    renderLibrary();
+  </script>
+</body>
+</html>
