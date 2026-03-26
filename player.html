@@ -69,6 +69,7 @@
       background: #000;
       transition: 0.2s ease;
       cursor: pointer;
+      user-select: none;
     }
 
     .utility-nav a.active,
@@ -77,7 +78,8 @@
       color: #ff2c93;
     }
 
-    .channel-bar {
+    .channel-bar,
+    .category-bar {
       display: none;
       align-items: center;
       overflow-x: auto;
@@ -85,13 +87,16 @@
       background: #151515;
       border-bottom: 1px solid #202020;
       padding: 0 28px;
+      scrollbar-width: thin;
     }
 
-    .channel-bar.visible {
+    .channel-bar.visible,
+    .category-bar.visible {
       display: flex;
     }
 
-    .channel-bar button {
+    .channel-bar button,
+    .category-bar button {
       background: transparent;
       color: #fff;
       border: none;
@@ -102,6 +107,12 @@
       transition: 0.2s ease;
       opacity: 0.95;
       flex: 0 0 auto;
+    }
+
+    .category-bar button:hover,
+    .category-bar button.active {
+      background: #2a2a2a;
+      color: #fff;
     }
 
     .channel-bar button[data-channel="all"]:hover,
@@ -456,7 +467,8 @@
         font-size: 13px;
       }
 
-      .channel-bar {
+      .channel-bar,
+      .category-bar {
         padding: 0 14px;
       }
 
@@ -540,7 +552,7 @@
 
       <nav class="utility-nav">
         <a href="#" id="channelsToggle">Channels</a>
-        <a href="#">Categories</a>
+        <a href="#" id="categoriesToggle">Categories</a>
         <a href="#">A-Z</a>
         <a href="#">TV Guide</a>
         <a href="#">Watchlist</a>
@@ -556,6 +568,36 @@
       <button data-channel="news">NEWS</button>
       <button data-channel="sport">SPORT</button>
       <button data-channel="kids">KIDS</button>
+    </div>
+
+    <div class="category-bar" id="categoryBar">
+      <button class="active" data-category="all">ALL</button>
+      <button data-category="drama">DRAMA</button>
+      <button data-category="comedy">COMEDY</button>
+      <button data-category="documentary">DOCUMENTARY</button>
+      <button data-category="news">NEWS</button>
+      <button data-category="sport">SPORT</button>
+      <button data-category="entertainment">ENTERTAINMENT</button>
+      <button data-category="reality">REALITY</button>
+      <button data-category="factual">FACTUAL</button>
+      <button data-category="history">HISTORY</button>
+      <button data-category="science">SCIENCE</button>
+      <button data-category="technology">TECHNOLOGY</button>
+      <button data-category="nature">NATURE</button>
+      <button data-category="travel">TRAVEL</button>
+      <button data-category="food">FOOD</button>
+      <button data-category="music">MUSIC</button>
+      <button data-category="arts">ARTS</button>
+      <button data-category="culture">CULTURE</button>
+      <button data-category="lifestyle">LIFESTYLE</button>
+      <button data-category="children">CHILDREN</button>
+      <button data-category="family">FAMILY</button>
+      <button data-category="education">EDUCATION</button>
+      <button data-category="politics">POLITICS</button>
+      <button data-category="investigation">INVESTIGATION</button>
+      <button data-category="live-events">LIVE EVENTS</button>
+      <button data-category="films">FILMS</button>
+      <button data-category="series">SERIES</button>
     </div>
   </header>
 
@@ -610,7 +652,8 @@
         meta: "Now streaming on UBC ONE",
         thumbnail: "https://placehold.co/1200x675/245d45/ffffff?text=UBC+Morning+Live",
         live: true,
-        channel: "one"
+        channel: "one",
+        categories: ["news", "live-events", "factual"]
       },
       {
         title: "Evening Bulletin",
@@ -620,7 +663,8 @@
         meta: "Available now on UBC NEWS",
         thumbnail: "https://placehold.co/1200x675/1f2937/ffffff?text=Evening+Bulletin",
         live: false,
-        channel: "news"
+        channel: "news",
+        categories: ["news", "politics", "investigation"]
       },
       {
         title: "Weekend Sport Wrap",
@@ -630,7 +674,8 @@
         meta: "Available now on UBC SPORT",
         thumbnail: "https://placehold.co/1200x675/133625/ffffff?text=Weekend+Sport+Wrap",
         live: false,
-        channel: "sport"
+        channel: "sport",
+        categories: ["sport", "factual"]
       },
       {
         title: "Special Event Coverage",
@@ -640,7 +685,8 @@
         meta: "External player",
         thumbnail: "https://placehold.co/1200x675/7c2d12/ffffff?text=Special+Event",
         live: false,
-        channel: "four"
+        channel: "four",
+        categories: ["live-events", "entertainment"]
       },
       {
         title: "UBC Kids Live",
@@ -650,7 +696,8 @@
         meta: "Streaming on UBC KIDS",
         thumbnail: "https://placehold.co/1200x675/5b3b70/ffffff?text=UBC+Kids+Live",
         live: true,
-        channel: "kids"
+        channel: "kids",
+        categories: ["children", "family", "education"]
       },
       {
         title: "UBC Three Presents",
@@ -660,7 +707,8 @@
         meta: "Available now on UBC THREE",
         thumbnail: "https://placehold.co/1200x675/6d28d9/ffffff?text=UBC+Three+Presents",
         live: false,
-        channel: "three"
+        channel: "three",
+        categories: ["entertainment", "series", "comedy"]
       },
       {
         title: "UBC Two Spotlight",
@@ -670,7 +718,41 @@
         meta: "Available now on UBC TWO",
         thumbnail: "https://placehold.co/1200x675/0ea5e9/ffffff?text=UBC+Two+Spotlight",
         live: false,
-        channel: "two"
+        channel: "two",
+        categories: ["documentary", "history", "science"]
+      },
+      {
+        title: "World of Nature",
+        type: "video",
+        src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        description: "A stunning natural history feature exploring wildlife and changing environments.",
+        meta: "Available now on UBC FOUR",
+        thumbnail: "https://placehold.co/1200x675/355e3b/ffffff?text=World+of+Nature",
+        live: false,
+        channel: "four",
+        categories: ["nature", "documentary", "science"]
+      },
+      {
+        title: "City Lives",
+        type: "video",
+        src: "https://www.w3schools.com/html/movie.mp4",
+        description: "A factual series exploring modern city life, work and culture.",
+        meta: "Available now on UBC ONE",
+        thumbnail: "https://placehold.co/1200x675/444444/ffffff?text=City+Lives",
+        live: false,
+        channel: "one",
+        categories: ["factual", "culture", "lifestyle", "series"]
+      },
+      {
+        title: "Kitchen Stories",
+        type: "video",
+        src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        description: "Food, recipes and stories from kitchens across the country.",
+        meta: "Available now on UBC TWO",
+        thumbnail: "https://placehold.co/1200x675/8b5a2b/ffffff?text=Kitchen+Stories",
+        live: false,
+        channel: "two",
+        categories: ["food", "lifestyle", "entertainment"]
       }
     ];
 
@@ -684,10 +766,13 @@
     const libraryGrid = document.getElementById("libraryGrid");
     const filterTabs = document.getElementById("filterTabs");
     const channelBar = document.getElementById("channelBar");
+    const categoryBar = document.getElementById("categoryBar");
     const channelsToggle = document.getElementById("channelsToggle");
+    const categoriesToggle = document.getElementById("categoriesToggle");
 
     let activeType = "all";
     let activeChannel = "all";
+    let activeCategory = "all";
 
     function getFilteredItems() {
       return mediaItems.filter(item => {
@@ -698,7 +783,11 @@
         const channelMatch =
           activeChannel === "all" || item.channel === activeChannel;
 
-        return typeMatch && channelMatch;
+        const categoryMatch =
+          activeCategory === "all" ||
+          (Array.isArray(item.categories) && item.categories.includes(activeCategory));
+
+        return typeMatch && channelMatch && categoryMatch;
       });
     }
 
@@ -780,7 +869,7 @@
       } else {
         heroMedia.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;background:#111;">No programmes found.</div>`;
         heroTitle.textContent = "No programmes found";
-        heroDescription.textContent = "Try a different filter or channel.";
+        heroDescription.textContent = "Try a different filter, channel or category.";
         heroMeta.textContent = "UBC Player";
       }
     }
@@ -840,10 +929,26 @@
       });
     });
 
+    categoryBar.querySelectorAll("button").forEach(button => {
+      button.addEventListener("click", () => {
+        categoryBar.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeCategory = button.dataset.category;
+        renderThumbRail();
+        renderLibrary();
+      });
+    });
+
     channelsToggle.addEventListener("click", (e) => {
       e.preventDefault();
       channelsToggle.classList.toggle("active");
       channelBar.classList.toggle("visible");
+    });
+
+    categoriesToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      categoriesToggle.classList.toggle("active");
+      categoryBar.classList.toggle("visible");
     });
 
     renderThumbRail();
