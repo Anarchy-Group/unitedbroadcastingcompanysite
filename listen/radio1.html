@@ -10,7 +10,7 @@
     .site-header { display:flex; justify-content:space-between; align-items:center; padding:18px 48px; background:#f5f5f5; border-bottom:1px solid #ddd; }
     .site-header h1 { margin:0; font-size:22px; letter-spacing:2px; color:#111; font-family:"Segoe UI",sans-serif; }
     .site-nav { display:flex; flex-wrap:wrap; gap:10px; }
-    .site-nav a { text-decoration:none; font-size:13px; padding:8px 14px; border-radius:6px; font-weight:500; color:white; font-family:"Segoe UI",sans-serif; }
+    .site-nav a { text-decoration:none; font-size:13px; padding:8px 14px; border-radius:1px; font-weight:500; color:white; font-family:"Segoe UI",sans-serif; }
     .site-nav a:nth-child(1){background:#1e3a8a;} .site-nav a:nth-child(2){background:#b91c1c;} .site-nav a:nth-child(3){background:#065f46;}
     .site-nav a:nth-child(4){background:#7c3aed;} .site-nav a:nth-child(5){background:#0e7490;} .site-nav a:nth-child(6){background:#ea580c;}
     .site-nav a:nth-child(7){background:#15803d;} .site-nav a:nth-child(8){background:#374151;}
@@ -32,7 +32,7 @@
   <header class="site-header">
     <h1>UBC</h1>
     <nav class="site-nav">
-      <a href="#">Home</a><a href="#">News</a><a href="#">Education</a><a href="#">Player</a><a href="#">Listen</a><a href="#">Weather</a><a href="#">Sport</a><a href="#">Archive</a>
+      <a href="/index">Home</a><a href="/news">News</a><a href="/education">Education</a><a href="/player">Player</a><a href="/listen">Listen</a><a href="/weather">Weather</a><a href="/sport">Sport</a><a href="/archive">Archive</a>
     </nav>
   </header>
   <section class="station-hero">
@@ -44,7 +44,9 @@
     <div class="player-panel">
       <h3>Listen live</h3>
       <p>This station plays through your embedded caster.fm player below.</p>
-      <iframe class="player-frame" src="PASTE_YOUR_CASTER_FM_EMBED_URL_HERE" title="UBC Radio 1 live player" allow="autoplay"></iframe>
+      <div class="cstrEmbed" data-type="newStreamPlayer" data-publicToken="4c9b1d46-69a9-4ff4-a622-11077956d130" data-theme="dark" data-color="000000" data-channelId="" data-rendered="false">
+<a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a></div>
+<script src="//cdn.cloud.caster.fm//widgets/embed.js"></script>
       <a class="back-link" href="listen.html">← Back to UBC Listen</a>
     </div>
   </main>
